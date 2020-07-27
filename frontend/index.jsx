@@ -5,7 +5,6 @@ import configureStore from './store/store';
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // debugger
     const root = document.getElementById('root');
     const store = configureStore();
 

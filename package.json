@@ -25,7 +25,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
@@ -37,5 +37,9 @@
   "bugs": {
     "url": "https://github.com/jlin2235/Investi/issues"
   },
-  "homepage": "https://github.com/jlin2235/Investi#readme"
+  "homepage": "https://github.com/jlin2235/Investi#readme",
+  "engines": {
+    "node": "12.5.0",
+    "npm": "6.9.0"
+  }
 }
