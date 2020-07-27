@@ -1,0 +1,4 @@
+# We want to generate our own bundle not use any pre-existing bundles
+bundle.js
+bundle.js.map
+node_modules/
