@@ -11,3 +11,4 @@ document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(<Root store={store}/>,root);
     // ReactDOM.render(<h1> HELLO!</h1>);
 });
+
