@@ -1,0 +1,89 @@
+.login-form-container{
+    // display: flex;
+    // align-items: center;
+    // // height: 1000px;
+    // width: 100%;
+    // flex-direction: row;
+    display: grid;
+    grid-template-columns: 55% 45%;
+    height: 100vh;
+    width: 100vw;
+
+    .login-form-image-side{
+
+        background: image-url("loginPage.jpg");
+        background-size: 100% 100%;
+    
+      }
+  
+    .login-form-login-box-side{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .login-form-login-box{
+        padding-top: 300px;
+        padding-left: 50px;
+    }
+
+    .login-welcome-text{
+        font-size: 25px;
+        font-weight: 300;
+        // font-family: sans-serif;
+        font-family: 'Roboto Condensed', sans-serif;
+
+    }
+    
+    .login-label-text{
+        font-size: 15px;
+        font-weight: 200;
+        font-family: 'Roboto Condensed', sans-serif;
+
+    }
+
+    .login-input-field{
+        width: 412px;
+        height: 50px;
+        border: 1px solid #fafafa ;
+        margin: 10px 0px;;
+        padding: 5px 20px;
+        border-radius: 4px;
+        transition: border-color 200ms;
+        box-sizing: border-box;
+        background: #fafafa;
+    }
+    .login-input-field:hover{
+        background-color: #fff;
+        color: #171718;
+        border-color: lightgray;
+    }
+
+
+    .login-forget-password-text{
+        color: rgb(0,200,5);
+        font-size: 15px;
+        font-weight: 200;
+    }
+
+    .login-input-field:focus{
+        border-color:rgb(0,200,5);
+        background-color: white;
+    }
+
+    .login-button{
+        background: rgb(0,200,5);
+        border-color: rgb(0,200,5);
+        border-radius: 4px;
+        color: #fff;
+        border: 1px solid transparent;
+        padding: 0 48px;
+        height: 48px;
+        margin: 70px 0;
+        
+    }
+
+}
+
+
+
