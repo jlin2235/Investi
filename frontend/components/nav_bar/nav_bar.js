@@ -7,11 +7,12 @@ import { Link } from 'react-router-dom';
 const Greeting = ({ currentUser, logout }) => {
     
     const sessionLinks = () => (
-        <div className='nav-bar-'>
-            {/* <img src='./../../../app/assets/images/RobinhoodLogo.jpg' /> */}
-            <Link to="/"> Investi <img src={window.logo}/></Link>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign up!</Link>
+        <div className='nav-bar-container'>
+            <Link to="/"><img id='investi-logo' src={window.logo}/></Link>
+            <div>
+            <Link id='login' to="/login">Login</Link>
+            <Link id='Sign-up' to="/signup"><span>Sign Up</span></Link>
+            </div>
         </div>
     );
     const personalGreeting = () => {

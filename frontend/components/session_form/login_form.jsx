@@ -1,5 +1,7 @@
 //PARTIAL USED TO DISPLAY LOGIN OR SIGNUP
 import React from 'react';
+import { Link } from "react-router-dom";
+
 
 class SessionForm extends React.Component {
     constructor(props) {
@@ -37,70 +39,64 @@ class SessionForm extends React.Component {
     }
 
 
-    signupForm() {
-        // debugger
-        return (
-            <div>
-                <label>first_name:
-                    <input type="text"
-                    placeholder="first name"
-                    value={this.state.username}
-                    onChange={this.update('email')}
-                    />    
-                </label>
-                <br />
-                <label>last_name:
-                    <input type="text"
-                    placeholder="last name"
-                    value={this.state.username}
-                    onChange={this.update('email')}
-                    />
-                </label>
-                <br />   
-                <label>balance:
-                    <input type="number"
-                    placeholder="Initial buying power"
-                    value={this.state.username}
-                    onChange={this.update('email')}
-                    />
-                </label>
-            </div>
-        )
         
-    }
+    
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    Welcome to Investi!
-            <br />
-          
-                    {this.renderErrors()}
-                    <div>
-            <br />
-                        <label>Username:
-                            <input type="text"
-                                placeholder = "username"
-                                value={this.state.username}
-                                onChange={this.update('email')}
-                            />
-                        </label>
-                        <br />
-                        <label>Password:
-                                <input type="password"
-                                placeholder="password"
-                                value={this.state.password}
-                                onChange={this.update('password')}
-                            />
-                        </label>
-                        <br />
-                        {((this.props.formType === 'Sign Up') ? this.signupForm() : null )}
-
-                        <input type="submit" value={this.props.formType} />
-                    </div>
-                </form>
+        <div className='login-form-container'>
+            
+            <div className='login-form-image-side'>
+                {/* <img src={window.login} /> */}
             </div>
+            
+            <div className='login-form-login-box-side'>
+                <div className='login-form-login-box'>
+                    
+                    <h1 className='login-welcome-text'>Welcome to Investi</h1>
+                    <form onSubmit={this.handleSubmit}> 
+                            {/* DONT KNOW IF I NEED THIS HANDLESUBMIT  */}
+                        <br />
+            
+                        
+                        <div>
+                            <label><span className='login-label-text'>Email or username</span>
+                                <div>
+                                    <input type="text"
+                                    value={this.state.username}
+                                    onChange={this.update('email')}
+                                    required
+                                    className='login-input-field'/>    
+                                </div>
+                            </label>
+                        
+                        <br />
+                            <label><span className='login-label-text'>Password:</span>
+                                <div>
+                                    <input type="password"
+                                    value={this.state.password}
+                                    onChange={this.update('password')}
+                                    className='login-input-field'
+                                    required/>
+                                </div>
+                            </label>
+                        
+                            {((this.props.formType === 'Sign Up') ? this.signupForm() : null )}
+                            
+                            <div>
+                                <Link to='/' className='login-forget-password-text'> Forgot your username or password?</Link>
+                            </div>
+                            <br />
+                            {this.renderErrors()}
+                            {/* <p className='login-forget-password-text'>Forgot your username or password?</p> */}
+                            <input type="submit" value={this.props.formType} className='login-button' />
+                            {/* <button className='login-button' onClick={this.handleSubmit}>{this.props.formType}</button> */}
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         );
     }
 }

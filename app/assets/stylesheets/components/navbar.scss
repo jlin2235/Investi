@@ -1,0 +1,35 @@
+#investi-logo{
+    width: 125px;
+    // // height: 40px;
+}
+
+.nav-bar-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+
+    #login{
+        margin-right: 20px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    #Sign-up{
+        margin-right: 20px;
+        font-size: 20px;
+        font-weight: 700;
+        border-radius: 20px;
+        // background: linear-gradient(to right, #18563e 50%,#21ce99 50%);
+        background-color: #21ce99;
+        min-width: 85px;
+        background-size: 200% 100%;
+        transition: all .3s ease-in;
+        text-decoration: unset;
+        padding: 12px 35px;
+
+
+
+
+    }
+}
