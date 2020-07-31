@@ -10,10 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_27_182259) do
+ActiveRecord::Schema.define(version: 2020_07_31_203148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "portfolios", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "stock_details_id", null: false
+    t.float "num_shares", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_details_id"], name: "index_portfolios_on_stock_details_id", unique: true
+    t.index ["user_id"], name: "index_portfolios_on_user_id", unique: true
+  end
+
+  create_table "stock_details", force: :cascade do |t|
+    t.string "company", null: false
+    t.string "symbol", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "portfolio_id", null: false
+    t.integer "stock_id", null: false
+    t.integer "purchase_price", null: false
+    t.integer "shares", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["portfolio_id"], name: "index_transactions_on_portfolio_id", unique: true
+    t.index ["stock_id"], name: "index_transactions_on_stock_id", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false

@@ -19,6 +19,7 @@ const Greeting = ({ currentUser, logout }) => {
         return(            
             <div>
                 <h2>Hi, {currentUser.first_name}!</h2>
+                <Link to="/login">Account</Link>
                 <button onClick={logout}>Log Out</button>
             </div>
         )
@@ -30,7 +31,7 @@ const Greeting = ({ currentUser, logout }) => {
     if(currentUser){
         return personalGreeting()
     }else{
-        <Link to="/"> Investi </Link>
+        <Link to="/"> </Link>
         return sessionLinks()
     }  
          
