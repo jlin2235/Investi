@@ -8,7 +8,7 @@ const Greeting = ({ currentUser, logout }) => {
     
     const sessionLinks = () => (
         <div className='nav-bar-container'>
-            <Link to="/"><img id='robinhood-logo-feather' src={window.logo}/></Link>
+            <Link to="/"><img id='investi-logo' src={window.logo}/></Link>
             <div>
             <Link id='login' to="/login">Login</Link>
             <Link id='Sign-up' to="/signup"><span>Sign Up</span></Link>
