@@ -3,3 +3,10 @@ bundle.js
 bundle.js.map
 node_modules/
 /config/master.key
+
+
+#IGNORE THE CACHE FILES
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
