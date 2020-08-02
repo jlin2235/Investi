@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { Route, Switch, Link } from "react-router-dom";
 
 
-import NavBarContainer from './nav_bar/nav_bar_container'
+import GreetingContainer from './greetings/greeting_container'
 import LogInFormContainer from './session_form/login_form_container'
 import SignUpFormContainer from './session_form/signup_form_container'
 import HomeContainer from './home/home_container'
@@ -22,7 +22,7 @@ const App = () => (
             <AuthRoute exact path="/signup" component={SignUpFormContainer} /> */}
 
 
-            <Route exact path="/" component={NavBarContainer} />
+            <Route exact path="/" component={GreetingContainer} />
             <AuthRoute exact path="/login" component={LogInFormContainer} />
             <AuthRoute exact path="/signup" component={SignUpFormContainer} /> 
             <ProtectedRoute exact path="/home" component={HomeContainer} />

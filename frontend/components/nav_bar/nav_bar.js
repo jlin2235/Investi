@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom';
 
 
 //MSP AND MDP PASSED IN AS PROPS: currentUser and logout(function)
-const Greeting = ({ currentUser, logout }) => {
+const NavBar = ({ currentUser, logout }) => {
     
     const sessionLinks = () => (
         <div className='nav-bar-container'>
-            <Link to="/"><img id='investi-logo' src={window.logo}/></Link>
+            <div className='left-side-container'>
+                <Link to="/"><img id='investi-logo' src={window.logo}/></Link>
+                <span>Linkedln</span>
+                <span>Resume</span>
+            </div>
             <div>
             <Link id='login' to="/login">Login</Link>
             <Link id='Sign-up' to="/signup"><span>Sign Up</span></Link>
@@ -38,4 +42,4 @@ const Greeting = ({ currentUser, logout }) => {
 };
 
 
-export default Greeting;
+export default NavBar;

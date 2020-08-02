@@ -8,11 +8,25 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    font-size: 20px;
+
+    .left-side-container{
+        display: flex;
+        align-items: center;
+
+        span{
+            margin: 0 30px;
+            // font-weight: 700;
+
+        }
+    }   
 
     #login{
         margin-right: 20px;
         font-size: 20px;
         font-weight: 700;
+        // font-family: 'Roboto Condensed', sans-serif;
+
     }
 
     #Sign-up{
@@ -27,9 +41,11 @@
         transition: all .3s ease-in;
         text-decoration: unset;
         padding: 12px 35px;
+        // font-family: 'Roboto Condensed', sans-serif;
 
 
 
 
     }
 }
+

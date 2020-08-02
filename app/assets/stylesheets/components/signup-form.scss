@@ -1,4 +1,4 @@
-.signup-form-container{
+.signup-page-container{
     display:flex;
     flex-direction: column;
     // align-items: center;
@@ -6,7 +6,7 @@
     .signup-progress-tracker-bar{
         display: flex;
         align-items: center;
-        margin: 50px auto;
+        margin: 50px auto 0 auto;
         justify-content: center;
         font-family: 'Roboto Condensed', sans-serif;
         width: 800px;
@@ -22,16 +22,18 @@
         }
     }
 
-    .signup-form-input-fields{
+    .signup-form-container{
         display:flex;
         width: 800px;
-        margin: 50px auto;
+        margin: 20px auto;
         justify-content: initial;
         font-family: 'Roboto Condensed', sans-serif;
 
-        .signup-form-container{
+        .signup-form-header-container{
             margin-left: 30px;
             display: flex;
+            flex-direction: column;
+            
 
             h1{
                 font-size: 50px;
@@ -42,6 +44,50 @@
                 font-size: 25px;
                 font-weight: 300;
             };
+
+            .signup-form-input{
+                font-size: 15px;
+                color: black;
+
+                input{
+                    width: 100%;
+                    height: 50px;
+                    border: 1px solid lightgray ;
+                    margin: 10px 0px;;
+                    padding: 5px 20px;
+                    border-radius: 4px;
+                    transition: border-color 200ms;
+                    box-sizing: border-box;
+                    background: #fafafa;
+                }
+                input:hover{
+                    background-color: #fff;
+                    color: #171718;
+                    border-color: lightgray;
+                }
+                input:focus{
+                    border-color:rgb(0,200,5);
+                    background-color: white;
+                }
+
+                .signup-button{
+                    background: rgb(0,200,5);
+                    border-color: rgb(0,200,5);
+                    border-radius: 4px;
+                    color: #fff;
+                    border: 1px solid transparent;
+                    padding: 0 48px;
+                    height: 48px;
+                    // margin: 70px 0;
+                }
+
+                .signup-page-already-user-text{
+                    color: rgb(0,200,5);
+                    font-size: 15px;
+                    font-weight: 200;
+                }
+
+            }
         }
     }
 

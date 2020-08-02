@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 
-import { logout } from '../../actions/session_actions';
-import NavBar from './nav_bar';
+// import { logout } from '../../actions/session_actions';
+import Greetings from './greetings';
 
 const msp = (state) => {
     return {
-        currentUser: state.entities.users[state.session.id] 
+        currentUser: state.entities.users[state.session.id]
         //currentUser will find all the Users and we key into it with session.id(current user ID)
     };
 };
@@ -15,4 +15,4 @@ const mdp = dispatch => ({
 });
 
 
-export default connect(msp, mdp)(NavBar);
+export default connect(msp, mdp)(Greetings);
