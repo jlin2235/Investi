@@ -1,0 +1,31 @@
+.show-page-stockinfo-container{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    margin: 50px auto;
+
+
+
+    #show-page-stockinfo-container-about-text{
+        font-size: 30px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        border-bottom: 1px solid lightgray;
+    }
+
+    .show-page-stockinfo-container-info-details{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        // margin-bottom: 10px;
+        
+        h2{
+            font-weight: 800;
+            font-size: 15px;
+        }
+        div{
+            margin: 5px;
+        }
+
+    }
+}

@@ -1,0 +1,2 @@
+module StockDetailsHelper
+end

@@ -49,3 +49,36 @@
     }
 }
 
+.NavBar-After-SignUp-Container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+
+    .NavBar-After-SignUp-Right-Side{
+        display: flex;
+        align-items: center;
+        margin: 0px 50px;
+        // justify-content: space-evenly
+        
+        button{
+            margin-left: 30px;
+        }
+
+    }
+    .NavBar-After-SignUp-Left-Side{
+        display: flex;
+
+        h2{
+            display: flex;
+            font-size: 20px;
+            // color: red;
+            align-items: center;
+            font-family: 'Roboto Condensed', sans-serif;
+            margin: 0 50px;;
+
+        }
+    }
+
+
+}

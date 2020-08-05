@@ -1,8 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router'
 
 
 class Cover extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.handleDemoSignin = this.handleDemoSignin.bind(this);
+    }
+
+
+handleDemoSignin() {
+    
+    let demoinfo = { email: 'demoUser@gmail.com',
+                     password: 'demopassword' }
+    // debugger
+    this.props.login(demoinfo)
+        .then(() => { this.props.history.push('/home')})
+    
+}   
 
 render(){
     return(
@@ -11,7 +28,7 @@ render(){
                 <div className='purpose-statement-container'>
                     <h1 className='cover-page-motto'>Make money while you sleep!</h1>
                     <p className='cover-page-investi-description'> Investi, a pioneer of commission-free investing, gives you more ways to make your money work harder</p>
-                    <button className='cover-page-demo'>Demo</button>
+                    <button className='cover-page-demo' onClick={this.handleDemoSignin}>Demo</button>
                 </div>
                 <div className='iphone-card-iphone-gif-container'> 
                     <video autoPlay loop muted preloaded='auto' className='iphone-gif'>
@@ -54,4 +71,4 @@ render(){
 
 }
 
-export default Cover;
+export default withRouter(Cover);

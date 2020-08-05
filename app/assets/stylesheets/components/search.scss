@@ -1,0 +1,24 @@
+.Search-Bar-Input-Field{
+    width: 500px;
+    height: 20px;
+    border: 1px solid lightgray;
+    margin: 10px 0px;;
+    padding: 5px 20px;
+    border-radius: 4px;
+    transition: border-color 200ms;
+    box-sizing: border-box;
+    background: #fafafa;   
+    
+}
+
+.Search-Bar-Input-Field:hover{
+    background-color: #fff;
+    color: #171718;
+    border-color: lightgray;
+}
+        
+
+.Search-Bar-Input-Field:focus{
+    border-color:rgb(0,200,5);
+    background-color: white;
+}

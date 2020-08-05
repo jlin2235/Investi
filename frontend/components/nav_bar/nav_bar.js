@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SearchBarContainer from './../search/search_container'
 // import images from './../../../app/assets/images/RobinhoodLogo.jpg'
 
 
@@ -21,10 +22,17 @@ const NavBar = ({ currentUser, logout }) => {
     );
     const personalGreeting = () => {
         return(            
-            <div>
-                <h2>Hi, {currentUser.first_name}!</h2>
-                <Link to="/login">Account</Link>
-                <button onClick={logout}>Log Out</button>
+            <div className='NavBar-After-SignUp-Container'>
+                <div className='NavBar-After-SignUp-Left-Side'>
+                {/* <Link to="/"><img id='investi-logo' src={window.logo} /></Link> */}
+                    <h2>Welcome back, {currentUser.first_name}!</h2>
+                    <SearchBarContainer />
+                </div>
+                <div className='NavBar-After-SignUp-Right-Side'>
+                    <Link to="/login">Account</Link>
+                    <button onClick={logout}>Log Out</button>
+                </div>
+
             </div>
         )
         
