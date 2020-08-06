@@ -29,3 +29,49 @@
 
     }
 }
+
+.show-page-news-feed-container{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    margin: 50px auto;
+
+    .show-page-news-feed-list-items{
+        display: flex;
+
+        div{
+            margin: 10px 0;
+        }
+
+        .show-page-news-feed-name{
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .show-page-news-feed-title{
+            border-bottom: 1px solid lightgray;
+            font-size: 12px;
+            font-weight: 800;
+        }
+        .show-page-news-feed-description{
+            font-size: 12px;
+        }
+
+
+
+        .show-page-news-feed-image{
+            width: 100px;
+            height: 60px;;
+            margin-right: 20px;
+        }
+    }
+
+    #show-page-news-feed-container-text{
+        font-size: 30px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        border-bottom: 1px solid lightgray;
+    }
+
+
+}

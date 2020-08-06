@@ -1,6 +1,6 @@
 import { RECEIVE_NEWS } from './../actions/search_actions'
 
-export const profileReducer = (state = {}, action) => {
+export const newsReducer = (state = {}, action) => {
     Object.freeze(state);
     let nextState = Object.assign({}, state);
     switch (action.type) {
