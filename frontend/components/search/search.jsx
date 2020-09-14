@@ -12,7 +12,57 @@ class SearchBar extends React.Component{
             searchvalue: ''
         }
         this.pressEnterKey = this.pressEnterKey.bind(this);
+        this.filterSuggestions = this.filterSuggestions.bind(this);
     }
+
+    componentDidMount() {
+        debugger
+        this.props.receiveStocks();
+    }
+
+    filterSuggestions(){
+        let suggestions = [];
+        let companies = Object.values(this.props.stocks); //Change it into an array
+        let userInoutUpperCase = this.state.searchvalue.toUpperCase();
+
+        if(userInoutUpperCase.length > 0) {
+            companies.forEach((company, idx) =>{
+                if(company.symbol.includes(userInoutUpperCase) || 
+                    (company.name !== null && company.name.toUpperCase().includes(userInoutUpperCase))){
+                        suggestions.push(
+                            <div key={idx}>
+                                <Link to={`/home/${company.symbol}`} replace>
+                                    <div>
+                                        <p>{company.symbol}</p>
+                                        <p>{company.name}</p>
+                                    </div>
+                                </Link>
+                            </div>
+                        )
+                    }
+
+            })
+        }
+
+        suggestions = suggestions.slice(0, 5)
+        if (this.props.stocks[userInoutUpperCase]){
+            suggestions[0] = 
+            (
+            <div key={10000000}>
+                    <Link to={`/home/${this.props.stocks[userInoutUpperCase].symbol}`} replace>
+                        <li>
+                            <p>{this.props.stocks[userInoutUpperCase].symbol}</p>
+                            <p>{this.props.stocks[userInoutUpperCase].name}</p>
+                        </li>
+                    </Link>
+            </div>
+            )
+        }
+
+        return suggestions;
+    }
+
+
 
     update(field) {
         return e => {this.setState({[field]: e.currentTarget.value})}
@@ -28,12 +78,6 @@ class SearchBar extends React.Component{
                 const dupSymbol = symbol.slice();
                 this.props.receiveProfile(dupSymbol)
                     .then(() => { this.props.history.push(`/home/${dupSymbol}`)})
-                //ajax request 
-                // <Link to="/login">Account</Link>
-                // debugger
-                // <ShowContainer />
-                // this.props.history.push(`/home/${e.currentTarget}`)
-
             default:
                 return null;
         }
@@ -42,6 +86,7 @@ class SearchBar extends React.Component{
 
     render(){
         // debugger
+        let suggestions = this.filterSuggestions();
         return(
             <div>
                 <form>
@@ -53,6 +98,9 @@ class SearchBar extends React.Component{
                         onChange={this.update("searchvalue")}
                         onKeyDown={this.pressEnterKey}
                     />
+                    <ul>
+                        {suggestions}
+                    </ul>
                 </form>
 
             </div>

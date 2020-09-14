@@ -1,3 +1,17 @@
+export const fetchAllNasdaqStocks = () => (
+    $.ajax({
+        url: `https://financialmodelingprep.com/api/v3/search?query=&limit=&exchange=NASDAQ&apikey=${window.Fmpapikey}`,
+        method: "GET" 
+    })
+)
+
+export const fetchAllNYSEStocks = () => (
+    $.ajax({
+        url: `https://financialmodelingprep.com/api/v3/search?query=&limit=&exchange=nyse&apikey=${window.Fmpapikey}`,
+        method: "GET"
+    })
+);
+
 
 export const fetchProfile = (company) => (
     $.ajax({
@@ -14,6 +28,7 @@ export const fetchNews = () => {
         url: `https://newsapi.org/v2/everything?q=stock&pageSize=7&apiKey=${window.newsapikey}`
     })
 }
+
 
 
 
