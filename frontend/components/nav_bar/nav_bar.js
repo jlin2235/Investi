@@ -8,7 +8,7 @@ import SearchBarContainer from './../search/search_container'
 const NavBar = ({ currentUser, logout }) => {
     
     const sessionLinks = () => (
-        <div className='nav-bar-container'>
+    <div className='nav-bar-container'>
             <div className='left-side-container'>
                 <Link to="/"><img id='investi-logo' src={window.logo}/></Link>
                 <span>Linkedln</span>
