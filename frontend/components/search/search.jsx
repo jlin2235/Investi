@@ -15,10 +15,11 @@ class SearchBar extends React.Component{
         this.filterSuggestions = this.filterSuggestions.bind(this);
     }
 
-    componentDidMount() {
-        debugger
-        this.props.receiveStocks();
-    }
+    // Whenever the searchbar gets mounted it will fetch the stocks from the API
+    // componentDidMount() {
+    //     debugger
+    //     this.props.receiveStocks();
+    // }
 
     filterSuggestions(){
         let suggestions = [];

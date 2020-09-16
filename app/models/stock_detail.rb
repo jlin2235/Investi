@@ -1,3 +1,4 @@
+
 class StockDetail < ApplicationRecord
 
     def self.new_lookup(ticker_symbol) 
@@ -19,6 +20,8 @@ class StockDetail < ApplicationRecord
         client.company(ticker_symbol)
         
     end
+
+   
 
 
 
