@@ -1,6 +1,6 @@
 import * as SEARCHAPIUtil  from '../util/search_api_util'
 export const RECEIVE_STOCKS = 'RECEIVE_STOCKS';
-export const RECEIVE_NEWS = 'RECEIVE_NEWS';
+export const RECEIVE_PRICE = 'RECEIVE_PRICE';
 export const RECEIVE_PROFILE = 'RECEIVE_PROFILE';
 
 const receiveStockHelperMethod = (stocks) => {
@@ -17,13 +17,22 @@ const receiveProfileHelperMethod = (profile) => {
     profile
     }
 };
-const receiveNewsHelperMethod = (news) => {
-    debugger
+
+const receivePrice = (price) => {
     return{
-        type: RECEIVE_NEWS,
-        news
+        type: RECEIVE_PRICE,
+        price
     }
-};
+}
+
+
+// const receiveNewsHelperMethod = (news) => {
+//     debugger
+//     return{
+//         type: RECEIVE_NEWS,
+//         news
+//     }
+// };
 
 export const receiveStocks = () => dispatch => {
     return Promise.all([SEARCHAPIUtil.fetchAllNasdaqStocks(), SEARCHAPIUtil.fetchAllNYSEStocks()])
@@ -40,11 +49,16 @@ export const receiveProfile = (company) => dispatch => {
             return dispatch(receiveProfileHelperMethod(profile))
         })
 };
-export const receivenews = () => dispatch => {
-    debugger
-    return SEARCHAPIUtil.fetchNews()
-        .then(news => {
-            debugger
-            return dispatch(receiveNewsHelperMethod(news))
-        })
-};
+
+export const receivePrice = (company) => {
+    return SEARCHAPIUtil.fetchPrice(company)
+        .then(price => dispatch(receivePrice(price)))
+}
+// export const receivenews = () => dispatch => {
+//     debugger
+//     return SEARCHAPIUtil.fetchNews()
+//         .then(news => {
+//             debugger
+//             return dispatch(receiveNewsHelperMethod(news))
+//         })
+// };

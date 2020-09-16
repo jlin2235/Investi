@@ -27,3 +27,4 @@ export const fetchNews = () => (
         url:`/api/news` //comes from controller
     })
 )
+

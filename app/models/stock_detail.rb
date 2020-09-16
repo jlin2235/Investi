@@ -11,18 +11,5 @@ class StockDetail < ApplicationRecord
         
     end
 
-    def self.new_stock_lookup(ticker_symbol) 
-        client = IEX::Api::Client.new(
-        publishable_token: Rails.application.credentials.iex_client[:publishable_token],
-        secret_token: Rails.application.credentials.iex_client[:secret_token],
-        endpoint: 'https://sandbox.iexapis.com/v1')
-
-        client.company(ticker_symbol)
-        
-    end
-
-   
-
-
 
 end

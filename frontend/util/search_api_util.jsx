@@ -20,14 +20,21 @@ export const fetchProfile = (company) => (
     })
 )
 
+export const fetchPrice = (company) => (
+    $.ajax({
+        url: `https://sandbox.iexapis.com/stable/stock/T/price/${company}?token=${window.iexapikey}`,
+        method: 'GET'
 
-
-export const fetchNews = () => {
-    return $.ajax({
-        method: "GET",
-        url: `https://newsapi.org/v2/everything?q=stock&pageSize=7&apiKey=${window.newsapikey}`
     })
-}
+)
+
+// TAKEN CARE IN THE NEWS API
+// export const fetchNews = () => {
+//     return $.ajax({
+//         method: "GET",
+//         url: `https://newsapi.org/v2/everything?q=stock&pageSize=7&apiKey=${window.newsapikey}`
+//     })
+// } 
 
 
 

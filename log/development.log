@@ -18414,3 +18414,11 @@ No template found for Api::NewsController#index, rendering head :no_content
 Completed 204 No Content in 221ms (ActiveRecord: 0.0ms)
 
 
+  [1m[36mTransaction Load (2.9ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 9]]
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 9], ["symbols", "T"], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 9], ["symbols", "T"], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 9], ["symbols", "T"], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 9], ["symbols", "uber"], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 9], ["symbols", "UBER"], ["LIMIT", 1]]
