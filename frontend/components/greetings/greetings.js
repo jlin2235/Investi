@@ -5,7 +5,7 @@ import CoverContainer from './cover_container'
 import { Link } from 'react-router-dom';
 import { login } from './../../util/session_api_util'
 
-class HomeForm extends React.Component {
+class GreetingForm extends React.Component {
 
  
 
@@ -23,4 +23,4 @@ class HomeForm extends React.Component {
 
 }
 
-export default HomeForm;
+export default GreetingForm;

@@ -2,7 +2,6 @@ import React from 'react';
 import ShowContainer from './../show/show_container'
 import { Link } from 'react-router-dom'
 import { withRouter } from'react-router'
-// import ShowContainer from './../show/show_container';
 
 
 class SearchBar extends React.Component{

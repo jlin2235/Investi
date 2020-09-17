@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 // import { logout } from '../../actions/session_actions';
-import Greetings from './greetings';
+import GreetingForm from './greetings';
 
 const msp = (state) => {
     return {
@@ -15,4 +15,4 @@ const mdp = dispatch => ({
 });
 
 
-export default connect(msp, mdp)(Greetings);
+export default connect(msp, mdp)(GreetingForm);

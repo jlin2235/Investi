@@ -23,10 +23,12 @@ const fetchHistoricalPriceFiveYrHelperMethod = prices => ({
     prices
 })
 
-const fetchNewsHelperMethod = news => ({
+const fetchNewsHelperMethod = news => {
+    debugger
+    return {
     type: RECEIVE_NEWS,
     news
-})
+}}
 
 export const receiveFiveMin = ticker => dispatch => fetchHistoricalChartFiveMin(ticker)
     .then(prices => dispatch(fetchHistoricalChartFiveMinHelperMethod(prices)))

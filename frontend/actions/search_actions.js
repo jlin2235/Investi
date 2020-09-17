@@ -18,7 +18,7 @@ const receiveProfileHelperMethod = (profile) => {
     }
 };
 
-const receivePrice = (price) => {
+const receivePriceHelperMethod = (price) => {
     return{
         type: RECEIVE_PRICE,
         price
@@ -26,13 +26,6 @@ const receivePrice = (price) => {
 }
 
 
-// const receiveNewsHelperMethod = (news) => {
-//     debugger
-//     return{
-//         type: RECEIVE_NEWS,
-//         news
-//     }
-// };
 
 export const receiveStocks = () => dispatch => {
     return Promise.all([SEARCHAPIUtil.fetchAllNasdaqStocks(), SEARCHAPIUtil.fetchAllNYSEStocks()])
@@ -52,13 +45,5 @@ export const receiveProfile = (company) => dispatch => {
 
 export const receivePrice = (company) => {
     return SEARCHAPIUtil.fetchPrice(company)
-        .then(price => dispatch(receivePrice(price)))
+        .then(price => dispatch(receivePriceHelperMethod(price)))
 }
-// export const receivenews = () => dispatch => {
-//     debugger
-//     return SEARCHAPIUtil.fetchNews()
-//         .then(news => {
-//             debugger
-//             return dispatch(receiveNewsHelperMethod(news))
-//         })
-// };

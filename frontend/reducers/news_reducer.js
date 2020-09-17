@@ -1,4 +1,4 @@
-import { RECEIVE_NEWS } from './../actions/search_actions'
+import { RECEIVE_NEWS } from './../actions/graph_actions'
 
 export const newsReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -7,8 +7,6 @@ export const newsReducer = (state = {}, action) => {
         case RECEIVE_NEWS:
             debugger
             return Object.assign({}, nextState, action.news)
-        // nextState[profile.symbol] = profile
-        // return nextState
         default:
             return state;
     }

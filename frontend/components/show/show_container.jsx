@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Show from './show';
-import { receiveProfile, receivenews } from './../../actions/search_actions'
+import { receiveFiveMin, receiveThirtyMin, receiveFiveYr, receiveNews } from '../../actions/graph_actions'
+import { receivePrice, receiveProfile } from '../../actions/search_actions'
 
 const msp = (state, ownProps) => {
     debugger
