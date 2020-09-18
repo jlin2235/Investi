@@ -28,6 +28,18 @@ export const fetchPrice = (company) => (
     })
 )
 
+export const fetchBatchPrice = (companies) => {
+    let symbols = '';
+    companies.forEach(company => {
+        symbols += `,${company}`
+    })
+
+    return $.ajax({
+        url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=price,quote&symbols=${symbols}token=${window.iexapikey}`
+
+    })
+}
+
 // TAKEN CARE IN THE NEWS API
 // export const fetchNews = () => {
 //     return $.ajax({

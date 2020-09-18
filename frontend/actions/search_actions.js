@@ -1,6 +1,7 @@
 import * as SEARCHAPIUtil  from '../util/search_api_util'
 export const RECEIVE_STOCKS = 'RECEIVE_STOCKS';
 export const RECEIVE_PRICE = 'RECEIVE_PRICE';
+export const RECEIVE_PRICES = 'RECEIVE_PRICES';
 export const RECEIVE_PROFILE = 'RECEIVE_PROFILE';
 
 const receiveStockHelperMethod = (stocks) => {
@@ -22,6 +23,12 @@ const receivePriceHelperMethod = (price) => {
     return{
         type: RECEIVE_PRICE,
         price
+    }
+}
+const receivePricesHelperMethod = (prices) => {
+    return{
+        type: RECEIVE_PRICES,
+        prices
     }
 }
 
@@ -46,4 +53,9 @@ export const receiveProfile = (company) => dispatch => {
 export const receivePrice = (company) => {
     return SEARCHAPIUtil.fetchPrice(company)
         .then(price => dispatch(receivePriceHelperMethod(price)))
+}
+
+export const receivePrices = (companies) => {
+    return SEARCHAPIUtil.fetchBatchPrice(companies)
+        .then(prices => dispatch(receivePricesHelperMethod(prices)))
 }

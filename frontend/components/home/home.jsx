@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBarContainer from '../nav_bar/nav_bar_container'
+import GraphContainer from '../graph/graph_container'
 
 
 
@@ -47,6 +48,7 @@ class HomeForm extends React.Component{
         return(
             <div>
                 <NavBarContainer />
+                <GraphContainer />
                 <div className='show-page-news-feed-container'>
                     <h1 id='show-page-news-feed-container-text'>News Feed</h1>
                     <ul>

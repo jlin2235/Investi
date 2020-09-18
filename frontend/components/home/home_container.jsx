@@ -9,9 +9,9 @@ import HomeForm from './home'
 const msp = state => ({
     currentUser: state.entities.users[state.session.id],
     //currentUser will find all the Users and we key into it with session.id(current user ID from the STATE)
-    transactions: state.entities.transactions,
+    // transactions: state.entities.transactions,
     news: state.entities.news,
-    price: state.entities.price
+    // price: state.entities.price
 })
 
 const mdp = dispatch => {
