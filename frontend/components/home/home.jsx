@@ -43,18 +43,7 @@ class HomeForm extends React.Component{
     
 
     render(){
-        // let newsArray = [];
-        // debugger
-     
-        // this.props.news.map((element, idx) => {
-        //     newsArray.push(
-        //         <a key={idx} target="_blank" href={element.url}>
-        //             <img src={element.urlToImage} />
-        //         </a>
-        //     )
-        // })
         
-
         return(
             <div>
                 <NavBarContainer />

@@ -20,7 +20,7 @@ const mdp = dispatch => {
     debugger
     return{
     receiveProfile: company => dispatch(receiveProfile(company)),
-    receivenews: () => dispatch(receivenews())
+    receiveNews: () => dispatch(receiveNews())
     }
 
 };

@@ -14,7 +14,7 @@ class Show extends React.Component{
     componentDidMount(){
         debugger
         this.props.receiveProfile(this.props.symbol);
-        this.props.receivenews();
+        this.props.receiveNews();
         
     }
 
@@ -98,7 +98,7 @@ class Show extends React.Component{
                         <div className='show-page-news-feed-container'>
                             <h1 id='show-page-news-feed-container-text'>News Feed</h1>
                             <ul>
-                                {/* {this.displayNews()} */}
+                                {this.displayNews()}
                             </ul>
                         </div>
                
