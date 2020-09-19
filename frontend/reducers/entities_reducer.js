@@ -9,7 +9,7 @@ import { pricesReducer } from './portfolio/prices_reducer';
 export default combineReducers({
     users: usersReducer,
     stocks: stocksReducer, //comes from the search reducer (used for filter suggestion)
-    // profile: profileReducer,
+    profile: profileReducer,
     transactions: transactionReducer,
     news: newsReducer,
     prices: pricesReducer

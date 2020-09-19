@@ -29,7 +29,7 @@ const data = [
     },
 ];
 
-const oneDayData = this.props.currentUser.balance
+// const oneDayData = this.props.currentUser.balance
 
 class Graph extends React.Component {
 

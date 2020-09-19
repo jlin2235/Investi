@@ -1,7 +1,6 @@
 import React from 'react';
 import NavBarContainer from './../nav_bar/nav_bar_container'
-// import NEWS from './../news/news_container'
-
+import TransactionForm from './transaction_container'
 
 class Show extends React.Component{
 
@@ -91,7 +90,6 @@ class Show extends React.Component{
                                     <h2>Sector</h2>
                                     <div>{profile.sector}</div>
                                 </div>
-                        {/* <div>{profile.}</div> */}
                             </div>
                         </div>
 
@@ -101,7 +99,7 @@ class Show extends React.Component{
                                 {this.displayNews()}
                             </ul>
                         </div>
-               
+                        <TransactionForm />
 
                     </div>
         
