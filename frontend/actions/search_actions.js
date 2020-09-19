@@ -26,6 +26,7 @@ const receivePriceHelperMethod = (price) => {
     }
 }
 const receivePricesHelperMethod = (prices) => {
+    debugger
     return{
         type: RECEIVE_PRICES,
         prices
@@ -50,12 +51,16 @@ export const receiveProfile = (company) => dispatch => {
         })
 };
 
-export const receivePrice = (company) => {
+export const receivePrice = (company) => dispatch => {
     return SEARCHAPIUtil.fetchPrice(company)
         .then(price => dispatch(receivePriceHelperMethod(price)))
 }
 
-export const receivePrices = (companies) => {
+export const receivePrices = (companies) => dispatch =>{
+        debugger
     return SEARCHAPIUtil.fetchBatchPrice(companies)
-        .then(prices => dispatch(receivePricesHelperMethod(prices)))
-}
+        .then(prices => {
+            debugger
+            return dispatch(receivePricesHelperMethod(prices))
+        })
+};

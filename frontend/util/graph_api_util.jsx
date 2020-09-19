@@ -28,3 +28,15 @@ export const fetchNews = () => (
     })
 )
 
+export const fetchHistoricalChartFiveDaysTenMinBatch = companies => {
+    let symbols = '';
+    symbols += companies[0];
+    companies.slice(1).forEach(company => {
+        symbols += `,${company}`
+    })
+
+    $.ajax({
+        url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=price,quote,chart&symbols=${symbols}&token=${window.iexapikey}&range=5dm`
+    })
+}
+

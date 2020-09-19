@@ -30,12 +30,14 @@ export const fetchPrice = (company) => (
 
 export const fetchBatchPrice = (companies) => {
     let symbols = '';
-    companies.forEach(company => {
+    symbols += companies[0];
+    companies.slice(1).forEach(company => {
         symbols += `,${company}`
     })
-
+    debugger
     return $.ajax({
-        url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=price,quote&symbols=${symbols}token=${window.iexapikey}`
+        url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=price,quote&symbols=${symbols}&token=${window.iexapikey}`,
+        methid: 'GET'
 
     })
 }

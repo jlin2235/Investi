@@ -29,6 +29,8 @@ const data = [
     },
 ];
 
+const oneDayData = this.props.currentUser.balance
+
 class Graph extends React.Component {
 
     constructor(props) {
@@ -44,6 +46,11 @@ class Graph extends React.Component {
             user_id: this.props.currentUser.id
         }
         this.props.getAllTransaction(transaction)
+            .then(transactions => {
+                debugger
+                let symbolsArray = Object.keys(transactions.transactions);
+                this.props.receivePrices(symbolsArray);
+            })
     }
 
 
@@ -67,13 +74,21 @@ class Graph extends React.Component {
 
     totalPortfolioValue() {
         debugger
+        if (Object.keys(this.props.prices).length === 0){
+            return 0;
+        }
         let totalValue = 0;
         let symbols = Object.keys(this.props.transactions)
-        // symbols.forEach( (symbol, idx) => {
-        //     let subValue = this.props.transactions(symbol).shares 
-        // })
+        symbols.forEach( (symbol) => {
+            debugger
+            if(this.props.transactions[symbol].shares !==0){
+                debugger
+            let subValue = this.props.transactions[symbol].shares * this.props.prices[symbol];
+            totalValue = totalValue + subValue
+            }
+        },this)
         return(
-            null
+            totalValue
         )
     }
 
@@ -82,8 +97,7 @@ class Graph extends React.Component {
         return (
             <div>
                 <h1>
-                    {this.totalPortfolioValue()}
-                    {numeral(this.props.currentUser.balance).format('$0,0.00')}
+                    {numeral(this.props.currentUser.balance + this.totalPortfolioValue()).format('$0,0.00')}
                 </h1>
                 {this.renderReCharts()}
             </div>
@@ -93,3 +107,10 @@ class Graph extends React.Component {
 
 
 export default Graph;
+
+//TO BE DELETED
+
+// https://sandbox.iexapis.com/stable/stock/market/batch?&types=price&symbols=aapl,fb,tsla&token=Tpk_618155a9bbe14250b43757d057e3ac43
+
+
+// https://financialmodelingprep.com/api/v3/quote-short/T,UBER?apikey=cc43006d394343f06df55878f36afb50

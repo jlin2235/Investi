@@ -44,7 +44,10 @@ export const createTransaction = transaction => dispatch => createNewTransaction
     .then(transaction => dispatch(createTransactionHelperMethod(transaction)))
 
 export const getAllTransaction = transaction => dispatch => getAllTransactions(transaction)
-    .then(transactions => dispatch(getAllTransactionHelperMethod(transactions)))
+    .then(transactions =>  {
+        debugger
+        return dispatch(getAllTransactionHelperMethod(transactions))
+    })
 
 export const getOneTran = transaction => dispatch => getOneTransaction(transaction)
     .then(transaction => dispatch(getOneTransactionHelperMethod(transaction)))

@@ -6,7 +6,7 @@ import { receivePrices } from '../../actions/search_actions'
 const msp = state => ({
     currentUser: state.entities.users[state.session.id],
     transactions: state.entities.transactions,
-    price: state.entities.price
+    prices: state.entities.prices       
 
 })
 

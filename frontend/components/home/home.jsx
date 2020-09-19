@@ -19,7 +19,7 @@ class HomeForm extends React.Component{
 
 
     displayNews() {
-        debugger
+        // debugger
         if (typeof this.props.news.articles === 'undefined') {
             return null;
         }

@@ -13,12 +13,6 @@ export const stocksReducer = (state = [], action) => {
             // action.stocks comes from the search_action.js file
             action.stocks.map(stock => nextState[stock.symbol] = stock);
             return nextState;
-        case RECEIVE_PRICES:
-            let stockPrice = {};
-            action.prices.forEach(element => {
-                stockPrice[element.quote.symbol] = element.price;
-            })
-            return pojo
         default:
             return state;
     }
