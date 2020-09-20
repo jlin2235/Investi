@@ -50,7 +50,10 @@ export const getAllTransaction = transaction => dispatch => getAllTransactions(t
     })
 
 export const getOneTran = transaction => dispatch => getOneTransaction(transaction)
-    .then(transaction => dispatch(getOneTransactionHelperMethod(transaction)))
+    .then(transaction => {
+        debugger
+        return dispatch(getOneTransactionHelperMethod(transaction))
+    })
 
 export const getUser = transaction => dispatch => showUser(transaction)
     .then(user => dispatch(getUserHelperMethod(user)))

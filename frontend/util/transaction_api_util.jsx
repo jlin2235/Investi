@@ -23,7 +23,7 @@ export const getAllTransactions = transaction => (
 
 export const getOneTransaction = transaction => (
     $.ajax({
-        url: `/api/holdings/:id`,
+        url: `/api/transactions/:id`,
         method: "GET",
         data: { transaction }
     })

@@ -22,18 +22,21 @@ export const fetchProfile = (company) => (
 
 export const fetchPrice = (company) => (
     $.ajax({
-        url: `https://sandbox.iexapis.com/stable/stock/T/price/${company}?token=${window.iexapikey}`,
+        url: `https://sandbox.iexapis.com/stable/stock/${company}/price?token=${window.iexapikey}`,
         method: 'GET'
 
     })
 )
 
 export const fetchBatchPrice = (companies) => {
+    debugger
     let symbols = '';
     symbols += companies[0];
+    if(companies.length > 1){
     companies.slice(1).forEach(company => {
         symbols += `,${company}`
     })
+    }
     debugger
     return $.ajax({
         url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=price,quote&symbols=${symbols}&token=${window.iexapikey}`,

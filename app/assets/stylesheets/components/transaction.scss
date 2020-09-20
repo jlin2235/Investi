@@ -1,0 +1,104 @@
+.transaction-form-main-container {
+    position: sticky;
+    top: 175px;
+    margin-left: 45px;
+    width: 300px;
+    height: 400px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+    font-size: 20px;
+    
+    .buy-sell-button-container{
+        display: flex;
+        justify-content: space-evenly;
+
+        h1{
+            padding: 10px;
+            margin: 5px;
+            font-size: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        h1:hover {
+            color:  #21ce99
+        }
+        #selected-default{
+            color:  #21ce99;
+            border-bottom: solid 2px #21ce99;
+
+
+        }
+    }
+
+    .shares-amt-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 20px 20px 20px;
+
+        input{
+            padding: 10px;
+            font-size: 15px;
+            width: 100px;
+            margin-left: 30px;
+            background: aliceblue;
+            border: 1px solid black ;
+        }
+        input:focus{
+            outline: none;
+            background: white;
+        }
+        input:hover{
+            outline: none;
+            background: white;
+        }
+    }
+
+    .transaction-price-cost-container{
+            display: flex;
+            flex-direction: column;
+            // margin: 20px;
+        
+            .transaction-price-details{
+                display: flex;
+                margin: 10px 20px;
+                justify-content: space-between;
+            }
+
+        }
+
+    .transaction-submit-main-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+
+        #submit-button{
+            width: 100px;
+            font-size: 15px;
+            box-sizing: content-box;
+            background-color:  #21ce99;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            align-items: center;
+            border: 1px solid transparent;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            min-width: 120px;
+            padding: 0 15px; 
+        }
+        #submit-button:hover{
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .buying-power-message{
+            margin-top: 20px;
+            border-top: 1px solid lightblue;
+        }
+    }
+}

@@ -16,6 +16,9 @@ export const pricesReducer = (state = [], action) => {
                 stockPrice[element.quote.symbol] = element.price;
             })
             return stockPrice;
+        case RECEIVE_PRICE:
+            debugger
+            return action.price
         default:
             return state;
     }
