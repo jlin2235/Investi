@@ -28,6 +28,7 @@ class SignupForm extends React.Component {
     }
 
     renderErrors() {
+        debugger
         return (
             <ul>
                 {this.props.errors.map((error, idx) => (
@@ -98,7 +99,7 @@ class SignupForm extends React.Component {
                                     />
                                 </div>
                           
-                                {/* {this.renderErrors()} */}
+                                {this.renderErrors()}
                                 <input type="submit" value={this.props.formType} className='signup-button' />
                                 <div>
                                     <Link to='/login' className='signup-page-already-user-text'> Already a User? Sign in here</Link>

@@ -20,6 +20,8 @@ class SearchBar extends React.Component{
     //     this.props.receiveStocks();
     // }
 
+   
+
     filterSuggestions(){
         let suggestions = [];
         let companies = Object.values(this.props.stocks); //Change it into an array

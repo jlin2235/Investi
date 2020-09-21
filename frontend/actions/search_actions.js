@@ -52,19 +52,19 @@ export const receiveProfile = (company) => dispatch => {
 };
 
 export const receivePrice = (company) => dispatch => {
-    debugger
+    // debugger
     return SEARCHAPIUtil.fetchPrice(company)
         .then(price => {
-            debugger
+            // debugger
             return dispatch(receivePriceHelperMethod(price))
         })
 }
 
 export const receivePrices = (companies) => dispatch =>{
-        debugger
+        // debugger
     return SEARCHAPIUtil.fetchBatchPrice(companies)
         .then(prices => {
-            debugger
+            // debugger
             return dispatch(receivePricesHelperMethod(prices))
         })
 };

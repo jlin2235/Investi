@@ -30,7 +30,7 @@ const fetchHistoricalChartFiveDaysTenMinBatchHelperMethod = prices => ({
 })
 
 const fetchNewsHelperMethod = news => {
-    debugger
+    // debugger
     return {
     type: RECEIVE_NEWS,
     news

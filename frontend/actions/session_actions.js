@@ -23,7 +23,7 @@ export const receiveErrors = errors => ({
 });
 
 
-//signup the user, calls APIUtil ajax request and pass bact the user then we do two things
+//signup the user, calls APIUtil ajax request and pass back the user then we do two things
 
 export const signup = user => dispatch => (
     APIUtil.signup(user).then(user => (dispatch(receiveCurrentUser(user))), 

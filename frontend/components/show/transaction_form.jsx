@@ -7,12 +7,13 @@ class TransactionForm extends React.Component{
         this.state = {
             quantity: '',
             cost: 0,
-            buyOrSell: 'SELL',
+            buyOrSell: 'BUY',
             balance: this.props.currentUser.balance 
         }
-
-        this.estimatedCost = this.estimatedCost.bind(this);
+        this.renderErrors = this.renderErrors.bind(this)
         this.buyingPowerMessage = this.buyingPowerMessage.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     componentDidMount(){
@@ -28,21 +29,29 @@ class TransactionForm extends React.Component{
         this.props.getOneTran(transaction)
     }
 
-    estimatedCost() {
-        debugger
-        if(this.props.transactions.length === 0){
-            return null;
+    update(field) {
+        return e => {
+            let cost = 0;
+            if (e.currentTarget.value === ''){
+                cost = 0;
+            }else {
+                cost = parseInt(e.currentTarget.value) * this.props.prices
+            }//CAN"T USE parseFloat NEED TO BE ROUNDED "ESTIMATED COST"
+
+            this.setState({
+                [field]: parseInt(e.currentTarget.value),
+                cost: cost
+            })
         }
-        return(
-        this.props.transactions[this.props.profile.symbol].shares * this.props.prices
-        )
     }
+
+
 
     buyingPowerMessage() {
         debugger
         let BPMessage = '';
         if (this.props.transactions.length === 0) {
-            return null;
+            BPMessage = '0 Shares Available'
         }
 
         if (this.state.buyOrSell === 'BUY'){
@@ -59,12 +68,51 @@ class TransactionForm extends React.Component{
         )
     }
 
+    renderErrors() {
+        return (
+            <ul>
+                {this.props.errors.map((error, idx) => (
+                    <li key={idx}>
+                        {error}
+                    </li>
+                ))}
+            </ul>
+        )
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        debugger
+        const transaction = {
+            purchase_price: this.state.cost,
+            shares: this.state.quantity,
+            user_id: this.props.currentUser.id,
+            symbols: this.props.symbol
+        }
+        if(transaction.quantity === '') return null; // if the user just click sumbit for fun
+        
+        //BUY
+        if(this.state.buyOrSell === 'BUY') {
+            debugger
+            transaction['balance'] = this.props.currentUser.balance - this.state.cost;
+            this.props.updateUserBal(transaction);
+            this.props.createTransaction(transaction)
+                
+        }else { //SELL
+            transaction['balance'] = this.props.currentUser.balance + this.state.cost;
+            transaction.quantity = transaction.quantity * (-1); // negative because of sell
+            this.props.updateUserBal(transaction);
+            this.props.createTransaction(transaction); 
+        }
+        
+    }
+
 
     render(){
 
         debugger
         return(
-            <form className='transaction-form-main-container'>
+            <form className='transaction-form-main-container' onSubmit={this.handleSubmit}>
                 <div className='buy-sell-button-container'>
                     <h1 id='selected-default'>Buy</h1>
                     <h1>Sell</h1>
@@ -75,6 +123,7 @@ class TransactionForm extends React.Component{
                         value={this.state.quantity}
                         placeholder={0}
                         min='0'
+                        onChange={this.update('quantity')}
                     />
                 </div>
                 <div className='transaction-price-cost-container'>
@@ -84,10 +133,11 @@ class TransactionForm extends React.Component{
                     </div>
                     <div className="transaction-price-details">
                         <p>Estimated Cost:</p>
-                        <p>{numeral(this.estimatedCost()).format('$0,0.00')}</p>
+                        <p>{numeral(this.state.cost).format('$0,0.00')}</p>
                     </div>
                 </div>
                 <div className='transaction-submit-main-container'>
+                    {this.renderErrors()}
                     <input id='submit-button' type="submit" value={this.state.buyOrSell}/>
                     <p className='buying-power-message' >{this.buyingPowerMessage()}</p>
                 </div>
