@@ -25,9 +25,9 @@ const msp = (state,ownProps) => {
 }
 
 const mdp = dispatch => ({
-    receiveProfile: company => dispatch(receiveProfile(company)),
+    // receiveProfile: company => dispatch(receiveProfile(company)),
     // receivePrices: symbols => dispatch(receivePrices(symbols)),
-    receivePrice: symbol => dispatch(receivePrice(symbol)),
+    // receivePrice: symbol => dispatch(receivePrice(symbol)),
     // getAllTransaction: transaction => dispatch(getAllTransaction(transaction)),
     getOneTran: transaction => dispatch(getOneTran(transaction)),
     updateUserBal: transaction => dispatch(updateUserBal(transaction)),

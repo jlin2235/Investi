@@ -8,7 +8,7 @@ export const RECEIVE_FIVEMIN = 'RECEIVE_FIVEMIN';
 export const RECEIVE_THIRTYMIN = 'RECEIVE_THIRTYMIN';
 export const RECEIVE_PRICEFIVEYR = 'RECEIVE_PRICEFIVEYR';
 export const RECEIVE_FIVEDAYS_TENMIN_BATCH = 'RECEIVE_FIVEDAYS_TENMIN_BATCH';
-export const RECEIVE_NEWS = 'RECEIVE_NEWS';
+export const RECEIVE_NEWS = 'RECEIVE_NEWS'; //SINCE ONLY ONE ACTION PUT IT IN HERE
 
 const fetchHistoricalChartFiveMinHelperMethod = prices => ({
     type: RECEIVE_FIVEMIN,
@@ -37,7 +37,11 @@ const fetchNewsHelperMethod = news => {
 }}
 
 export const receiveFiveMin = ticker => dispatch => fetchHistoricalChartFiveMin(ticker)
-    .then(prices => dispatch(fetchHistoricalChartFiveMinHelperMethod(prices)))
+    .then(prices => {
+        debugger
+        dispatch(fetchHistoricalChartFiveMinHelperMethod(prices))}
+        
+)
 
 export const receiveThirtyMin = ticker => dispatch => fetchHistoricalChartThirtyMin(ticker)
     .then(prices => dispatch(fetchHistoricalChartThirtyMinHelperMethod(prices)))

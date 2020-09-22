@@ -5,6 +5,7 @@ import { profileReducer } from './show_reducer';
 import {newsReducer} from './news_reducer';
 import { stocksReducer } from './search_reducer';
 import { pricesReducer } from './portfolio/prices_reducer';
+import { graphPricesReducer } from './portfolio/graph_prices_reducer'
 
 export default combineReducers({
     users: usersReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     profile: profileReducer,
     transactions: transactionReducer,
     news: newsReducer,
-    prices: pricesReducer
+    prices: pricesReducer,
+    graphPrices: graphPricesReducer
 });

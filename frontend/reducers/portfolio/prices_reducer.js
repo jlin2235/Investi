@@ -3,9 +3,9 @@ import {
     RECEIVE_PRICES
 } from "../../actions/search_actions";
 
-export const pricesReducer = (state = [], action) => {
-    Object.freeze(state);
-    let nextState = Object.assign({}, state);
+export const pricesReducer = (OldState = [], action) => {
+    Object.freeze(OldState);
+    let nextState = Object.assign({}, OldState);
     switch (action.type) {
         case RECEIVE_PRICES:
             // debugger
@@ -20,6 +20,6 @@ export const pricesReducer = (state = [], action) => {
             // debugger
             return action.price
         default:
-            return state;
+            return OldState;
     }
 }

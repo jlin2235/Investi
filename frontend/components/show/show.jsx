@@ -1,6 +1,7 @@
 import React from 'react';
-import NavBarContainer from './../nav_bar/nav_bar_container'
-import TransactionForm from './transaction_container'
+import NavBarContainer from './../nav_bar/nav_bar_container';
+import TransactionForm from './transaction_container';
+import ShowPageGraph from '../graph/show_page_graph_container'
 
 class Show extends React.Component{
 
@@ -12,10 +13,13 @@ class Show extends React.Component{
     }
     
     componentDidMount(){
-        // debugger
+        debugger
+        // this.props.receiveThirtyMin(this.props.symbol),
+        // this.props.receiveFiveYr(this.props.symbol),
         this.props.receiveProfile(this.props.symbol);
         this.props.receiveNews();
-        
+        this.props.receivePrice(this.props.symbol),
+        this.props.receiveFiveMin(this.props.symbol)
     }
 
     componentDidUpdate(previousProps){
@@ -92,14 +96,17 @@ class Show extends React.Component{
 
     render(){
         
-        // debugger
+        debugger
         if (!this.props.profile.description){
             return null
         }
         else{  
             return(
                 <div>
-                    <NavBarContainer />
+                    {/* <NavBarContainer /> */}
+                        <div>
+                        <ShowPageGraph/>
+                        </div>
                         <div className='show-page-stockinfo-container'>
                         {/* {this.displayProfileInfo()} */}
 
@@ -111,7 +118,7 @@ class Show extends React.Component{
                                 {/* {this.displayNews()} */}
                             </ul>
                         </div>
-                        <TransactionForm />
+                        {/* <TransactionForm /> */}
 
                     </div>
         

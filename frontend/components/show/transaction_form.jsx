@@ -18,15 +18,15 @@ class TransactionForm extends React.Component{
 
     componentDidMount(){
         debugger
-        this.props.receiveProfile(this.props.symbol);
-        // this.props.receivePrices(this.props.symbol);
         let transaction = {
             user_id: this.props.currentUser.id,
             symbol: this.props.symbol
         }
-        this.props.receivePrice(this.props.symbol)
-        // this.props.getAllTransaction(transaction)
         this.props.getOneTran(transaction)
+        // this.props.receiveProfile(this.props.symbol);
+        // this.props.receivePrices(this.props.symbol);
+        // this.props.receivePrice(this.props.symbol)
+        // this.props.getAllTransaction(transaction)
     }
 
     update(field) {
