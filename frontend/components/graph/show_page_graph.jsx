@@ -71,7 +71,7 @@ class ShowPageGraph extends React.Component {
            data = filterData.slice().reverse(); //copy the data and the reverse it for the graph
        } 
 
-       this.renderReCharts(data)
+       return (this.renderReCharts(data))
 
    }
 
@@ -84,8 +84,8 @@ class ShowPageGraph extends React.Component {
         // }
         return (
             <LineChart width={800} height={300} data={data}>
-                <XAxis dataKey="name" padding={{ left: 30, right: 30 }} hide={true} />
-                <YAxis axisLine={false} hide={true} />
+                <XAxis dataKey="date" padding={{ left: 30, right: 30 }} hide={true} />
+                <YAxis domain={['dataMin', 'dataMax']} axisLine={false} hide={true} />
                 <Tooltip
                     position={{ y: 0 }}
                     // offset={toolTipOffSet}

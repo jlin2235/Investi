@@ -30702,3 +30702,48 @@ Processing by Api::NewsController#index as JSON
 Completed 200 OK in 121ms (Views: 8.6ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/" for ::1 at 2020-09-22 20:39:56 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (3.3ms)
+  Rendered static_pages/root.html.erb within layouts/application (20.8ms)
+Completed 200 OK in 1325ms (Views: 1318.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-22 20:39:58 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 233ms (Views: 2.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-22 20:40:42 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 71ms (Views: 67.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-22 20:40:43 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 76ms (Views: 3.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-22 20:45:09 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 856ms (Views: 852.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-22 20:45:18 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 116ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+
+
