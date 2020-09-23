@@ -10,13 +10,16 @@ export const graphPricesReducer = (oldState = [], action) => {
     let nextState = Object.assign({},oldState);
     switch (action.type) {
         case RECEIVE_FIVEMIN:
+            debugger
             nextState['fiveMin'] = action.prices;
             return nextState;
         case RECEIVE_THIRTYMIN:
+            debugger
             nextState['thirtyMin'] = action.prices;
             return nextState;
         case RECEIVE_PRICEFIVEYR:
-            nextState['fiveYr'] = action.prices;
+            debugger
+            nextState['fiveYr'] = action.prices.historical;
             return nextState;
         default:
             return oldState;

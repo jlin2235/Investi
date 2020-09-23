@@ -1,21 +1,25 @@
 const moment = require('moment');
 
-export const fetchHistoricalChartFiveMin = symbol => (
-    $.ajax({
+export const fetchHistoricalChartFiveMin = symbol => {
+    debugger   
+    return $.ajax({
         url: `https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=${window.Fmpapikey}`
     })
-)
+}
 
-export const fetchHistoricalChartThirtyMin = symbol => (
-    $.ajax({
+export const fetchHistoricalChartThirtyMin = symbol => {
+    debugger
+    return $.ajax({
         url: `https://financialmodelingprep.com/api/v3/historical-chart/30min/${symbol}?apikey=${window.Fmpapikey}`
     })
-)
+}
 
 export const fetchHistoricalPriceFiveYr = symbol => {
     let date = new Date();
     let today = moment(date).format('YYYY-MMM-DD');
     let fiveYr = moment().subtract(61, 'months').format('YYYY-MM-DD'); // need an extra month 61 instead of 60
+
+    debugger
 
     return $.ajax({
         url: `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?from=${fiveYr}&to=${today}&apikey=${window.Fmpapikey}`,

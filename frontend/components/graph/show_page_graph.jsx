@@ -5,32 +5,6 @@ import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine,
 } from 'recharts';
 
-// const data = [
-//     {
-//         name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-//     },
-//     {
-//         name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-//     },
-//     {
-//         name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-//     },
-//     {
-//         name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-//     },
-//     {
-//         name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
-//     },
-//     {
-//         name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
-//     },
-//     {
-//         name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
-//     },
-// ];
-
-// const oneDayData = this.props.currentUser.balance
-
 class ShowPageGraph extends React.Component {
 
     constructor(props) {
@@ -41,13 +15,21 @@ class ShowPageGraph extends React.Component {
 
         this.renderReCharts = this.renderReCharts.bind(this);
         this.graphDataCalculation = this.graphDataCalculation.bind(this);
-
+        this.changeDateView = this.changeDateView.bind(this);
     }
 
-   graphDataCalculation() {
+    changeDateView(newDate) {
+        this.setState({dateViewed: newDate})
+    }
+    
+
+    graphDataCalculation() {
        debugger
 
-       if (this.props.graphPrices.length === 0 ){
+        if ((this.props.graphPrices['fiveMin'] === undefined) ||
+            (this.props.graphPrices['thirtyMin'] === undefined) ||
+            (this.props.graphPrices['fiveYr'] === undefined)
+        ){
            return null;
        }
        let data;
@@ -65,11 +47,47 @@ class ShowPageGraph extends React.Component {
        let isWeekend = ((dayOfWeek === 0) || (dayOfWeek === 6)) //SUN/SAT
 
        if (this.state.dateViewed === '1d' && !isWeekend) { //ONE DAY VIEW/WEEKDAY
+           debugger
             let filterData = data.filter( ele => {
                 return moment(ele.date.split(" ")[0]).isSame(todayDate, 'day') //will only return the date that is the day as today
             })
            data = filterData.slice().reverse(); //copy the data and the reverse it for the graph
-       } 
+       } else if(this.state.dateViewed === '1w'){ //ONE WEEK VIEW
+           debugger
+            let filterData = data.filter(ele => {
+                let lastWeek = moment().subtract(1, 'weeks') //get last week's date
+                return moment(ele.date.split(" ")[0]).isAfter(lastWeek) //Check if ele is after "lastweek"
+            })
+            data = filterData.slice().reverse()
+       } else if (this.state.dateViewed === '1m'){ //ONE MONTH VIEW
+           debugger
+            let filterData = data.filter(ele => {
+               let lastMonth = moment().subtract(1, 'months') //get last month's date
+               return moment(ele.date.split(" ")[0]).isAfter(lastMonth) //Check if ele is after "lastMonth"
+           })
+           data = filterData.slice().reverse()
+       } else if (this.state.dateViewed === '3m'){ //3 MONTH VIEW
+           debugger
+            let filterData = data.filter(ele => {
+               let lastThreeMonth = moment().subtract(3, 'months') //get last 3 month's  date
+               return moment(ele.date.split(" ")[0]).isAfter(lastThreeMonth) //Check if ele is after "lastThreeMonth"
+           })
+           data = filterData.slice().reverse()
+       } else if (this.state.dateViewed === '1y') { // 1 YEAR VIEW
+           debugger
+            let filterData = data.filter(ele => {
+                let oneYrAgo = moment().subtract(1, 'years') //get last year's  date
+                return moment(ele.date.split(" ")[0]).isAfter(oneYrAgo)
+            })
+           data = filterData.slice().reverse()
+       } else if (this.state.dateViewed === '5y') { // 5 YEAR VIEW
+           debugger
+            let filterData = data.filter(ele => {
+               let fiveYrAgo = moment().subtract(5, 'years') //get last 5 year's  date
+               return moment(ele.date.split(" ")[0]).isAfter(fiveYrAgo)
+           })
+           data = filterData.slice().reverse()
+       }
 
        return (this.renderReCharts(data))
 
@@ -106,6 +124,14 @@ class ShowPageGraph extends React.Component {
         return (
             <div>
                 {this.graphDataCalculation()}
+                <ul className="Stock-Date-View-Option_container">
+                    <h2 onClick={() => this.changeDateView("1d")} className="Stock-Data-View-Button 1d underlined">1D</h2>
+                    <h2 onClick={() => this.changeDateView("1w")} className="Stock-Data-View-Button 1w">1W</h2>
+                    <h2 onClick={() => this.changeDateView("1m")} className="Stock-Data-View-Button 1m">1M</h2>
+                    <h2 onClick={() => this.changeDateView("3m")} className="Stock-Data-View-Button 3m">3M</h2>
+                    <h2 onClick={() => this.changeDateView("1y")} className="Stock-Data-View-Button 1y">1Y</h2>
+                    <h2 onClick={() => this.changeDateView("5y")} className="Stock-Data-View-Button 5y">5Y</h2>
+                </ul>
             </div>
         );
     }

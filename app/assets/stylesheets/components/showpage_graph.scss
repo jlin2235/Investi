@@ -1,0 +1,23 @@
+.Stock-Date-View-Option_container{
+    display: flex;
+    justify-content: flex-start;
+    width: 800px;
+    border-bottom: 1px solid lightgray;
+    padding: 20px 0;
+
+    .Stock-Data-View-Button{
+        margin: 0 15px;
+        cursor: pointer;
+        font-weight: 800;
+        font-size: 16px;
+    }
+
+    .Stock-Data-View-Button:hover{
+        color: #21ce99
+    }
+
+    .underlined{
+        border-bottom: 3px solid #21ce99;
+        color: #21ce99;
+    }
+}

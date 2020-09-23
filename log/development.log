@@ -30747,3 +30747,303 @@ Processing by Api::NewsController#index as JSON
 Completed 200 OK in 116ms (Views: 3.4ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/" for ::1 at 2020-09-23 13:20:19 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (4.2ms)
+  Rendered static_pages/root.html.erb within layouts/application (40.9ms)
+Completed 200 OK in 1195ms (Views: 1185.7ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 13:29:35 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (1.3ms)
+  Rendered static_pages/root.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 77ms (Views: 73.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 13:30:16 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (4.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 1002ms (Views: 995.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 13:30:24 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 151ms (Views: 6.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 13:31:35 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (1.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 795ms (Views: 787.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 13:31:41 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 106ms (Views: 4.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 13:33:39 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  Rendered static_pages/root.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 873ms (Views: 868.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 13:34:33 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 916ms (Views: 912.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 13:34:43 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 97ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 13:45:25 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (2.0ms)
+  Rendered static_pages/root.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 859ms (Views: 855.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 13:46:12 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 171ms (Views: 2.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 13:55:21 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (9.4ms)
+Completed 200 OK in 853ms (Views: 849.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 13:55:22 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 219ms (Views: 3.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 14:03:20 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (1.7ms)
+  Rendered static_pages/root.html.erb within layouts/application (11.9ms)
+Completed 200 OK in 1198ms (Views: 1194.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 14:03:28 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 151ms (Views: 1.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 14:10:39 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (2.3ms)
+  Rendered static_pages/root.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 943ms (Views: 937.3ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 14:10:45 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 135ms (Views: 2.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 14:11:58 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (1.2ms)
+  Rendered static_pages/root.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 66ms (Views: 62.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 14:11:58 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 121ms (Views: 4.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 15:02:12 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (4.6ms)
+  Rendered static_pages/root.html.erb within layouts/application (36.2ms)
+Completed 200 OK in 1265ms (Views: 1258.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 15:02:20 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 163ms (Views: 6.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 15:11:49 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (1.6ms)
+  Rendered static_pages/root.html.erb within layouts/application (16.5ms)
+Completed 200 OK in 1046ms (Views: 1041.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 15:11:51 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 117ms (Views: 2.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 15:14:06 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (1.3ms)
+  Rendered static_pages/root.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 107ms (Views: 102.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 15:14:07 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 74ms (Views: 4.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 15:14:26 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 128ms (Views: 124.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 15:14:26 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 66ms (Views: 6.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 15:15:20 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 124ms (Views: 120.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 15:15:21 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 125ms (Views: 5.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 15:15:42 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (1.2ms)
+  Rendered static_pages/root.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 118ms (Views: 113.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 15:15:43 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 97ms (Views: 10.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 15:17:28 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 127ms (Views: 123.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 15:17:28 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 96ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 15:19:05 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 103ms (Views: 98.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 15:19:05 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 115ms (Views: 11.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 15:19:14 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 117ms (Views: 113.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 15:19:14 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 84ms (Views: 4.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-23 15:21:57 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-mMGBWCdlNvrHwsirRD9_Q"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  Rendered static_pages/root.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 114ms (Views: 109.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/news" for ::1 at 2020-09-23 15:21:58 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 131ms (Views: 3.7ms | ActiveRecord: 0.0ms)
+
+

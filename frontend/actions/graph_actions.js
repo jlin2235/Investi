@@ -44,10 +44,16 @@ export const receiveFiveMin = ticker => dispatch => fetchHistoricalChartFiveMin(
 )
 
 export const receiveThirtyMin = ticker => dispatch => fetchHistoricalChartThirtyMin(ticker)
-    .then(prices => dispatch(fetchHistoricalChartThirtyMinHelperMethod(prices)))
+    .then(prices => {
+        debugger
+        dispatch(fetchHistoricalChartThirtyMinHelperMethod(prices))}
+)
 
 export const receiveFiveYr = ticker => dispatch => fetchHistoricalPriceFiveYr(ticker)
-    .then(prices => dispatch(fetchHistoricalPriceFiveYrHelperMethod(prices)))
+    .then(prices => {
+        debugger
+        dispatch(fetchHistoricalPriceFiveYrHelperMethod(prices))}
+)
 
 export const FiveDaysTenMinBatchPrices = tickers => dispatch => fetchHistoricalChartFiveDaysTenMinBatch(tickers)
     .then(prices => dispatch(fetchHistoricalChartFiveDaysTenMinBatchHelperMethod(prices)))
