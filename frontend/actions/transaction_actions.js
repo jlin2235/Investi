@@ -75,8 +75,8 @@ export const getOneTran = transaction => dispatch => getOneTransaction(transacti
         return dispatch(getOneTransactionHelperMethod(transaction))
     })
 
-export const getUser = transaction => dispatch => showUser(transaction)
-    .then(user => dispatch(getUserHelperMethod(user)))
+// export const getUser = transaction => dispatch => showUser(transaction)
+//     .then(user => dispatch(getUserHelperMethod(user)))
 
 export const clearTransErrors = () => dispatch(clearTransactionErrors);
 

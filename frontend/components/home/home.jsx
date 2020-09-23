@@ -1,6 +1,7 @@
 import React from 'react'
 import NavBarContainer from '../nav_bar/nav_bar_container'
 import GraphContainer from '../graph/graph_container'
+import PortfolioContainer from './portfolio_container'
 
 
 
@@ -14,7 +15,16 @@ class HomeForm extends React.Component{
 
     componentDidMount() {
         debugger
-        this.props.receiveNews()
+
+        let transaction = {
+            user_id: this.props.currentUser.id
+        }
+        this.props.getAllTransaction(transaction)
+            .then(transactions => {
+                debugger
+                let symbolsArray = Object.keys(transactions.transactions);
+                this.props.receivePrices(symbolsArray);
+            })
     }
 
 
@@ -48,13 +58,14 @@ class HomeForm extends React.Component{
         return(
             <div>
                 <NavBarContainer />
-                <GraphContainer />
+                {/* <GraphContainer /> */}
                 <div className='show-page-news-feed-container'>
                     <h1 id='show-page-news-feed-container-text'>News Feed</h1>
                     <ul>
                         {this.displayNews()}
                     </ul>
                 </div>
+                <PortfolioContainer />
             </div>
         )
     }

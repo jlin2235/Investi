@@ -42,15 +42,15 @@ class Graph extends React.Component {
 
     componentDidMount() {
         debugger
-        let transaction = {
-            user_id: this.props.currentUser.id
-        }
-        this.props.getAllTransaction(transaction)
-            .then(transactions => {
-                debugger
-                let symbolsArray = Object.keys(transactions.transactions);
-                this.props.receivePrices(symbolsArray);
-            })
+        // let transaction = {
+        //     user_id: this.props.currentUser.id
+        // }
+        // this.props.getAllTransaction(transaction)
+        //     .then(transactions => {
+        //         debugger
+        //         let symbolsArray = Object.keys(transactions.transactions);
+        //         this.props.receivePrices(symbolsArray);
+        //     })
     }
 
 

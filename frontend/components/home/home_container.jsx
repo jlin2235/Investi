@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
-import { getAllTransaction,getUser } from '../../actions/transaction_actions'
-import { receiveNews, receiveFiveMin} from '../../actions/graph_actions'
-import { receivePrice } from '../../actions/search_actions'
+import { getAllTransaction } from '../../actions/transaction_actions'
+// import { receiveNews } from '../../actions/graph_actions'
+import { receivePrices } from '../../actions/search_actions'
+
 import HomeForm from './home'
 
 
@@ -16,7 +17,10 @@ const msp = state => ({
 
 const mdp = dispatch => {
     return {
-        receiveNews: () => dispatch(receiveNews())
+        // receiveNews: () => dispatch(receiveNews()),
+        getAllTransaction: transaction => dispatch(getAllTransaction(transaction)),
+        receivePrices: symbols => dispatch(receivePrices(symbols))
+
     }
 }
 

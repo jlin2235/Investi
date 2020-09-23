@@ -93,6 +93,18 @@ class ShowPageGraph extends React.Component {
 
    }
 
+//    gainLossCalculation(data){
+//        if ((this.props.graphPrices['fiveMin'] === undefined) ||
+//            (this.props.graphPrices['thirtyMin'] === undefined) ||
+//            (this.props.graphPrices['fiveYr'] === undefined)
+//        ) {
+//            return null;
+//        }
+
+
+
+//    }
+
 
     renderReCharts(data) {
         debugger
@@ -114,6 +126,7 @@ class ShowPageGraph extends React.Component {
                 {/* <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} /> */}
                 <Line type="linear" dataKey="close" stroke="#8884d8" dot={false} strokeWidth={2} />
             </LineChart>
+
         )
     }
 
@@ -123,6 +136,12 @@ class ShowPageGraph extends React.Component {
         debugger
         return (
             <div>
+                <h1>
+                    {this.props.profile.companyName}
+                </h1>
+                <h2>
+                    {numeral(this.props.price).format('$0,0.00')}
+                </h2>
                 {this.graphDataCalculation()}
                 <ul className="Stock-Date-View-Option_container">
                     <h2 onClick={() => this.changeDateView("1d")} className="Stock-Data-View-Button 1d underlined">1D</h2>
