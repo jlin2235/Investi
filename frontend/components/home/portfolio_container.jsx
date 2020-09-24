@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { receivePrice } from '../../actions/search_actions';
+// import { receivePrice } from '../../actions/search_actions';
 import { receiveFiveMin } from '../../actions/graph_actions'
 import Portfolio from './portfolio'
 
@@ -15,7 +15,7 @@ const msp = state => {
 }
 const mdp = dispatch => {
     return {
-        receivePrice: symbol => dispatch(receivePrice(symbol)),
+        // receivePrice: symbol => dispatch(receivePrice(symbol)),
         receiveFiveMin: symbol => (dispatch(receiveFiveMin(symbol)))
     }
 }

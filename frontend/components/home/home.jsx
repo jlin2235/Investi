@@ -24,6 +24,7 @@ class HomeForm extends React.Component{
                 debugger
                 let symbolsArray = Object.keys(transactions.transactions);
                 this.props.receivePrices(symbolsArray);
+                symbolsArray.forEach(symbol => this.props.receiveFiveMinBatch(symbol))
             })
     }
 

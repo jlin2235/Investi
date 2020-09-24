@@ -1,6 +1,6 @@
 class Api::TransactionsController < ApplicationController
     #USED FOR POSTMAN TESTING NEED TO BE DELETED
-    skip_before_action :verify_authenticity_token  
+    # skip_before_action :verify_authenticity_token  
 
     #ONLY UPDATE THE SHARES SO FAR
     def create 

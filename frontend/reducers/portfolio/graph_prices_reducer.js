@@ -2,6 +2,7 @@ import {
     RECEIVE_FIVEMIN,
     RECEIVE_THIRTYMIN,
     RECEIVE_PRICEFIVEYR,
+    RECEIVE_FIVEMIN_BATCH,
 } from '../../actions/graph_actions'
 
 
@@ -21,6 +22,10 @@ export const graphPricesReducer = (oldState = [], action) => {
             debugger
             nextState['fiveYr'] = action.prices.historical;
             return nextState;
+        case RECEIVE_FIVEMIN_BATCH:
+            debugger
+            nextState[action.prices.symbols] = action.prices.prices
+            return nextState
         default:
             return oldState;
     }
