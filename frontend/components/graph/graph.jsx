@@ -5,29 +5,29 @@ import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine,
 } from 'recharts';
 
-const data = [
-    {
-        name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-    },
-    {
-        name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-    },
-    {
-        name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-    },
-    {
-        name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-    },
-    {
-        name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
-    },
-    {
-        name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
-    },
-    {
-        name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
-    },
-];
+// const data = [
+//     {
+//         name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
+//     },
+//     {
+//         name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
+//     },
+//     {
+//         name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
+//     },
+//     {
+//         name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
+//     },
+//     {
+//         name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
+//     },
+//     {
+//         name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
+//     },
+//     {
+//         name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
+//     },
+// ];
 
 // const oneDayData = this.props.currentUser.balance
 
@@ -85,78 +85,56 @@ class Graph extends React.Component {
         let todayDate = new Date(); //Tue Sep 22 2020 17:37:01 GMT-0400 (Eastern Daylight Time)
         let dayOfWeek = todayDate.getDay(); //2
         let isWeekend = ((dayOfWeek === 0) || (dayOfWeek === 6)) //SUN/SAT
-        let yesterday = moment().subtract(1, 'days');
+        let yesterday = moment().subtract(2, 'days');
         let symbols = Object.keys(this.props.transactions) //ARRAY
-        let dataArray = Object.assign({}, []);
-
+        let dataArray = [];
+        
         if (this.state.dateViewed === '1d' && !isWeekend) { //ONE DAY VIEW/WEEKDAY
-
-
+            
+            
         } else if (this.state.dateViewed === '1d' && isWeekend){
-            let dataForGraph = symbols.forEach((symbol, idx) => {
-                debugger
+            
+            symbols.forEach((symbol, idx) => {
+                
+                // debugger
+                let sharesAmt = this.props.transactions[symbol].shares
                 let individualCompany = data[symbol].chart;
                 let filterIndividualCompanyArray = individualCompany.filter(ele => {
-                    // debugger
                     return moment(ele.date).isSame(yesterday, 'day') //will only return the date that is the day as today
                 })
-                debugger
-                let subdata = filterIndividualCompanyArray.forEach(ele => {
-                    debugger
-                    if (dataArray[ele.minute] === undefined) {
-                        dataArray[ele.minute] = ele.close;
+                // debugger
+                let subdata = filterIndividualCompanyArray.forEach( (ele,idx) => {
+                    // debugger
+                    
+                    if (dataArray[idx] === undefined) {
+                        dataArray[idx] = (ele.close * sharesAmt);
                     } else {
-                        dataArray[ele.minute] += ele.close;
+                        dataArray[idx] += (ele.close * sharesAmt);
                     }
-                    return dataArray
                 })
-                debugger
-                console.log(subdata);
-                return dataArray
-            }, this)
+
+            })
         }
+        
+        let test = dataArray.map( ele => {
+            // debugger
+           let rObj = {}
+            rObj['data'] = ele;
+            return rObj
+        })
+        // console.log(test)
+        return (this.renderReCharts(test))
 
-
-
-
-            //MIGHT NEED IT
-            // let data2 = symbols.forEach((symbol, idx) => {
-
-            //     debugger
-            //     let individualCompany = this.props.graphPrices[symbol];
-            //     let filterIndividualCompanyArray = individualCompany.filter(ele => {
-            //         // debugger
-            //         return moment(ele.date.split(" ")[0]).isSame(yesterday, 'day') //will only return the date that is the day as today
-            //     })
-            //     debugger
-            //     let data = filterIndividualCompanyArray.forEach(ele => {
-            //         debugger
-            //         if (dataArray[ele.date] === undefined) {
-            //             dataArray[ele.date] = ele.close;
-            //         } else {
-            //             dataArray[ele.date] += ele.close;
-            //         }
-            //         return dataArray
-            //     },this)
-            //     console.log(data);
-            //     return dataArray
-            // }, this)
-
-
-
-
-            return (this.renderReCharts(data))
-
-        // }
 
     }
 
 
-    renderReCharts() {
+    renderReCharts(data) {
+        debugger
         return(
             <LineChart width={800} height={300} data={data}>
-                <XAxis dataKey="name" padding={{ left: 30, right: 30 }} hide={true} />
-                <YAxis axisLine={false} hide={true}/>
+                <XAxis dataKey="data" hide={true} />
+                <YAxis domain={['dataMin', 'dataMax']} axisLine={false} hide={true}/>
                 <Tooltip 
                     position={{ y: 0 }}
                     // offset={toolTipOffSet}
@@ -164,7 +142,7 @@ class Graph extends React.Component {
                     // content={this.customToolTip}
                     wrapperStyle={{ top: -15 }}/>
                 <Legend />
-                <Line type="linear" dataKey="uv" stroke="#8884d8" dot={false} strokeWidth={2} />
+                <Line type="linear" dataKey="data" stroke="#8884d8" dot={false} strokeWidth={2} />
             </LineChart>
         )
     }
