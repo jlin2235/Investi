@@ -6,13 +6,15 @@ import { receivePrices } from '../../actions/search_actions'
 const msp = state => ({
     currentUser: state.entities.users[state.session.id],
     transactions: state.entities.transactions,
-    prices: state.entities.prices       
+    prices: state.entities.prices,
+    graphPrices: state.entities.graphPrices
+
 
 })
 
 const mdp = dispatch => ({
-    getAllTransaction: transaction => dispatch(getAllTransaction(transaction)),
-    receivePrices: symbols => dispatch(receivePrices(symbols))
+    // getAllTransaction: transaction => dispatch(getAllTransaction(transaction)),
+    // receivePrices: symbols => dispatch(receivePrices(symbols))
 })
 
 export default connect(msp, mdp)(Graph);

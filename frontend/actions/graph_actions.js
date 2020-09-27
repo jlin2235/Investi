@@ -1,14 +1,14 @@
 import { fetchHistoricalChartFiveMin,
         fetchHistoricalChartThirtyMin,
         fetchHistoricalPriceFiveYr,
-        // fetchHistoricalChartFiveDaysTenMinBatch,
+        fetchHistoricalChartFiveDaysTenMinBatchIEX,
         fetchNews } from './../util/graph_api_util'
 
 export const RECEIVE_FIVEMIN = 'RECEIVE_FIVEMIN';
 export const RECEIVE_FIVEMIN_BATCH = 'RECEIVE_FIVEMIN_BATCH';
 export const RECEIVE_THIRTYMIN = 'RECEIVE_THIRTYMIN';
 export const RECEIVE_PRICEFIVEYR = 'RECEIVE_PRICEFIVEYR';
-export const RECEIVE_FIVEDAYS_TENMIN_BATCH = 'RECEIVE_FIVEDAYS_TENMIN_BATCH';
+export const RECEIVE_FIVEDAYS_TENMIN_BATCH_IEX = 'RECEIVE_FIVEDAYS_TENMIN_BATCH_IEX';
 export const RECEIVE_NEWS = 'RECEIVE_NEWS'; //SINCE ONLY ONE ACTION PUT IT IN HERE
 
 const fetchHistoricalChartFiveMinHelperMethod = prices => ({
@@ -30,10 +30,10 @@ const fetchHistoricalPriceFiveYrHelperMethod = prices => ({
     type: RECEIVE_PRICEFIVEYR,
     prices
 })
-// const fetchHistoricalChartFiveDaysTenMinBatchHelperMethod = prices => ({
-//     type: RECEIVE_FIVEDAYS_TENMIN_BATCH,
-//     prices
-// })
+const fetchHistoricalChartFiveDaysTenMinBatchIEXHelperMethod = prices => ({
+    type: RECEIVE_FIVEDAYS_TENMIN_BATCH_IEX,
+    prices
+})
 
 const fetchNewsHelperMethod = news => {
     // debugger
@@ -67,8 +67,10 @@ export const receiveFiveYr = ticker => dispatch => fetchHistoricalPriceFiveYr(ti
         dispatch(fetchHistoricalPriceFiveYrHelperMethod(prices))}
 )
 
-// export const FiveDaysTenMinBatchPrices = tickers => dispatch => fetchHistoricalChartFiveDaysTenMinBatch(tickers)
-//     .then(prices => dispatch(fetchHistoricalChartFiveDaysTenMinBatchHelperMethod(prices)))
+export const FiveDaysTenMinBatchPricesIEX = tickers => dispatch => fetchHistoricalChartFiveDaysTenMinBatchIEX(tickers)
+    .then(prices => {
+        debugger
+        dispatch(fetchHistoricalChartFiveDaysTenMinBatchIEXHelperMethod(prices))})
 
 export const receiveNews = () => dispatch => fetchNews()
     .then(news => dispatch(fetchNewsHelperMethod(news)))

@@ -38,6 +38,12 @@ class Graph extends React.Component {
 
         this.totalPortfolioValue = this.totalPortfolioValue.bind(this)
         this.renderReCharts = this.renderReCharts.bind(this);
+        this.graphDataCalculation = this.graphDataCalculation.bind(this)
+
+        this.state = {
+            dateViewed: '1d'
+        }
+
     }
 
     componentDidMount() {
@@ -54,6 +60,98 @@ class Graph extends React.Component {
     }
 
 
+    graphDataCalculation() {
+        debugger
+
+        // if ((Object.keys(this.props.graphPrices)).length !== (Object.keys(this.props.transactions).length)) {
+        //     return null;
+        // }
+
+        if(this.props.graphPrices['fiveMin'] === undefined){
+            return null;
+        }
+
+        let data;
+
+        if (this.state.dateViewed === '1d') {
+            data = this.props.graphPrices['fiveMin']
+        } else if (this.state.dateViewed === '1w') {
+            data = this.props.graphPrices['thirtyMin']
+        } else {
+            data = this.props.graphPrices['fiveYr']
+        }
+        
+
+        let todayDate = new Date(); //Tue Sep 22 2020 17:37:01 GMT-0400 (Eastern Daylight Time)
+        let dayOfWeek = todayDate.getDay(); //2
+        let isWeekend = ((dayOfWeek === 0) || (dayOfWeek === 6)) //SUN/SAT
+        let yesterday = moment().subtract(1, 'days');
+        let symbols = Object.keys(this.props.transactions) //ARRAY
+        let dataArray = Object.assign({}, []);
+
+        if (this.state.dateViewed === '1d' && !isWeekend) { //ONE DAY VIEW/WEEKDAY
+
+
+        } else if (this.state.dateViewed === '1d' && isWeekend){
+            let dataForGraph = symbols.forEach((symbol, idx) => {
+                debugger
+                let individualCompany = data[symbol].chart;
+                let filterIndividualCompanyArray = individualCompany.filter(ele => {
+                    // debugger
+                    return moment(ele.date).isSame(yesterday, 'day') //will only return the date that is the day as today
+                })
+                debugger
+                let subdata = filterIndividualCompanyArray.forEach(ele => {
+                    debugger
+                    if (dataArray[ele.minute] === undefined) {
+                        dataArray[ele.minute] = ele.close;
+                    } else {
+                        dataArray[ele.minute] += ele.close;
+                    }
+                    return dataArray
+                })
+                debugger
+                console.log(subdata);
+                return dataArray
+            }, this)
+        }
+
+
+
+
+            //MIGHT NEED IT
+            // let data2 = symbols.forEach((symbol, idx) => {
+
+            //     debugger
+            //     let individualCompany = this.props.graphPrices[symbol];
+            //     let filterIndividualCompanyArray = individualCompany.filter(ele => {
+            //         // debugger
+            //         return moment(ele.date.split(" ")[0]).isSame(yesterday, 'day') //will only return the date that is the day as today
+            //     })
+            //     debugger
+            //     let data = filterIndividualCompanyArray.forEach(ele => {
+            //         debugger
+            //         if (dataArray[ele.date] === undefined) {
+            //             dataArray[ele.date] = ele.close;
+            //         } else {
+            //             dataArray[ele.date] += ele.close;
+            //         }
+            //         return dataArray
+            //     },this)
+            //     console.log(data);
+            //     return dataArray
+            // }, this)
+
+
+
+
+            return (this.renderReCharts(data))
+
+        // }
+
+    }
+
+
     renderReCharts() {
         return(
             <LineChart width={800} height={300} data={data}>
@@ -66,7 +164,6 @@ class Graph extends React.Component {
                     // content={this.customToolTip}
                     wrapperStyle={{ top: -15 }}/>
                 <Legend />
-                {/* <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} /> */}
                 <Line type="linear" dataKey="uv" stroke="#8884d8" dot={false} strokeWidth={2} />
             </LineChart>
         )
@@ -99,7 +196,7 @@ class Graph extends React.Component {
                 <h1>
                     {numeral(this.props.currentUser.balance + this.totalPortfolioValue()).format('$0,0.00')}
                 </h1>
-                {this.renderReCharts()}
+                {this.graphDataCalculation()}
             </div>
         );
     }

@@ -1,0 +1,52 @@
+.main-portfolio-container{
+    width: 300px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.6);
+    margin: 0 0 0 55px;
+    height: 75vh;
+    top: 175px;
+    overflow: hidden;
+    overflow-y: scroll;
+    position: sticky;
+
+    .portfolio-title{
+        margin: 0 0 10px 0;
+        padding: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        border-bottom: lightgray 1px solid;
+        text-align: center;
+    }
+
+    .portfolio-stock-list-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+        font-size: 16px;
+        margin: 20px;
+
+        .portfolio-info-left-container{
+            display: flex;
+            flex-direction: column;
+            width: 75px;
+            align-items: flex-start;
+
+            h1{
+                font-weight: bold;
+            }
+        }
+
+        .portfolio-info-right-container{
+            display: flex;
+            flex-direction: column;
+            width: 75px;
+            align-items: flex-end;
+            margin-left: 10px;
+        }
+    }
+
+    .portfolio-stock-list-container:hover{
+        background-color: #fff;
+    }
+
+}

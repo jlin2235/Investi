@@ -3,6 +3,7 @@ import {
     RECEIVE_THIRTYMIN,
     RECEIVE_PRICEFIVEYR,
     RECEIVE_FIVEMIN_BATCH,
+    RECEIVE_FIVEDAYS_TENMIN_BATCH_IEX,
 } from '../../actions/graph_actions'
 
 
@@ -25,6 +26,13 @@ export const graphPricesReducer = (oldState = [], action) => {
         case RECEIVE_FIVEMIN_BATCH:
             debugger
             nextState[action.prices.symbols] = action.prices.prices
+
+            // let fiveMin = 'fiveMin'
+            // nextState[`${fiveMin} ${action.prices.symbols}`] = action.prices.prices;
+            return nextState;
+        case RECEIVE_FIVEDAYS_TENMIN_BATCH_IEX:
+            debugger
+            nextState['fiveMin'] = action.prices;
             return nextState
         default:
             return oldState;

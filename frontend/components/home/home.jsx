@@ -24,7 +24,8 @@ class HomeForm extends React.Component{
                 debugger
                 let symbolsArray = Object.keys(transactions.transactions);
                 this.props.receivePrices(symbolsArray);
-                symbolsArray.forEach(symbol => this.props.receiveFiveMinBatch(symbol))
+                this.props.FiveDaysTenMinBatchPricesIEX(symbolsArray);
+                // symbolsArray.forEach(symbol => this.props.receiveFiveMinBatch(symbol))
             })
     }
 
@@ -59,14 +60,14 @@ class HomeForm extends React.Component{
         return(
             <div>
                 <NavBarContainer />
-                {/* <GraphContainer /> */}
+                <GraphContainer />
                 <div className='show-page-news-feed-container'>
                     <h1 id='show-page-news-feed-container-text'>News Feed</h1>
                     <ul>
                         {this.displayNews()}
                     </ul>
                 </div>
-                <PortfolioContainer />
+                {/* <PortfolioContainer /> */}
             </div>
         )
     }

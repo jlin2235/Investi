@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { getAllTransaction } from '../../actions/transaction_actions'
-import { receiveFiveMinBatch } from '../../actions/graph_actions'
+import { receiveFiveMinBatch, FiveDaysTenMinBatchPricesIEX } from '../../actions/graph_actions'
 import { receivePrices } from '../../actions/search_actions'
 
 import HomeForm from './home'
@@ -23,7 +23,8 @@ const mdp = dispatch => {
         // receiveNews: () => dispatch(receiveNews()),
         getAllTransaction: transaction => dispatch(getAllTransaction(transaction)),
         receivePrices: symbols => dispatch(receivePrices(symbols)),
-        receiveFiveMinBatch: symbol => dispatch(receiveFiveMinBatch(symbol))
+        receiveFiveMinBatch: symbol => dispatch(receiveFiveMinBatch(symbol)),
+        FiveDaysTenMinBatchPricesIEX: symbols => dispatch(FiveDaysTenMinBatchPricesIEX(symbols))
     }
 }
 
