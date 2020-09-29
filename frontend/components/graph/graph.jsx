@@ -5,31 +5,6 @@ import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine,
 } from 'recharts';
 
-// const data = [
-//     {
-//         name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-//     },
-//     {
-//         name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-//     },
-//     {
-//         name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-//     },
-//     {
-//         name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-//     },
-//     {
-//         name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
-//     },
-//     {
-//         name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
-//     },
-//     {
-//         name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
-//     },
-// ];
-
-// const oneDayData = this.props.currentUser.balance
 
 class Graph extends React.Component {
 
@@ -41,23 +16,12 @@ class Graph extends React.Component {
         this.graphDataCalculation = this.graphDataCalculation.bind(this)
 
         this.state = {
-            dateViewed: '1d'
+            dateViewed: '3m'
         }
 
     }
 
-    componentDidMount() {
-        debugger
-        // let transaction = {
-        //     user_id: this.props.currentUser.id
-        // }
-        // this.props.getAllTransaction(transaction)
-        //     .then(transactions => {
-        //         debugger
-        //         let symbolsArray = Object.keys(transactions.transactions);
-        //         this.props.receivePrices(symbolsArray);
-        //     })
-    }
+  
 
 
     graphDataCalculation() {
@@ -66,34 +30,64 @@ class Graph extends React.Component {
         // if ((Object.keys(this.props.graphPrices)).length !== (Object.keys(this.props.transactions).length)) {
         //     return null;
         // }
-
-        if(this.props.graphPrices['fiveMin'] === undefined){
-            return null;
-        }
-
         let data;
-
-        if (this.state.dateViewed === '1d') {
-            data = this.props.graphPrices['fiveMin']
-        } else if (this.state.dateViewed === '1w') {
-            data = this.props.graphPrices['thirtyMin']
-        } else {
-            data = this.props.graphPrices['fiveYr']
-        }
-        
-
         let todayDate = new Date(); //Tue Sep 22 2020 17:37:01 GMT-0400 (Eastern Daylight Time)
         let dayOfWeek = todayDate.getDay(); //2
         let isWeekend = ((dayOfWeek === 0) || (dayOfWeek === 6)) //SUN/SAT
-        let yesterday = moment().subtract(2, 'days');
+        let yesterday = moment().subtract(1, 'days');
         let symbols = Object.keys(this.props.transactions) //ARRAY
+        let userBalance = this.props.currentUser.balance
         let dataArray = [];
+
+       
+        if ((this.props.graphPrices['oneWeek'] === undefined) ||
+            (this.props.graphPrices['fiveYear'] === undefined)) 
+            {
+                return null;
+            }
+     
+        if (this.state.dateViewed === '1d') {
+            data = this.props.graphPrices['oneWeek']
+        } else if (this.state.dateViewed === '1w') {
+            data = this.props.graphPrices['oneWeek']
+        } else {
+            data = this.props.graphPrices['fiveYear']
+        }
         
-        if (this.state.dateViewed === '1d' && !isWeekend) { //ONE DAY VIEW/WEEKDAY
-            
-            
+
+//ONE DAY VIEW/WEEKDAY
+        if (this.state.dateViewed === '1d' && !isWeekend) { 
+
+            if (dayOfWeek === 1){
+                yesterday = moment().subtract(3, 'days');
+            }else{
+                yesterday = moment().subtract(1, 'days');
+            }
+            symbols.forEach((symbol, idx) => {
+                debugger
+                let sharesAmt = this.props.transactions[symbol].shares
+                let individualCompany = data[symbol].chart;
+                let filterIndividualCompanyArray = individualCompany.filter(ele => {
+                    return moment(ele.date).isSame(yesterday, 'day') //will only return the date that is the day as today
+                })
+                // debugger
+                filterIndividualCompanyArray.forEach((ele, idx) => {
+                    // debugger
+                    if (dataArray[idx] === undefined) {
+                        dataArray[idx] = [((ele.close  * sharesAmt) + userBalance), ele.minute];
+                    } else {
+                        dataArray[idx][0] += (ele.close * sharesAmt)
+                    }
+                })
+
+            })
+//ONE DAY VIEW/WEEKEND
         } else if (this.state.dateViewed === '1d' && isWeekend){
-            
+            if (dayOfWeek === 0) { //SUNDAY
+                yesterday = moment().subtract(2, 'days');
+            } else {
+                yesterday = moment().subtract(1, 'days');
+            }
             symbols.forEach((symbol, idx) => {
                 
                 // debugger
@@ -114,35 +108,108 @@ class Graph extends React.Component {
                 })
 
             })
+//ONE WEEK VIEW
+        } else if (this.state.dateViewed === '1w') {//ONE WEEK VIEW
+            symbols.forEach((symbol, idx) => {
+                // let lastWeek = moment().subtract(1, 'weeks')
+                // debugger
+                let sharesAmt = this.props.transactions[symbol].shares
+                let individualCompany = data[symbol].chart;
+                // let filterIndividualCompanyArray = individualCompany.filter(ele => {
+                //     return moment(ele.date).isAfter(lastWeek, 'weeks') //will only return the date that is the day as today
+                // })
+                // debugger
+                let subdata = individualCompany.forEach((ele, idx) => {
+                    // debugger
+
+                    if (dataArray[idx] === undefined) {
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.minute];
+                    } else {
+                        dataArray[idx][0] += (ele.close * sharesAmt)
+                    }
+                })
+
+            })
+//ONE MONTH VIEW
+
+        } else if (this.state.dateViewed === '1m') {//ONE MONTH VIEW
+            symbols.forEach((symbol, idx) => {
+                let lastMonth = moment().subtract(1, 'months') //get last month's date
+                // debugger
+                let sharesAmt = this.props.transactions[symbol].shares
+                let individualCompany = data[symbol].chart;
+                let filterIndividualCompanyArray = individualCompany.filter(ele => {
+                    return moment(ele.date).isAfter(lastMonth) //will only return the date that is the day as today
+                })
+                // debugger
+                let subdata = filterIndividualCompanyArray.forEach((ele, idx) => {
+                    // debugger
+
+                    if (dataArray[idx] === undefined) {
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.minute];
+                    } else {
+                        dataArray[idx][0] += (ele.close * sharesAmt)
+                    }
+                })
+
+            })
+//ONE YEAR VIEW
+
+        } else if (this.state.dateViewed === '3m') {//ONE MONTH VIEW
+            symbols.forEach((symbol, idx) => {
+                let lastThreeMonth = moment().subtract(3, 'months') //get last month's date
+                // debugger
+                let sharesAmt = this.props.transactions[symbol].shares
+                let individualCompany = data[symbol].chart;
+                let filterIndividualCompanyArray = individualCompany.filter(ele => {
+                    return moment(ele.date).isAfter(lastThreeMonth) //will only return the date that is the day as today
+                })
+                // debugger
+                let subdata = filterIndividualCompanyArray.forEach((ele, idx) => {
+                    // debugger
+
+                    if (dataArray[idx] === undefined) {
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.minute];
+                    } else {
+                        dataArray[idx][0] += (ele.close * sharesAmt)
+                    }
+                })
+
+            })
         }
-        
-        let test = dataArray.map( ele => {
+        console.log(dataArray)
+
+        let test = dataArray.map( (ele,idx) => {
             // debugger
-           let rObj = {}
-            rObj['data'] = ele;
+            let rObj = {}
+            rObj['Portfolio-Value'] = ele[0].toFixed(2);
+            rObj['time'] = `${ele[1]} ET`;
             return rObj
         })
-        // console.log(test)
+        console.log(test)
+        test = test.slice().reverse()
+
         return (this.renderReCharts(test))
 
 
     }
 
-
     renderReCharts(data) {
         debugger
         return(
-            <LineChart width={800} height={300} data={data}>
-                <XAxis dataKey="data" hide={true} />
-                <YAxis domain={['dataMin', 'dataMax']} axisLine={false} hide={true}/>
+            <LineChart width={800} height={300} data={data} 
+            // margin={{top: 100, right: 30, left: 20, bottom: 100,}}
+            >
+                <XAxis dataKey="time" hide={true} />
+                <YAxis domain={['dataMin', 'dataMax']} axisLine={false} hide={true} />
                 <Tooltip 
                     position={{ y: 0 }}
                     // offset={toolTipOffSet}
                     isAnimationActive={false}
                     // content={this.customToolTip}
                     wrapperStyle={{ top: -15 }}/>
-                <Legend />
-                <Line type="linear" dataKey="data" stroke="#8884d8" dot={false} strokeWidth={2} />
+                {/* <Legend /> */}
+                <Line type="linear" dataKey="Portfolio-Value" stroke="#8884d8" dot={false} strokeWidth={2} />
             </LineChart>
         )
     }
@@ -175,6 +242,14 @@ class Graph extends React.Component {
                     {numeral(this.props.currentUser.balance + this.totalPortfolioValue()).format('$0,0.00')}
                 </h1>
                 {this.graphDataCalculation()}
+                <ul className="Stock-Date-View-Option_container">
+                    <h2 onClick={() => this.changeDateView("1d")} className="Stock-Data-View-Button 1d underlined">1D</h2>
+                    <h2 onClick={() => this.changeDateView("1w")} className="Stock-Data-View-Button 1w">1W</h2>
+                    <h2 onClick={() => this.changeDateView("1m")} className="Stock-Data-View-Button 1m">1M</h2>
+                    <h2 onClick={() => this.changeDateView("3m")} className="Stock-Data-View-Button 3m">3M</h2>
+                    <h2 onClick={() => this.changeDateView("1y")} className="Stock-Data-View-Button 1y">1Y</h2>
+                    <h2 onClick={() => this.changeDateView("5y")} className="Stock-Data-View-Button 5y">5Y</h2>
+                </ul>
             </div>
         );
     }

@@ -44,4 +44,27 @@ export const fetchHistoricalChartFiveDaysTenMinBatchIEX = companies => {
         url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${symbols}&token=${window.iexapikey}&range=5dm`
     })
 }
+export const fetchHistoricalChartFiveYearBatchIEX = companies => {
+    let symbols = '';
+    symbols += companies[0];
+    companies.slice(1).forEach(company => {
+        symbols += `,${company}`
+    })
+    debugger
+    return $.ajax({
+        url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${symbols}&token=${window.iexapikey}&range=5y`
+    })
+}
+
+export const fetchHistoricalChartDynamicBatchIEX = companies => {
+    let symbols = '';
+    symbols += companies[0];
+    companies.slice(1).forEach(company => {
+        symbols += `,${company}`
+    })
+    debugger
+    return $.ajax({
+        url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${symbols}&token=${window.iexapikey}&range=dynamic`
+    })
+}
 

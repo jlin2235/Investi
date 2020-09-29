@@ -93,25 +93,9 @@ class ShowPageGraph extends React.Component {
 
    }
 
-//    gainLossCalculation(data){
-//        if ((this.props.graphPrices['fiveMin'] === undefined) ||
-//            (this.props.graphPrices['thirtyMin'] === undefined) ||
-//            (this.props.graphPrices['fiveYr'] === undefined)
-//        ) {
-//            return null;
-//        }
-
-
-
-//    }
-
 
     renderReCharts(data) {
         debugger
-        // this.graphDataCalculation()
-        // if (data === undefined){
-        //     return null;
-        // }
         return (
             <LineChart width={800} height={300} data={data}>
                 <XAxis dataKey="date" padding={{ left: 30, right: 30 }} hide={true} />
@@ -123,7 +107,6 @@ class ShowPageGraph extends React.Component {
                     // content={this.customToolTip}
                     wrapperStyle={{ top: -15 }} />
                 <Legend />
-                {/* <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} /> */}
                 <Line type="linear" dataKey="close" stroke="#8884d8" dot={false} strokeWidth={2} />
             </LineChart>
 

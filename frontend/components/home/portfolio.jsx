@@ -3,7 +3,7 @@ import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine,
 } from 'recharts';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
+// import moment from 'moment';
 import numeral from 'numeral';
 
 class Portfolio extends React.Component{
@@ -16,53 +16,40 @@ class Portfolio extends React.Component{
     
     renderPortfolioStocks(){
         debugger
-
-        if (Object.keys(this.props.transactions).length !== Object.keys(this.props.graphPrices).length) {
+        if (this.props.graphPrices['fiveYear'] === undefined) {
             return null;
         }
+        let data = this.props.graphPrices['fiveYear']
 
 
         let portfolioArray = [];
-        let fiveMin = 'fiveMin'
-        let data;
         let color;
         let gainLoss;
         let gainLossPercentage;
-        let todayDate = new Date(); //Tue Sep 22 2020 17:37:01 GMT-0400 (Eastern Daylight Time)
-        let dayOfWeek = todayDate.getDay(); //2
+        // let todayDate = new Date(); //Tue Sep 22 2020 17:37:01 GMT-0400 (Eastern Daylight Time)
+        // let dayOfWeek = todayDate.getDay(); //2
         let symbols = Object.keys(this.props.transactions);
         
         symbols.forEach((symbol, idx) => {
             debugger
-            let filterData = this.props.graphPrices[symbol].filter(ele => {
-            // debugger
-                if (dayOfWeek === 0 ){ // if SUNDAY
-                    let friday = moment(todayDate).subtract(2,'day')
-                    return moment(ele.date.split(" ")[0]).isSame(friday, 'day')
-                }else if (dayOfWeek === 6){ // if SAT
-                    let friday = moment(todayDate).subtract(1, 'day')
-                    return moment(ele.date.split(" ")[0]).isSame(friday, 'day')
-                }else{
-                    return moment(ele.date.split(" ")[0]).isSame(todayDate, 'day')
-                }
+            let filterData = data[symbol].chart.filter(ele => {
+                return ele
             })
             debugger
-            data = filterData.slice().reverse();
-            gainLoss = data.slice(-1)[0].close - data[0].close;
-            gainLossPercentage = numeral(gainLoss / data[0].close).format('0.00%');
+            let dataForGraph = filterData.slice().reverse();
+            gainLoss = dataForGraph.slice(-1)[0].close - dataForGraph[0].close;
+            gainLossPercentage = numeral(gainLoss / dataForGraph[0].close).format('0.00%');
             if (gainLoss >= 0) {
                 color = '#21ce99'
             }else {
                 color = '#FF0000'
             }
 
-
-
             let renderReChart = (
-                <LineChart width={100} height={50} data={data}>
+                <LineChart width={100} height={50} data={dataForGraph}>
                         <XAxis dataKey="date" hide={true} />
                         <YAxis domain={['dataMin', 'dataMax']} axisLine={false} hide={true} />
-                        <Line type="linear" dataKey="close" stroke={color} dot={false} strokeWidth={2} />
+                        <Line type="linear" dataKey="close" stroke={color} dot={false} strokeWidth={1} />
                 </LineChart>
             )
             

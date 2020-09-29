@@ -17,9 +17,9 @@ class Show extends React.Component{
         this.props.receiveProfile(this.props.symbol);
         this.props.receiveNews();
         this.props.receivePrice(this.props.symbol);
-        this.props.receiveFiveMin(this.props.symbol); 
-        this.props.receiveThirtyMin(this.props.symbol);
-        this.props.receiveFiveYr(this.props.symbol);
+        // this.props.receiveFiveMin(this.props.symbol); 
+        // this.props.receiveThirtyMin(this.props.symbol);
+        // this.props.receiveFiveYr(this.props.symbol);
     }
 
     componentDidUpdate(previousProps){
@@ -103,22 +103,22 @@ class Show extends React.Component{
         else{  
             return(
                 <div>
-                    {/* <NavBarContainer /> */}
+                    <NavBarContainer />
                         <div>
                         <ShowPageGraph/>
                         </div>
                         <div className='show-page-stockinfo-container'>
-                        {/* {this.displayProfileInfo()} */}
+                        {this.displayProfileInfo()}
 
                         </div>
 
                         <div className='show-page-news-feed-container'>
                             <h1 id='show-page-news-feed-container-text'>News Feed</h1>
                             <ul>
-                                {/* {this.displayNews()} */}
+                                {this.displayNews()}
                             </ul>
                         </div>
-                        {/* <TransactionForm /> */}
+                        <TransactionForm />
 
                     </div>
         

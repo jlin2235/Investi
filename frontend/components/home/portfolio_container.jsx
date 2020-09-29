@@ -16,7 +16,7 @@ const msp = state => {
 const mdp = dispatch => {
     return {
         // receivePrice: symbol => dispatch(receivePrice(symbol)),
-        receiveFiveMin: symbol => (dispatch(receiveFiveMin(symbol)))
+        // receiveFiveMin: symbol => (dispatch(receiveFiveMin(symbol)))
     }
 }
 

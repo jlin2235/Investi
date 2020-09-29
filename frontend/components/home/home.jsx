@@ -15,6 +15,7 @@ class HomeForm extends React.Component{
 
     componentDidMount() {
         debugger
+        this.props.receiveNews();
 
         let transaction = {
             user_id: this.props.currentUser.id
@@ -25,6 +26,8 @@ class HomeForm extends React.Component{
                 let symbolsArray = Object.keys(transactions.transactions);
                 this.props.receivePrices(symbolsArray);
                 this.props.FiveDaysTenMinBatchPricesIEX(symbolsArray);
+                this.props.FiveYearBatchPricesIEX(symbolsArray)
+                // this.props.DynamicBatchPricesIEX(symbolsArray)
                 // symbolsArray.forEach(symbol => this.props.receiveFiveMinBatch(symbol))
             })
     }
@@ -58,16 +61,22 @@ class HomeForm extends React.Component{
     render(){
         
         return(
-            <div>
+            <div className='homePage-main-container'>
                 <NavBarContainer />
-                <GraphContainer />
-                <div className='show-page-news-feed-container'>
-                    <h1 id='show-page-news-feed-container-text'>News Feed</h1>
-                    <ul>
-                        {this.displayNews()}
-                    </ul>
+                <div className='homePage-graph-news-portfolio-container'>
+                    <div className='homePage-graph-news-container'>
+                        <GraphContainer />
+                        <div className='show-page-news-feed-container'>
+                            <h1 id='show-page-news-feed-container-text'>News Feed</h1>
+                            <ul>
+                                {this.displayNews()}
+                            </ul>
+                        </div>
+                    </div>
+                    <div className='homePage-portfolio-container'>
+                        <PortfolioContainer />
+                    </div>
                 </div>
-                {/* <PortfolioContainer /> */}
             </div>
         )
     }
