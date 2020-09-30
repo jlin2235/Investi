@@ -38,8 +38,10 @@ class HomeForm extends React.Component{
         if (typeof this.props.news.articles === 'undefined') {
             return null;
         }
-        return (
-            this.props.news.articles.map((newsarticle, idx) => (
+        let newsArray = []
+        this.props.news.articles.map((newsarticle, idx) => {
+            if( newsarticle.urlToImage){
+                newsArray.push(
                 <a key={idx} target="_blank" href={newsarticle.url}>
                     <li className='show-page-news-feed-list-items' >
                         <div>
@@ -52,8 +54,12 @@ class HomeForm extends React.Component{
                         </div>
                     </li>
                 </a>
+                )}
 
-            )))
+        })
+        return (
+            newsArray
+            )
 
     }
     

@@ -16,20 +16,13 @@ class Graph extends React.Component {
         this.graphDataCalculation = this.graphDataCalculation.bind(this)
 
         this.state = {
-            dateViewed: '3m'
+            dateViewed: '5y'
         }
 
     }
 
-  
-
-
     graphDataCalculation() {
         debugger
-
-        // if ((Object.keys(this.props.graphPrices)).length !== (Object.keys(this.props.transactions).length)) {
-        //     return null;
-        // }
         let data;
         let todayDate = new Date(); //Tue Sep 22 2020 17:37:01 GMT-0400 (Eastern Daylight Time)
         let dayOfWeek = todayDate.getDay(); //2
@@ -38,6 +31,7 @@ class Graph extends React.Component {
         let symbols = Object.keys(this.props.transactions) //ARRAY
         let userBalance = this.props.currentUser.balance
         let dataArray = [];
+    
 
        
         if ((this.props.graphPrices['oneWeek'] === undefined) ||
@@ -70,6 +64,7 @@ class Graph extends React.Component {
                 let filterIndividualCompanyArray = individualCompany.filter(ele => {
                     return moment(ele.date).isSame(yesterday, 'day') //will only return the date that is the day as today
                 })
+                
                 // debugger
                 filterIndividualCompanyArray.forEach((ele, idx) => {
                     // debugger
@@ -153,7 +148,7 @@ class Graph extends React.Component {
                 })
 
             })
-//ONE YEAR VIEW
+//THREE MONTH VIEW
 
         } else if (this.state.dateViewed === '3m') {//ONE MONTH VIEW
             symbols.forEach((symbol, idx) => {
@@ -169,7 +164,53 @@ class Graph extends React.Component {
                     // debugger
 
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.minute];
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.date];
+                    } else {
+                        dataArray[idx][0] += (ele.close * sharesAmt)
+                    }
+                })
+
+            })
+//ONE YEAR VIEW
+
+        } else if (this.state.dateViewed === '1y') {//ONE MONTH VIEW
+            symbols.forEach((symbol, idx) => {
+                let oneYrAgo = moment().subtract(1, 'years') //get last year's  date
+                // debugger
+                let sharesAmt = this.props.transactions[symbol].shares
+                let individualCompany = data[symbol].chart;
+                let filterIndividualCompanyArray = individualCompany.filter(ele => {
+                    return moment(ele.date).isAfter(oneYrAgo) //will only return the date that is the day as today
+                })
+                // debugger
+                let subdata = filterIndividualCompanyArray.forEach((ele, idx) => {
+                    // debugger
+
+                    if (dataArray[idx] === undefined) {
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.date];
+                    } else {
+                        dataArray[idx][0] += (ele.close * sharesAmt)
+                    }
+                })
+
+            })
+//FIVE YEAR VIEW
+
+        } else if (this.state.dateViewed === '5y') {//ONE MONTH VIEW
+            symbols.forEach((symbol, idx) => {
+                // let fiveYrAgo = moment().subtract(5, 'years') //get last 5 year's  date
+                // debugger
+                let sharesAmt = this.props.transactions[symbol].shares
+                let individualCompany = data[symbol].chart;
+                // let filterIndividualCompanyArray = individualCompany.filter(ele => {
+                //     return moment(ele.date).isAfter(oneYrAgo) //will only return the date that is the day as today
+                // })
+                // debugger
+                let subdata = individualCompany.forEach((ele, idx) => {
+                    // debugger
+
+                    if (dataArray[idx] === undefined) {
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.date];
                     } else {
                         dataArray[idx][0] += (ele.close * sharesAmt)
                     }
@@ -177,17 +218,24 @@ class Graph extends React.Component {
 
             })
         }
-        console.log(dataArray)
+        // console.log(dataArray)
 
         let test = dataArray.map( (ele,idx) => {
             // debugger
             let rObj = {}
-            rObj['Portfolio-Value'] = ele[0].toFixed(2);
-            rObj['time'] = `${ele[1]} ET`;
+            rObj['PortfolioValue'] = ele[0].toFixed(2);
+            if (this.state.dateViewed === '1d'){
+                rObj['time'] = `${ele[1]} ET`;
+            }else{
+                rObj['time'] = ele[1];
+            }
             return rObj
         })
-        console.log(test)
+        // console.log(test)
+        if (this.state.dateViewed === '5y') {
         test = test.slice().reverse()
+        } 
+        
 
         return (this.renderReCharts(test))
 
@@ -195,6 +243,16 @@ class Graph extends React.Component {
     }
 
     renderReCharts(data) {
+        let color;
+        let gainLoss;
+        let gainLossPercentage;
+        gainLoss = data.slice(-1)[0].PortfolioValue - data[0].PortfolioValue;
+        gainLossPercentage = numeral(gainLoss / data[0].PortfolioValue).format('0.00%');
+        if (gainLoss >= 0) {
+            color = '#21ce99'
+        } else {
+            color = '#FF0000'
+        }
         debugger
         return(
             <LineChart width={800} height={300} data={data} 
@@ -209,7 +267,7 @@ class Graph extends React.Component {
                     // content={this.customToolTip}
                     wrapperStyle={{ top: -15 }}/>
                 {/* <Legend /> */}
-                <Line type="linear" dataKey="Portfolio-Value" stroke="#8884d8" dot={false} strokeWidth={2} />
+                <Line type="linear" dataKey="PortfolioValue" stroke={color} dot={false} strokeWidth={2} />
             </LineChart>
         )
     }
