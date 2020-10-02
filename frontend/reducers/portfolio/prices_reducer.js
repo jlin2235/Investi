@@ -8,16 +8,16 @@ export const pricesReducer = (OldState = [], action) => {
     let nextState = Object.assign({}, OldState);
     switch (action.type) {
         case RECEIVE_PRICES:
-            // debugger
+            //  
             let stockPrice = {};
             let pricesArray = Object.values(action.prices)
             pricesArray.forEach(element => {
-                // debugger
+                //  
                 stockPrice[element.quote.symbol] = element.price;
             })
             return stockPrice;
         case RECEIVE_PRICE:
-            // debugger
+            //  
             return action.price
         default:
             return OldState;

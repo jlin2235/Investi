@@ -58,20 +58,20 @@ export const updateUserBal = transaction => dispatch => updateUserBalance(transa
 export const createTransaction = transaction => dispatch => createNewTransaction(transaction)
     .then(transaction => dispatch(createTransactionHelperMethod(transaction)),
         errors => {
-            debugger
+            
             return dispatch(receiveTransactionErrorsHelperMethod(errors.responseJSON))}
 
     )
 
 export const getAllTransaction = transaction => dispatch => getAllTransactions(transaction)
     .then(transactions =>  {
-        debugger
+        
         return dispatch(getAllTransactionHelperMethod(transactions))
     })
 
 export const getOneTran = transaction => dispatch => getOneTransaction(transaction)
     .then(transaction => {
-        debugger
+        
         return dispatch(getOneTransactionHelperMethod(transaction))
     })
 

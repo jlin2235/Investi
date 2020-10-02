@@ -15,7 +15,6 @@ handleDemoSignin() {
     
     let demoinfo = { email: 'demoUser@gmail.com',
                      password: 'demopassword' }
-    // debugger
     this.props.login(demoinfo)
         .then(() => { this.props.history.push('/home')})
     

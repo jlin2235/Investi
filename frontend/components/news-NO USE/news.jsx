@@ -12,14 +12,14 @@ class NEWS extends React.Component {
 
     }
     componentDidMount(){
-        debugger
+         
         this.props.receivenews();
     }
 
    
 
     displayNews() {
-        debugger
+         
         return (
             this.props.news.map((newsarticle,idx)(
                 <li>
@@ -33,7 +33,7 @@ class NEWS extends React.Component {
 
 
     render() {
-        debugger
+         
         return (
             <div>
                 <ul>

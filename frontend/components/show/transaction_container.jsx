@@ -12,7 +12,7 @@ import { getAllTransaction,
 
 
 const msp = (state,ownProps) => {
-    debugger
+     
     return{
     symbol: state.entities.profile.symbol,
     profile: state.entities.profile,

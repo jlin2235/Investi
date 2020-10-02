@@ -7,7 +7,7 @@ const sessionReducer = (oldState = _nullUser, action) => {
 
     switch (action.type) {
         case RECEIVE_CURRENT_USER: //SIGNING THE USER IN
-            // debugger
+            //  
             return { id: action.currentUser.id };
         case LOGOUT_CURRENT_USER:
             return _nullUser; //AFTER THE USER IS LOGGED OUT THE THE ID IS NULL

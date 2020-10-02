@@ -23,12 +23,12 @@ class SignupForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
-        // debugger
+        //  
         this.props.processForm(user);
     }
 
     renderErrors() {
-        debugger
+         
         return (
             <ul>
                 {this.props.errors.map((error, idx) => (

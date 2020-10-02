@@ -17,7 +17,7 @@ class TransactionForm extends React.Component{
     }
 
     componentDidMount(){
-        debugger
+         
         let transaction = {
             user_id: this.props.currentUser.id,
             symbol: this.props.symbol
@@ -48,7 +48,7 @@ class TransactionForm extends React.Component{
 
 
     buyingPowerMessage() {
-        debugger
+         
         let BPMessage = '';
         if (this.props.transactions.length === 0) {
             BPMessage = '0 Shares Available'
@@ -82,7 +82,7 @@ class TransactionForm extends React.Component{
 
     handleSubmit(e) {
         e.preventDefault();
-        debugger
+         
         const transaction = {
             purchase_price: this.state.cost,
             shares: this.state.quantity,
@@ -93,7 +93,7 @@ class TransactionForm extends React.Component{
         
         //BUY
         if(this.state.buyOrSell === 'BUY') {
-            debugger
+             
             transaction['balance'] = this.props.currentUser.balance - this.state.cost;
             this.props.updateUserBal(transaction);
             this.props.createTransaction(transaction)
@@ -110,7 +110,7 @@ class TransactionForm extends React.Component{
 
     render(){
 
-        debugger
+         
         return(
             <form className='transaction-form-main-container' onSubmit={this.handleSubmit}>
                 <div className='buy-sell-button-container'>

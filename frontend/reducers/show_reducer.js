@@ -5,7 +5,7 @@ export const profileReducer = (state = {}, action) => {
     let nextState = Object.assign({}, state);
     switch (action.type) {
         case RECEIVE_PROFILE:
-            // debugger
+            //  
             return Object.assign({},nextState, action.profile)
             // nextState[profile.symbol] = profile
             // return nextState

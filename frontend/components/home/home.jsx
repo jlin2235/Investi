@@ -14,7 +14,6 @@ class HomeForm extends React.Component{
     }
 
     componentDidMount() {
-        debugger
         this.props.receiveNews();
 
         let transaction = {
@@ -22,7 +21,6 @@ class HomeForm extends React.Component{
         }
         this.props.getAllTransaction(transaction)
             .then(transactions => {
-                debugger
                 let symbolsArray = Object.keys(transactions.transactions);
                 this.props.receivePrices(symbolsArray);
                 this.props.FiveDaysTenMinBatchPricesIEX(symbolsArray);
@@ -34,7 +32,7 @@ class HomeForm extends React.Component{
 
 
     displayNews() {
-        // debugger
+        
         if (typeof this.props.news.articles === 'undefined') {
             return null;
         }

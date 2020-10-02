@@ -7,10 +7,10 @@ const transactionReducer = (state=[], action) => {
     let nextState = Object.assign({}, state);
     switch (action.type){
         case GET_ALL_TRANSACTIONS:
-            debugger
+             
             return action.transactions;
         case GET_ONE_TRANSACTION:
-            debugger
+             
             return action.transaction;
         case CREATE_TRANSACTION:
             if (action.transaction == undefined) {

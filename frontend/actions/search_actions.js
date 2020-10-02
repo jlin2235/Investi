@@ -12,7 +12,6 @@ const receiveStockHelperMethod = (stocks) => {
 }
 
 const receiveProfileHelperMethod = (profile) => {
-    // debugger
     return{
     type: RECEIVE_PROFILE,
     profile
@@ -26,7 +25,6 @@ const receivePriceHelperMethod = (price) => {
     }
 }
 const receivePricesHelperMethod = (prices) => {
-    debugger
     return{
         type: RECEIVE_PRICES,
         prices
@@ -43,28 +41,23 @@ export const receiveStocks = () => dispatch => {
 };
 
 export const receiveProfile = (company) => dispatch => {
-    // debugger
     return SEARCHAPIUtil.fetchProfile(company)
         .then(profile => {
-            // debugger
             return dispatch(receiveProfileHelperMethod(profile))
         })
 };
 
 export const receivePrice = (company) => dispatch => {
-    // debugger
     return SEARCHAPIUtil.fetchPrice(company)
         .then(price => {
-            // debugger
+            
             return dispatch(receivePriceHelperMethod(price))
         })
 }
 
 export const receivePrices = (companies) => dispatch =>{
-        // debugger
     return SEARCHAPIUtil.fetchBatchPrice(companies)
         .then(prices => {
-            // debugger
             return dispatch(receivePricesHelperMethod(prices))
         })
 };

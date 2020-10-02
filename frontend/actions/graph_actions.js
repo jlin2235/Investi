@@ -39,20 +39,17 @@ const fetchHistoricalChartFiveDaysTenMinBatchIEXHelperMethod = prices => ({
     prices
 })
 const fetchHistoricalChartFiveYearBatchIEXHelperMethod = prices => {
-    debugger
     return {
         type: RECEIVE_FIVE_YEAR_BATCH_IEX,
         prices
 }}
 const fetchHistoricalChartDynamicBatchIEXHelperMethod = prices => {
-    debugger
     return {
         type: RECEIVE_DYNAMIC_BATCH_IEX,
         prices
 }}
 
 const fetchNewsHelperMethod = news => {
-    // debugger
     return {
     type: RECEIVE_NEWS,
     news
@@ -60,42 +57,35 @@ const fetchNewsHelperMethod = news => {
 
 export const receiveFiveMin = symbol => dispatch => fetchHistoricalChartFiveMin(symbol)
     .then(prices => {
-        debugger
         dispatch(fetchHistoricalChartFiveMinHelperMethod(prices))}  
 )
 
 export const receiveFiveMinBatch = symbols => dispatch => fetchHistoricalChartFiveMin(symbols)
     .then(prices => {
-        debugger
         dispatch(fetchHistoricalChartFiveMinBatchHelperMethod({prices,symbols}))
 
 })
 
 export const receiveThirtyMin = ticker => dispatch => fetchHistoricalChartThirtyMin(ticker)
     .then(prices => {
-        debugger
         dispatch(fetchHistoricalChartThirtyMinHelperMethod(prices))}
 )
 
 export const receiveFiveYr = ticker => dispatch => fetchHistoricalPriceFiveYr(ticker)
     .then(prices => {
-        debugger
         dispatch(fetchHistoricalPriceFiveYrHelperMethod(prices))}
 )
 
 export const FiveDaysTenMinBatchPricesIEX = tickers => dispatch => fetchHistoricalChartFiveDaysTenMinBatchIEX(tickers)
     .then(prices => {
-        debugger
         dispatch(fetchHistoricalChartFiveDaysTenMinBatchIEXHelperMethod(prices))});
 
 export const FiveYearBatchPricesIEX = tickers => dispatch => fetchHistoricalChartFiveYearBatchIEX(tickers)
     .then(prices => {
-        debugger
         dispatch(fetchHistoricalChartFiveYearBatchIEXHelperMethod(prices))
 });
 export const DynamicBatchPricesIEX = tickers => dispatch => fetchHistoricalChartDynamicBatchIEX(tickers)
     .then(prices => {
-        debugger
         dispatch(fetchHistoricalChartDynamicBatchIEXHelperMethod(prices))
 });
 

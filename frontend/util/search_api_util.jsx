@@ -29,7 +29,7 @@ export const fetchPrice = (company) => (
 )
 
 export const fetchBatchPrice = (companies) => {
-    debugger
+     
     let symbols = '';
     symbols += companies[0];
     if(companies.length > 1){
@@ -37,7 +37,7 @@ export const fetchBatchPrice = (companies) => {
         symbols += `,${company}`
     })
     }
-    debugger
+     
     return $.ajax({
         url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=price,quote&symbols=${symbols}&token=${window.iexapikey}`,
         methid: 'GET'

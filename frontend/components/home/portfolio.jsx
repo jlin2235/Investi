@@ -15,7 +15,7 @@ class Portfolio extends React.Component{
     }
     
     renderPortfolioStocks(){
-        debugger
+         
         if (this.props.graphPrices['fiveYear'] === undefined) {
             return null;
         }
@@ -31,11 +31,11 @@ class Portfolio extends React.Component{
         let symbols = Object.keys(this.props.transactions);
         
         symbols.forEach((symbol, idx) => {
-            debugger
+             
             let filterData = data[symbol].chart.filter(ele => {
                 return ele
             })
-            debugger
+             
             let dataForGraph = filterData.slice().reverse();
             gainLoss = dataForGraph.slice(-1)[0].close - dataForGraph[0].close;
             gainLossPercentage = numeral(gainLoss / dataForGraph[0].close).format('0.00%');

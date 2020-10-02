@@ -24,7 +24,7 @@ class ShowPageGraph extends React.Component {
     
 
     graphDataCalculation() {
-       debugger
+         
 
         if ((this.props.graphPrices['fiveMin'] === undefined) ||
             (this.props.graphPrices['thirtyMin'] === undefined) ||
@@ -47,41 +47,41 @@ class ShowPageGraph extends React.Component {
        let isWeekend = ((dayOfWeek === 0) || (dayOfWeek === 6)) //SUN/SAT
 
        if (this.state.dateViewed === '1d' && !isWeekend) { //ONE DAY VIEW/WEEKDAY
-           debugger
+             
             let filterData = data.filter( ele => {
                 return moment(ele.date.split(" ")[0]).isSame(todayDate, 'day') //will only return the date that is the day as today
             })
            data = filterData.slice().reverse(); //copy the data and the reverse it for the graph
        } else if(this.state.dateViewed === '1w'){ //ONE WEEK VIEW
-           debugger
+             
             let filterData = data.filter(ele => {
                 let lastWeek = moment().subtract(1, 'weeks') //get last week's date
                 return moment(ele.date.split(" ")[0]).isAfter(lastWeek) //Check if ele is after "lastweek"
             })
             data = filterData.slice().reverse()
        } else if (this.state.dateViewed === '1m'){ //ONE MONTH VIEW
-           debugger
+             
             let filterData = data.filter(ele => {
                let lastMonth = moment().subtract(1, 'months') //get last month's date
                return moment(ele.date.split(" ")[0]).isAfter(lastMonth) //Check if ele is after "lastMonth"
            })
            data = filterData.slice().reverse()
        } else if (this.state.dateViewed === '3m'){ //3 MONTH VIEW
-           debugger
+             
             let filterData = data.filter(ele => {
                let lastThreeMonth = moment().subtract(3, 'months') //get last 3 month's  date
                return moment(ele.date.split(" ")[0]).isAfter(lastThreeMonth) //Check if ele is after "lastThreeMonth"
            })
            data = filterData.slice().reverse()
        } else if (this.state.dateViewed === '1y') { // 1 YEAR VIEW
-           debugger
+             
             let filterData = data.filter(ele => {
                 let oneYrAgo = moment().subtract(1, 'years') //get last year's  date
                 return moment(ele.date.split(" ")[0]).isAfter(oneYrAgo)
             })
            data = filterData.slice().reverse()
        } else if (this.state.dateViewed === '5y') { // 5 YEAR VIEW
-           debugger
+             
             let filterData = data.filter(ele => {
                let fiveYrAgo = moment().subtract(5, 'years') //get last 5 year's  date
                return moment(ele.date.split(" ")[0]).isAfter(fiveYrAgo)
@@ -95,7 +95,7 @@ class ShowPageGraph extends React.Component {
 
 
     renderReCharts(data) {
-        debugger
+          
         return (
             <LineChart width={800} height={300} data={data}>
                 <XAxis dataKey="date" padding={{ left: 30, right: 30 }} hide={true} />
@@ -116,7 +116,7 @@ class ShowPageGraph extends React.Component {
 
 
     render() {
-        debugger
+          
         return (
             <div>
                 <h1>

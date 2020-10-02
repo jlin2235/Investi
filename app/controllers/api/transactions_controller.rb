@@ -51,7 +51,7 @@ class Api::TransactionsController < ApplicationController
     end
 
     def show
-        # debugger
+        #  
         @transactions = Transaction.where(user_id: params[:transaction][:user_id].to_i)
         @transaction = @transactions.find_by(symbols: params[:transaction][:symbol])
 

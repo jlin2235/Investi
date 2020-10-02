@@ -13,7 +13,7 @@ class Show extends React.Component{
     }
     
     componentDidMount(){
-        debugger
+         
         this.props.receiveProfile(this.props.symbol);
         this.props.receiveNews();
         this.props.receivePrice(this.props.symbol);
@@ -31,7 +31,7 @@ class Show extends React.Component{
 
     displayNews() {
 
-        debugger
+         
         if(typeof this.props.news.articles === 'undefined'){
             return null;
         }
@@ -96,7 +96,7 @@ class Show extends React.Component{
 
     render(){
         
-        debugger
+         
         if (!this.props.profile.description){
             return null
         }

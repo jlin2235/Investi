@@ -16,7 +16,7 @@ class SearchBar extends React.Component{
 
     // Whenever the searchbar gets mounted it will fetch the stocks from the API
     // componentDidMount() {
-    //     debugger
+    //      
     //     this.props.receiveStocks();
     // }
 
@@ -72,10 +72,10 @@ class SearchBar extends React.Component{
 
     pressEnterKey(e){
         // e.preventDefault();
-        // debugger
+        //  
         switch(e.keyCode){
             case 13: //ENTER KEY
-                debugger
+                 
                 const symbol = e.currentTarget.value
                 const dupSymbol = symbol.slice();
                 this.props.receiveProfile(dupSymbol)
@@ -87,7 +87,7 @@ class SearchBar extends React.Component{
 
 
     render(){
-        // debugger
+        //  
         let suggestions = this.filterSuggestions();
         return(
             <div>

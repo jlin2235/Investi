@@ -4,7 +4,7 @@ import { receiveFiveMin } from '../../actions/graph_actions'
 import Portfolio from './portfolio'
 
 const msp = state => {
-    debugger
+     
     return {
         currentUser: state.entities.users[state.session.id],
         price: state.entities.prices,

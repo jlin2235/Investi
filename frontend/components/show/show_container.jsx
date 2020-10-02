@@ -4,7 +4,7 @@ import { receiveFiveMin, receiveThirtyMin, receiveFiveYr, receiveNews } from '..
 import { receivePrice, receiveProfile } from '../../actions/search_actions'
 
 const msp = (state, ownProps) => {
-    // debugger
+    //  
     return {
         symbol: ownProps.match.params.symbol,
         profile: state.entities.profile,
@@ -15,7 +15,7 @@ const msp = (state, ownProps) => {
 };
 
 const mdp = dispatch => {
-    // debugger
+    //  
     return{
         receiveProfile: company => dispatch(receiveProfile(company)),
         receiveNews: () => dispatch(receiveNews()),
