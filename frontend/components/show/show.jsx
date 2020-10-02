@@ -17,9 +17,9 @@ class Show extends React.Component{
         this.props.receiveProfile(this.props.symbol);
         this.props.receiveNews();
         this.props.receivePrice(this.props.symbol);
-        // this.props.receiveFiveMin(this.props.symbol); 
-        // this.props.receiveThirtyMin(this.props.symbol);
-        // this.props.receiveFiveYr(this.props.symbol);
+        this.props.receiveFiveMin(this.props.symbol); 
+        this.props.receiveThirtyMin(this.props.symbol);
+        this.props.receiveFiveYr(this.props.symbol);
     }
 
     componentDidUpdate(previousProps){
@@ -31,27 +31,33 @@ class Show extends React.Component{
 
     displayNews() {
 
-         
-        if(typeof this.props.news.articles === 'undefined'){
+        if (typeof this.props.news.articles === 'undefined') {
             return null;
         }
-        return (
-            this.props.news.articles.map((newsarticle, idx) => (
-                <a key={idx} target="_blank" href={newsarticle.url}>
-                    <li className='show-page-news-feed-list-items' >
-                        <div>
-                            <img className='show-page-news-feed-image' src={newsarticle.urlToImage} />
-                        </div>
-                        <div>
-                            <h1 className='show-page-news-feed-name'>{newsarticle.source.name}</h1>
-                            <p className='show-page-news-feed-title'>{newsarticle.title}</p>
-                            <p className='show-page-news-feed-description'>{newsarticle.description}</p>
-                        </div>
-                    </li>
-                </a>
+        let newsArray = []
+        this.props.news.articles.map((newsarticle, idx) => {
+            if (newsarticle.urlToImage) {
+                newsArray.push(
+                    <a key={idx} target="_blank" href={newsarticle.url}>
+                        <li className='show-page-news-feed-list-items' >
+                            <div>
+                                <img className='show-page-news-feed-image' src={newsarticle.urlToImage} />
+                            </div>
+                            <div>
+                                <h1 className='show-page-news-feed-name'>{newsarticle.source.name}</h1>
+                                <p className='show-page-news-feed-title'>{newsarticle.title}</p>
+                                <p className='show-page-news-feed-description'>{newsarticle.description}</p>
+                            </div>
+                        </li>
+                    </a>
+                )
+            }
 
-            )))
-        
+        })
+        return (
+            newsArray
+        )
+
     }
 
     displayProfileInfo() {
@@ -66,6 +72,10 @@ class Show extends React.Component{
                 <div>{profile.description}</div>
                 <div className='show-page-stockinfo-container-info-details'>
                     <div>
+                        <h2>CEO</h2>
+                        <div>{profile.CEO}</div>
+                    </div>
+                    <div>
                         <h2>Company</h2>
                         <div>{profile.companyName}</div>
                     </div>
@@ -76,10 +86,6 @@ class Show extends React.Component{
                     <div>
                         <h2>Number of employees</h2>
                         <div>{profile.employees}</div>
-                    </div>
-                    <div>
-                        <h2>CEO</h2>
-                        <div>{profile.CEO}</div>
                     </div>
                     <div>
                         <h2>Website</h2>
@@ -102,25 +108,26 @@ class Show extends React.Component{
         }
         else{  
             return(
-                <div>
+                <div className='showPage-main-container'>
                     <NavBarContainer />
+                    <div className='showPage-graph-about-news-transaction-container'>
                         <div>
-                        <ShowPageGraph/>
+                            <ShowPageGraph/>
+                            <div className='show-page-stockinfo-container'>
+                                {this.displayProfileInfo()}
+                            </div>
+                            <div className='show-page-news-feed-container'>
+                                <h1 id='show-page-news-feed-container-text'>News Feed</h1>
+                                <ul>
+                                    {this.displayNews()}
+                                </ul>
+                            </div>
                         </div>
-                        <div className='show-page-stockinfo-container'>
-                        {this.displayProfileInfo()}
-
+                        <div>
+                            <TransactionForm />
                         </div>
-
-                        <div className='show-page-news-feed-container'>
-                            <h1 id='show-page-news-feed-container-text'>News Feed</h1>
-                            <ul>
-                                {this.displayNews()}
-                            </ul>
-                        </div>
-                        <TransactionForm />
-
                     </div>
+                </div>
         
                 )
             }

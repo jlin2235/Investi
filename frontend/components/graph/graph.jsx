@@ -310,24 +310,6 @@ class Graph extends React.Component {
 
         return this.state.data.slice(-1)[0].PortfolioValue
 
-
-        
-        // if (Object.keys(this.props.prices).length === 0){
-        //     return 0;
-        // }
-        // let totalValue = 0;
-        // let symbols = Object.keys(this.props.transactions)
-        // symbols.forEach( (symbol) => {
-        //     //  
-        //     if(this.props.transactions[symbol].shares !==0){
-        //         //  
-        //     let subValue = this.props.transactions[symbol].shares * this.props.prices[symbol];
-        //     totalValue = totalValue + subValue
-        //     }
-        // },this)
-        // return(
-        //     totalValue
-        // )
     }
 
     gainLoss(){

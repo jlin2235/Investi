@@ -10,16 +10,39 @@ class ShowPageGraph extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dateViewed: '1d'
+            dateViewed: '1d',
+            data: []
         }
 
         this.renderReCharts = this.renderReCharts.bind(this);
         this.graphDataCalculation = this.graphDataCalculation.bind(this);
         this.changeDateView = this.changeDateView.bind(this);
+        this.gainLoss = this.gainLoss.bind(this);
+        this.gainLossPercentage = this.gainLossPercentage.bind(this);
+        this.stockValue = this.stockValue.bind(this);
+        this.mouseHover = this.mouseHover.bind(this);
+        this.mouseLeave = this.mouseLeave.bind(this);
     }
 
     changeDateView(newDate) {
-        this.setState({dateViewed: newDate})
+        this.setState({dateViewed: newDate});
+        this.changeDateViewUnderlines(newDate)
+
+    }
+
+    changeDateViewUnderlines(newDate) {
+        debugger
+        let timeFrames = Array.prototype.slice.call(document.getElementsByClassName('Stock-Data-View-Button'));
+        debugger
+        timeFrames.forEach(ele => {
+            debugger
+            let classListOfElement = Array.prototype.slice.call(ele.classList);
+            ele.classList.remove('underlined');
+            if (classListOfElement.includes(newDate)) {
+                debugger
+                ele.classList.add('underlined');
+            }
+        })
     }
     
 
@@ -89,6 +112,11 @@ class ShowPageGraph extends React.Component {
            data = filterData.slice().reverse()
        }
 
+        let needUpdate = this.state.data[0] ? this.state.data[0].close !== data[0].close : true
+        if (needUpdate) {
+            this.setState({ data: data });
+        }
+
        return (this.renderReCharts(data))
 
    }
@@ -97,20 +125,113 @@ class ShowPageGraph extends React.Component {
     renderReCharts(data) {
           
         return (
-            <LineChart width={800} height={300} data={data}>
+            <LineChart width={800} height={300} data={data}
+                onMouseMove={this.mouseHover}
+                onMouseLeave={this.mouseLeave}>
+
                 <XAxis dataKey="date" padding={{ left: 30, right: 30 }} hide={true} />
                 <YAxis domain={['dataMin', 'dataMax']} axisLine={false} hide={true} />
                 <Tooltip
                     position={{ y: 0 }}
-                    // offset={toolTipOffSet}
                     isAnimationActive={false}
-                    // content={this.customToolTip}
                     wrapperStyle={{ top: -15 }} />
                 <Legend />
                 <Line type="linear" dataKey="close" stroke="#8884d8" dot={false} strokeWidth={2} />
             </LineChart>
 
         )
+    }
+    gainLoss() {
+        if (this.state.data[0] === undefined) {
+            return null
+        }
+        let data = this.state.data
+        let gainLoss;
+        gainLoss = data.slice(-1)[0].close - data[0].close;
+
+        if (gainLoss > 0) {
+            gainLoss = numeral(gainLoss).format('$0,0.00');
+            gainLoss = `+${gainLoss.toString()}`;
+        } else {
+            gainLoss = numeral(gainLoss).format('$0,0.00')
+        }
+        return numeral(gainLoss).format('$0,0.00');
+    }
+
+    gainLossPercentage() {
+        if (this.state.data[0] === undefined) {
+            return null
+        }
+        let data = this.state.data
+        let gainLoss;
+        let gainLossPercentage;
+        gainLoss = data.slice(-1)[0].close - data[0].close;
+        gainLossPercentage = numeral(gainLoss / data[0].close).format('0.00%');
+
+        if (gainLoss > 0) {
+            gainLossPercentage = numeral(gainLossPercentage).format('0.00%');
+            gainLossPercentage = `(+${gainLossPercentage.toString()})`;
+        } else {
+            gainLossPercentage = `(${numeral(gainLossPercentage).format('0.00%')})`;
+        }
+
+        return gainLossPercentage
+    }
+
+    stockValue() {
+        if (this.state.data[0] === undefined) {
+            return null
+        }
+
+        return this.state.data.slice(-1)[0].close
+    }
+
+    mouseHover(e) {
+        if (!e.activePayload) return null;
+        let currentBalance = document.getElementById('current-balance');
+        let gainLoss = document.getElementById("home-page-gainLoss-container");
+        let gainLossPercentage = document.getElementById('home-page-gainLossPercentage-container');
+
+        currentBalance.textContent = numeral(e.activePayload[0].payload.close).format('$0,0.00')
+        let totalStockValue = this.stockValue();
+        let hoverPrice = e.activePayload[0].payload.close;
+        let hoverDifference = totalStockValue - e.activePayload[0].payload.close;
+        let hoverPercentage = hoverDifference / hoverPrice;
+        if (hoverDifference > 0) {
+            hoverDifference = numeral(hoverDifference).format('$0,0.00');
+            hoverPercentage = numeral(hoverPercentage).format('0.00%');
+            hoverDifference = `+${hoverDifference.toString()}`;
+            hoverPercentage = `(+${hoverPercentage.toString()})`;
+        } else {
+            hoverPercentage = `(${numeral(hoverPercentage).format('0.00%')})`;
+            hoverDifference = numeral(hoverDifference).format('$0,0.00')
+        }
+        gainLoss.textContent = hoverDifference;
+        gainLossPercentage.textContent = hoverPercentage
+
+    }
+
+    mouseLeave(e) {
+        let currentBalance = document.getElementById('current-balance');
+        let gainLoss = document.getElementById("home-page-gainLoss-container");
+        let gainLossPercentage = document.getElementById('home-page-gainLossPercentage-container');
+
+        let totalStockValue = this.stockValue();
+        currentBalance.textContent = numeral(totalStockValue).format('$0,0.00');
+        let gainLossPercentageValue = this.gainLossPercentage();
+        let gainLossValue = this.gainLoss();
+
+        if (gainLossValue > 0) {
+            gainLossValue = numeral(gainLossValue).format('$0,0.00');
+            gainLossPercentageValue = numeral(gainLossPercentageValue).format('0.00%');
+            gainLossValue = `+${gainLossValue.toString()}`;
+            gainLossPercentageValue = `(+${gainLossPercentageValue.toString()})`;
+        } else {
+            gainLossPercentageValue = `(${numeral(gainLossPercentageValue).format('0.00%')})`;
+            gainLossValue = numeral(gainLossValue).format('$0,0.00')
+        }
+        gainLoss.textContent = gainLossValue;
+        gainLossPercentage.textContent = gainLossPercentageValue
     }
 
 
@@ -119,12 +240,16 @@ class ShowPageGraph extends React.Component {
           
         return (
             <div>
-                <h1>
+                <h1 id='profile-company-name'>
                     {this.props.profile.companyName}
                 </h1>
-                <h2>
-                    {numeral(this.props.price).format('$0,0.00')}
+                <h2 id='current-balance'>
+                    {numeral(this.stockValue()).format('$0,0.00')}
                 </h2>
+                <div className="home-page-gainLoss-gainLossPercentage-container">
+                    <p id="home-page-gainLoss-container">{this.gainLoss()}</p>
+                    <p id="home-page-gainLossPercentage-container">{this.gainLossPercentage()}</p>
+                </div>
                 {this.graphDataCalculation()}
                 <ul className="Stock-Date-View-Option_container">
                     <h2 onClick={() => this.changeDateView("1d")} className="Stock-Data-View-Button 1d underlined">1D</h2>
