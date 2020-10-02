@@ -29,7 +29,7 @@ const NavBar = ({ currentUser, logout }) => {
                     <SearchBarContainer />
                 </div>
                 <div className='NavBar-After-SignUp-Right-Side'>
-                    <Link to="/login">Account</Link>
+                    <Link to="/home">Account</Link>
                     <button onClick={logout}>Log Out</button>
                 </div>
 

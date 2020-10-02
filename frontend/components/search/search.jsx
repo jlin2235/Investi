@@ -94,7 +94,7 @@ class SearchBar extends React.Component{
                 <form>
                     <input
                         type="search"
-                        placeholder='Ticker Only For Now'
+                        placeholder='Search'
                         className='Search-Bar-Input-Field'
                         // value={this.state.searchvalue}
                         onChange={this.update("searchvalue")}

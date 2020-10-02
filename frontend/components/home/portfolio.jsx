@@ -54,7 +54,7 @@ class Portfolio extends React.Component{
             )
             
             portfolioArray.push(
-                <Link to={'/home/${symbol}'}>
+                <Link to={`/home/${symbol}`}>
                     <div key={idx} className='portfolio-stock-list-container'>
                         <div className='portfolio-info-left-container'>
                             <h1>{symbol}</h1>

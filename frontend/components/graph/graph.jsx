@@ -19,15 +19,32 @@ class Graph extends React.Component {
         this.gainLoss = this.gainLoss.bind(this);
         this.gainLossPercentage = this.gainLossPercentage.bind(this);
         this.mouseHover = this.mouseHover.bind(this);
+        this.mouseLeave = this.mouseLeave.bind(this)
 
         this.state = {
             dateViewed: '1d',
-            data: []
+            data: [],
         }
 
     }
     changeDateView(newDate) {
         this.setState({ dateViewed: newDate })
+        this.changeDateViewUnderlines(newDate)
+    }
+
+    changeDateViewUnderlines(newDate){
+        debugger
+        let timeFrames = Array.prototype.slice.call(document.getElementsByClassName('Stock-Data-View-Button'));
+        debugger
+        timeFrames.forEach(ele => {
+            debugger
+            let classListOfElement = Array.prototype.slice.call(ele.classList);
+            ele.classList.remove('underlined');
+            if (classListOfElement.includes(newDate)){
+                debugger
+                ele.classList.add('underlined');
+            }
+        }) 
     }
 
 
@@ -151,7 +168,7 @@ class Graph extends React.Component {
                     //  
 
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.minute];
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.date];
                     } else {
                         dataArray[idx][0] += (ele.close * sharesAmt)
                     }
@@ -230,7 +247,7 @@ class Graph extends React.Component {
             //  
             let rObj = {}
             rObj['PortfolioValue'] = ele[0].toFixed(2);
-            if (this.state.dateViewed === '1d'){
+            if (this.state.dateViewed === '1d' || this.state.dateViewed === '1w' ){
                 rObj['time'] = `${ele[1]} ET`;
             }else{
                 rObj['time'] = ele[1];
@@ -269,6 +286,8 @@ class Graph extends React.Component {
             <LineChart width={800} height={300} data={data} 
             // margin={{top: 100, right: 30, left: 20, bottom: 100,}}
             onMouseMove={this.mouseHover}
+            onMouseLeave={this.mouseLeave}>
+
             >
                 <XAxis dataKey="time" hide={true} />
                 <YAxis domain={['dataMin', 'dataMax']} axisLine={false} hide={true} />
@@ -285,23 +304,30 @@ class Graph extends React.Component {
     }
 
     totalPortfolioValue() {
-        //  
-        if (Object.keys(this.props.prices).length === 0){
-            return 0;
+        if (this.state.data[0] === undefined) {
+            return null
         }
-        let totalValue = 0;
-        let symbols = Object.keys(this.props.transactions)
-        symbols.forEach( (symbol) => {
-            //  
-            if(this.props.transactions[symbol].shares !==0){
-                //  
-            let subValue = this.props.transactions[symbol].shares * this.props.prices[symbol];
-            totalValue = totalValue + subValue
-            }
-        },this)
-        return(
-            totalValue
-        )
+
+        return this.state.data.slice(-1)[0].PortfolioValue
+
+
+        
+        // if (Object.keys(this.props.prices).length === 0){
+        //     return 0;
+        // }
+        // let totalValue = 0;
+        // let symbols = Object.keys(this.props.transactions)
+        // symbols.forEach( (symbol) => {
+        //     //  
+        //     if(this.props.transactions[symbol].shares !==0){
+        //         //  
+        //     let subValue = this.props.transactions[symbol].shares * this.props.prices[symbol];
+        //     totalValue = totalValue + subValue
+        //     }
+        // },this)
+        // return(
+        //     totalValue
+        // )
     }
 
     gainLoss(){
@@ -311,6 +337,13 @@ class Graph extends React.Component {
         let data = this.state.data
         let gainLoss;
         gainLoss = data.slice(-1)[0].PortfolioValue - data[0].PortfolioValue;
+        
+        if (gainLoss > 0) {
+            gainLoss = numeral(gainLoss).format('$0,0.00');
+            gainLoss = `+${gainLoss.toString()}`;
+        } else {
+            gainLoss = numeral(gainLoss).format('$0,0.00')
+        }
         return numeral(gainLoss).format('$0,0.00');
     }
 
@@ -323,18 +356,63 @@ class Graph extends React.Component {
         let gainLossPercentage;
         gainLoss = data.slice(-1)[0].PortfolioValue - data[0].PortfolioValue;
         gainLossPercentage = numeral(gainLoss / data[0].PortfolioValue).format('0.00%');
+
+        if (gainLoss > 0) {
+            gainLossPercentage = numeral(gainLossPercentage).format('0.00%');
+            gainLossPercentage = `(+${gainLossPercentage.toString()})`;
+        } else {
+            gainLossPercentage = `(${numeral(gainLossPercentage).format('0.00%')})`;
+        }
+
         return gainLossPercentage
     }
 
     mouseHover(e) {
-        // debugger
-        // console.log(e)
         if (!e.activePayload) return null;
         let currentBalance = document.getElementById('current-balance');
-        let gainLoss = document.getElementById("home=page-gainLoss-container");
-        let gainLossPercentage = document.getElementById('home=page-gainLossPercentage-container');
-        
+        let gainLoss = document.getElementById("home-page-gainLoss-container");
+        let gainLossPercentage = document.getElementById('home-page-gainLossPercentage-container');
 
+        currentBalance.textContent = numeral(e.activePayload[0].payload.PortfolioValue).format('$0,0.00')
+        let totalPortfolioValue = this.totalPortfolioValue();
+        let hoverPrice = e.activePayload[0].payload.PortfolioValue;
+        let hoverDifference = totalPortfolioValue - e.activePayload[0].payload.PortfolioValue;
+        let hoverPercentage = hoverDifference / hoverPrice;
+        if (hoverDifference > 0){
+            hoverDifference = numeral(hoverDifference).format('$0,0.00');
+            hoverPercentage = numeral(hoverPercentage).format('0.00%');
+            hoverDifference = `+${hoverDifference.toString()}`;
+            hoverPercentage = `(+${hoverPercentage.toString()})`;
+        }else {
+            hoverPercentage = `(${numeral(hoverPercentage).format('0.00%')})`;
+            hoverDifference = numeral(hoverDifference).format('$0,0.00')
+        }
+        gainLoss.textContent = hoverDifference;
+        gainLossPercentage.textContent = hoverPercentage
+        
+    }
+
+    mouseLeave(e) {
+        let currentBalance = document.getElementById('current-balance');
+        let gainLoss = document.getElementById("home-page-gainLoss-container");
+        let gainLossPercentage = document.getElementById('home-page-gainLossPercentage-container');
+
+        let totalPortfolioValue = this.totalPortfolioValue();
+        currentBalance.textContent = numeral(totalPortfolioValue).format('$0,0.00');
+        let gainLossPercentageValue = this.gainLossPercentage();
+        let gainLossValue = this.gainLoss();
+
+        if (gainLossValue > 0) {
+            gainLossValue = numeral(gainLossValue).format('$0,0.00');
+            gainLossPercentageValue = numeral(gainLossPercentageValue).format('0.00%');
+            gainLossValue = `+${gainLossValue.toString()}`;
+            gainLossPercentageValue = `(+${gainLossPercentageValue.toString()})`;
+        } else {
+            gainLossPercentageValue = `(${numeral(gainLossPercentageValue).format('0.00%')})`;
+            gainLossValue = numeral(gainLossValue).format('$0,0.00')
+        }
+        gainLoss.textContent = gainLossValue;
+        gainLossPercentage.textContent = gainLossPercentageValue
     }
 
     render() {
@@ -343,11 +421,11 @@ class Graph extends React.Component {
         return (
             <div>
                 <h1 id='current-balance'>
-                    {numeral(this.props.currentUser.balance + this.totalPortfolioValue()).format('$0,0.00')}
+                    {numeral( this.totalPortfolioValue()).format('$0,0.00')}
                 </h1>
                 <div className="home-page-gainLoss-gainLossPercentage-container">
-                    <p id="home=page-gainLoss-container">{this.gainLoss()}</p>
-                    <p id="home=page-gainLossPercentage-container">{this.gainLossPercentage()}</p>
+                    <p id="home-page-gainLoss-container">{this.gainLoss()}</p>
+                    <p id="home-page-gainLossPercentage-container">{this.gainLossPercentage()}</p>
                     {/* <li className="hide" id="main-starting-price">{start}</li> */}
                 </div>
                 {this.graphDataCalculation()}
