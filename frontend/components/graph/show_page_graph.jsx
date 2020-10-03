@@ -123,7 +123,18 @@ class ShowPageGraph extends React.Component {
 
 
     renderReCharts(data) {
-          
+        let color;
+        let gainLoss;
+        let gainLossPercentage;
+        gainLoss = data.slice(-1)[0].close - data[0].close;
+        gainLossPercentage = numeral(gainLoss / data[0].close).format('0.00%');
+        if (gainLoss >= 0) {
+            color = '#21ce99'
+        } else {
+            color = '#FF0000'
+        }  
+
+
         return (
             <LineChart width={800} height={300} data={data}
                 onMouseMove={this.mouseHover}
@@ -136,7 +147,7 @@ class ShowPageGraph extends React.Component {
                     isAnimationActive={false}
                     wrapperStyle={{ top: -15 }} />
                 <Legend />
-                <Line type="linear" dataKey="close" stroke="#8884d8" dot={false} strokeWidth={2} />
+                <Line type="linear" dataKey="close" stroke={color} dot={false} strokeWidth={2} />
             </LineChart>
 
         )

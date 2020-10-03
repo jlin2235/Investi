@@ -13,6 +13,8 @@ class TransactionForm extends React.Component{
         this.renderErrors = this.renderErrors.bind(this)
         this.buyingPowerMessage = this.buyingPowerMessage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.changeBuyOrSell = this.changeBuyOrSell.bind(this);
+        this.changeBuyOrSellUnderlines = this.changeBuyOrSellUnderlines.bind(this);
 
     }
 
@@ -107,6 +109,28 @@ class TransactionForm extends React.Component{
         
     }
 
+    changeBuyOrSell(value) {
+        this.setState({ buyOrSell: value});
+        this.changeBuyOrSellUnderlines(value);
+
+    }
+
+    changeBuyOrSellUnderlines(value) {
+        let type = Array.prototype.slice.call(document.getElementsByClassName('transaction-type'));
+        debugger
+        type.forEach(ele => {
+            debugger
+            let classListOfElement = Array.prototype.slice.call(ele.classList);
+            ele.classList.remove('selected-default');
+            if (classListOfElement.includes(value)) {
+                debugger
+                ele.classList.add('selected-default');
+            }
+        }) 
+    }
+
+
+
 
     render(){
 
@@ -114,8 +138,8 @@ class TransactionForm extends React.Component{
         return(
             <form className='transaction-form-main-container' onSubmit={this.handleSubmit}>
                 <div className='buy-sell-button-container'>
-                    <h1 id='selected-default'>Buy</h1>
-                    <h1>Sell</h1>
+                    <h1 className='transaction-type selected-default BUY' onClick={() => this.changeBuyOrSell('BUY')}>Buy</h1>
+                    <h1 className='transaction-type SELL' onClick={() => this.changeBuyOrSell('SELL')}>Sell</h1>
                 </div>
                 <div className='shares-amt-container'>
                     <label>Shares:</label>
