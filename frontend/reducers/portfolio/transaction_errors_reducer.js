@@ -6,8 +6,10 @@ export default (oldState = [], action) => {
 
     switch (action.type){
         case RECEIVE_TRANSACTION_ERRORS:
+            debugger
             return action.errors;
         case CLEAR_TRANSACTION_ERRORS:
+            debugger
             return [];
         default:
             return oldState

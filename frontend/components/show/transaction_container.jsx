@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import TransactionForm from './transaction_form'
-import { receivePrices, receiveProfile, receivePrice } from '../../actions/search_actions'
-import { getAllTransaction, 
-            getOneTran, 
+// import { receivePrices, receiveProfile, receivePrice } from '../../actions/search_actions'
+import {    getOneTran, 
             updateUserBal,
             createTransaction,
             clearTransErrors,
@@ -25,10 +24,6 @@ const msp = (state,ownProps) => {
 }
 
 const mdp = dispatch => ({
-    // receiveProfile: company => dispatch(receiveProfile(company)),
-    // receivePrices: symbols => dispatch(receivePrices(symbols)),
-    // receivePrice: symbol => dispatch(receivePrice(symbol)),
-    // getAllTransaction: transaction => dispatch(getAllTransaction(transaction)),
     getOneTran: transaction => dispatch(getOneTran(transaction)),
     updateUserBal: transaction => dispatch(updateUserBal(transaction)),
     createTransaction: transaction => dispatch(createTransaction(transaction)),

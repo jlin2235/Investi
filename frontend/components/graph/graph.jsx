@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import numeral from 'numeral';
 import {
-    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine,
+    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine, ResponsiveContainer,
 } from 'recharts';
 
 
@@ -96,9 +96,9 @@ class Graph extends React.Component {
                 filterIndividualCompanyArray.forEach((ele, idx) => {
                     //  
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.close  * sharesAmt) + userBalance), ele.minute];
+                        dataArray[idx] = [((ele.marketAverage  * sharesAmt) + userBalance), ele.minute];
                     } else {
-                        dataArray[idx][0] += (ele.close * sharesAmt)
+                        dataArray[idx][0] += (ele.marketAverage * sharesAmt)
                     }
                 })
 
@@ -123,9 +123,9 @@ class Graph extends React.Component {
                     //  
                     
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = (ele.close * sharesAmt);
+                        dataArray[idx] = [((ele.marketAverage * sharesAmt) + userBalance), ele.minute];
                     } else {
-                        dataArray[idx] += (ele.close * sharesAmt);
+                        dataArray[idx][0] += (ele.marketAverage * sharesAmt)
                     }
                 })
 
@@ -145,9 +145,9 @@ class Graph extends React.Component {
                     //  
 
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.minute];
+                        dataArray[idx] = [((ele.marketAverage * sharesAmt) + userBalance), ele.minute];
                     } else {
-                        dataArray[idx][0] += (ele.close * sharesAmt)
+                        dataArray[idx][0] += (ele.marketAverage * sharesAmt)
                     }
                 })
 
@@ -168,9 +168,9 @@ class Graph extends React.Component {
                     //  
 
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.date];
+                        dataArray[idx] = [((ele.uClose * sharesAmt) + userBalance), ele.date];
                     } else {
-                        dataArray[idx][0] += (ele.close * sharesAmt)
+                        dataArray[idx][0] += (ele.uClose * sharesAmt)
                     }
                 })
 
@@ -191,9 +191,9 @@ class Graph extends React.Component {
                     //  
 
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.date];
+                        dataArray[idx] = [((ele.uClose * sharesAmt) + userBalance), ele.date];
                     } else {
-                        dataArray[idx][0] += (ele.close * sharesAmt)
+                        dataArray[idx][0] += (ele.uClose * sharesAmt)
                     }
                 })
 
@@ -214,9 +214,9 @@ class Graph extends React.Component {
                     //  
 
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.date];
+                        dataArray[idx] = [((ele.uClose * sharesAmt) + userBalance), ele.date];
                     } else {
-                        dataArray[idx][0] += (ele.close * sharesAmt)
+                        dataArray[idx][0] += (ele.uClose * sharesAmt)
                     }
                 })
 
@@ -233,9 +233,9 @@ class Graph extends React.Component {
                     //  
 
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.date];
+                        dataArray[idx] = [((ele.uClose * sharesAmt) + userBalance), ele.date];
                     } else {
-                        dataArray[idx][0] += (ele.close * sharesAmt)
+                        dataArray[idx][0] += (ele.uClose * sharesAmt)
                     }
                 })
 
@@ -288,7 +288,6 @@ class Graph extends React.Component {
             onMouseMove={this.mouseHover}
             onMouseLeave={this.mouseLeave}>
 
-            >
                 <XAxis dataKey="time" hide={true} />
                 <YAxis domain={['dataMin', 'dataMax']} axisLine={false} hide={true} />
                 <Tooltip 
@@ -410,7 +409,9 @@ class Graph extends React.Component {
                     <p id="home-page-gainLossPercentage-container">{this.gainLossPercentage()}</p>
                     {/* <li className="hide" id="main-starting-price">{start}</li> */}
                 </div>
-                {this.graphDataCalculation()}
+                <div>
+                    {this.graphDataCalculation()}
+                </div>
                 <ul className="Stock-Date-View-Option_container">
                     <h2 onClick={() => this.changeDateView("1d")} className="Stock-Data-View-Button 1d underlined">1D</h2>
                     <h2 onClick={() => this.changeDateView("1w")} className="Stock-Data-View-Button 1w">1W</h2>

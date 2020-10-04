@@ -4,7 +4,7 @@ class Api::TransactionsController < ApplicationController
 
     #ONLY UPDATE THE SHARES SO FAR
     def create 
-         
+        debugger 
         if params[:transaction][:balance].to_f >= 0 #the params transactions will come from the container form
             @user_transaction = Transaction.where(user_id: params[:transaction][:user_id])
             #find all the users transaction

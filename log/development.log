@@ -48342,3 +48342,4 @@ Processing by Api::TransactionsController#show as JSON
 Completed 200 OK in 21ms (Views: 16.4ms | ActiveRecord: 2.2ms)
 
 
+  [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m

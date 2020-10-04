@@ -84,25 +84,26 @@ class TransactionForm extends React.Component{
 
     handleSubmit(e) {
         e.preventDefault();
-         
+         debugger
         const transaction = {
             purchase_price: this.state.cost,
             shares: this.state.quantity,
             user_id: this.props.currentUser.id,
             symbols: this.props.symbol
         }
-        if(transaction.quantity === '') return null; // if the user just click sumbit for fun
+        if (transaction.shares === '') return null; // if the user just click sumbit for fun
         
         //BUY
         if(this.state.buyOrSell === 'BUY') {
-             
+            debugger
             transaction['balance'] = this.props.currentUser.balance - this.state.cost;
             this.props.updateUserBal(transaction);
             this.props.createTransaction(transaction)
                 
         }else { //SELL
+            debugger
             transaction['balance'] = this.props.currentUser.balance + this.state.cost;
-            transaction.quantity = transaction.quantity * (-1); // negative because of sell
+            transaction.shares = transaction.shares * (-1); // negative because of sell
             this.props.updateUserBal(transaction);
             this.props.createTransaction(transaction); 
         }

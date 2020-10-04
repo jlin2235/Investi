@@ -51,17 +51,21 @@ const clearTransactionErrors = () => ({
 
 
 export const updateUserBal = transaction => dispatch => updateUserBalance(transaction)
-    .then(transaction => dispatch(updateUserBalanceHelperMethod(transaction)),
+    .then(transaction => {
+        debugger
+        dispatch(updateUserBalanceHelperMethod(transaction)),
             errors => dispatch(receiveTransactionErrorsHelperMethod(errors.responseJSON))
-    )
+    })
 
 export const createTransaction = transaction => dispatch => createNewTransaction(transaction)
-    .then(transaction => dispatch(createTransactionHelperMethod(transaction)),
+    .then(transaction => {
+        debugger
+        return dispatch(createTransactionHelperMethod(transaction)),
         errors => {
-            
+            debugger
             return dispatch(receiveTransactionErrorsHelperMethod(errors.responseJSON))}
 
-    )
+        })
 
 export const getAllTransaction = transaction => dispatch => getAllTransactions(transaction)
     .then(transactions =>  {
