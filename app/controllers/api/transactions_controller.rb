@@ -4,7 +4,6 @@ class Api::TransactionsController < ApplicationController
 
     #ONLY UPDATE THE SHARES SO FAR
     def create 
-        debugger 
         if params[:transaction][:balance].to_f >= 0 #the params transactions will come from the container form
             @user_transaction = Transaction.where(user_id: params[:transaction][:user_id])
             #find all the users transaction
@@ -16,7 +15,6 @@ class Api::TransactionsController < ApplicationController
                 if updated_transaction > 0
                     @transaction_needed_to_update.update(shares: updated_transaction)
                     @transaction = @transaction_needed_to_update
-                    puts @transaction
                     render :show
                 elsif updated_transaction == 0
                     @transaction_needed_to_update.update(shares: updated_transaction)

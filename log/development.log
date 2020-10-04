@@ -48343,3 +48343,349 @@ Completed 200 OK in 21ms (Views: 16.4ms | ActiveRecord: 2.2ms)
 
 
   [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/" for ::1 at 2020-10-04 18:30:44 -0400
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/jin/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "mcXXV0EkyCNHIFK5oFaX4w"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (37.5ms)
+Completed 200 OK in 2370ms (Views: 2360.5ms | ActiveRecord: 7.3ms)
+
+
+Started DELETE "/api/session" for ::1 at 2020-10-04 18:30:49 -0400
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "mcXXV0EkyCNHIFK5oFaX4w"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:34
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demoUser@gmail.com"], ["id", 20], ["LIMIT", 1]]
+  ↳ app/models/user.rb:34
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "R1jeowk73lr207i3V05yzw"], ["id", 20], ["LIMIT", 1]]
+  ↳ app/models/user.rb:34
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "R1jeowk73lr207i3V05yzw"], ["updated_at", "2020-10-04 22:30:49.276509"], ["id", 20]]
+  ↳ app/models/user.rb:34
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:34
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/api/session" for ::1 at 2020-10-04 18:30:50 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"email"=>"demoUser@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demoUser@gmail.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:34
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demoUser@gmail.com"], ["id", 20], ["LIMIT", 1]]
+  ↳ app/models/user.rb:34
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "MkzwDjSGTB5L7fxEDoj20w"], ["id", 20], ["LIMIT", 1]]
+  ↳ app/models/user.rb:34
+  [1m[36mUser Update (2.1ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "MkzwDjSGTB5L7fxEDoj20w"], ["updated_at", "2020-10-04 22:30:51.024036"], ["id", 20]]
+  ↳ app/models/user.rb:34
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:34
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  Rendered api/users/show.json.jbuilder (1.8ms)
+Completed 200 OK in 235ms (Views: 10.1ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/api/news" for ::1 at 2020-10-04 18:30:51 -0400
+Started GET "/api/transactions?transaction%5Buser_id%5D=20" for ::1 at 2020-10-04 18:30:51 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 152ms (Views: 2.5ms | ActiveRecord: 0.0ms)
+
+
+Processing by Api::TransactionsController#index as JSON
+  Parameters: {"transaction"=>{"user_id"=>"20"}}
+  Rendering api/transactions/index.json.jbuilder
+  [1m[36mTransaction Load (17.9ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 20]]
+  ↳ app/views/api/transactions/index.json.jbuilder:1
+  Rendered api/transactions/_transaction.json.jbuilder (0.9ms)
+  Rendered api/transactions/_transaction.json.jbuilder (0.1ms)
+  Rendered api/transactions/index.json.jbuilder (49.1ms)
+Completed 200 OK in 161ms (Views: 30.9ms | ActiveRecord: 116.8ms)
+
+
+Started GET "/api/news" for ::1 at 2020-10-04 18:30:54 -0400
+Started GET "/api/transactions/:id?transaction%5Buser_id%5D=20&transaction%5Bsymbol%5D=T" for ::1 at 2020-10-04 18:30:55 -0400
+Processing by Api::NewsController#index as JSON
+Processing by Api::TransactionsController#show as JSON
+  Parameters: {"transaction"=>{"user_id"=>"20", "symbol"=>"T"}, "id"=>":id"}
+  [1m[36mTransaction Load (0.8ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/transactions_controller.rb:54
+  Rendering api/transactions/show.json.jbuilder
+  Rendered api/transactions/_transaction.json.jbuilder (0.3ms)
+  Rendered api/transactions/show.json.jbuilder (1.6ms)
+Completed 200 OK in 19ms (Views: 16.5ms | ActiveRecord: 0.8ms)
+
+
+Completed 200 OK in 71ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/api/users/20" for ::1 at 2020-10-04 18:31:14 -0400
+Started POST "/api/transactions" for ::1 at 2020-10-04 18:31:14 -0400
+Processing by Api::TransactionsController#create as JSON
+  Parameters: {"transaction"=>{"purchase_price"=>"28750", "shares"=>"1000", "user_id"=>"20", "symbols"=>"T", "balance"=>"-27317"}}
+No template found for Api::TransactionsController#create, rendering head :no_content
+Completed 204 No Content in 121ms (ActiveRecord: 0.0ms)
+
+
+Processing by Api::UsersController#update as JSON
+  Parameters: {"transaction"=>{"purchase_price"=>"28750", "shares"=>"1000", "user_id"=>"20", "symbols"=>"T", "balance"=>"-27317"}, "id"=>"20"}
+  [1m[36mUser Load (26.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:17
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:19
+Completed 404 Not Found in 57ms (Views: 0.2ms | ActiveRecord: 26.6ms)
+
+
+Started GET "/" for ::1 at 2020-10-04 18:32:26 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MkzwDjSGTB5L7fxEDoj20w"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  Rendered static_pages/root.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 920ms (Views: 915.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/news" for ::1 at 2020-10-04 18:32:28 -0400
+Processing by Api::NewsController#index as JSON
+Started GET "/api/transactions/:id?transaction%5Buser_id%5D=20&transaction%5Bsymbol%5D=T" for ::1 at 2020-10-04 18:32:28 -0400
+Processing by Api::TransactionsController#show as JSON
+  Parameters: {"transaction"=>{"user_id"=>"20", "symbol"=>"T"}, "id"=>":id"}
+  [1m[36mTransaction Load (0.7ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/transactions_controller.rb:54
+  Rendering api/transactions/show.json.jbuilder
+  Rendered api/transactions/_transaction.json.jbuilder (0.4ms)
+  Rendered api/transactions/show.json.jbuilder (2.4ms)
+Completed 200 OK in 16ms (Views: 14.2ms | ActiveRecord: 0.7ms)
+
+
+Completed 200 OK in 115ms (Views: 1.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-10-04 18:32:29 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MkzwDjSGTB5L7fxEDoj20w"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 87ms (Views: 80.1ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/news" for ::1 at 2020-10-04 18:32:30 -0400
+Processing by Api::NewsController#index as JSON
+Started GET "/api/transactions/:id?transaction%5Buser_id%5D=20&transaction%5Bsymbol%5D=T" for ::1 at 2020-10-04 18:32:30 -0400
+Processing by Api::TransactionsController#show as JSON
+  Parameters: {"transaction"=>{"user_id"=>"20", "symbol"=>"T"}, "id"=>":id"}
+  [1m[36mTransaction Load (0.8ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/transactions_controller.rb:54
+  Rendering api/transactions/show.json.jbuilder
+  Rendered api/transactions/_transaction.json.jbuilder (0.6ms)
+  Rendered api/transactions/show.json.jbuilder (3.2ms)
+Completed 200 OK in 14ms (Views: 10.9ms | ActiveRecord: 0.8ms)
+
+
+Completed 200 OK in 91ms (Views: 9.6ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/api/users/20" for ::1 at 2020-10-04 18:32:55 -0400
+Started POST "/api/transactions" for ::1 at 2020-10-04 18:32:55 -0400
+Processing by Api::UsersController#update as JSON
+  Parameters: {"transaction"=>{"purchase_price"=>"28930", "shares"=>"1000", "user_id"=>"20", "symbols"=>"T", "balance"=>"-27497"}, "id"=>"20"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:17
+Processing by Api::TransactionsController#create as JSON
+  Parameters: {"transaction"=>{"purchase_price"=>"28930", "shares"=>"1000", "user_id"=>"20", "symbols"=>"T", "balance"=>"-27497"}}
+  [1m[36mTransaction Load (22.4ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:19
+Completed 404 Not Found in 34ms (Views: 0.2ms | ActiveRecord: 23.7ms)
+
+
+No template found for Api::TransactionsController#create, rendering head :no_content
+Completed 204 No Content in 171ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-10-04 18:47:09 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MkzwDjSGTB5L7fxEDoj20w"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (32.8ms)
+Completed 200 OK in 910ms (Views: 891.9ms | ActiveRecord: 14.8ms)
+
+
+Started GET "/api/news" for ::1 at 2020-10-04 18:47:10 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 125ms (Views: 4.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/transactions/:id?transaction%5Buser_id%5D=20&transaction%5Bsymbol%5D=T" for ::1 at 2020-10-04 18:47:10 -0400
+Processing by Api::TransactionsController#show as JSON
+  Parameters: {"transaction"=>{"user_id"=>"20", "symbol"=>"T"}, "id"=>":id"}
+  [1m[36mTransaction Load (1.0ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/transactions_controller.rb:54
+  Rendering api/transactions/show.json.jbuilder
+  Rendered api/transactions/_transaction.json.jbuilder (0.6ms)
+  Rendered api/transactions/show.json.jbuilder (2.4ms)
+Completed 200 OK in 93ms (Views: 14.9ms | ActiveRecord: 62.6ms)
+
+
+Started GET "/" for ::1 at 2020-10-04 18:47:11 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (23.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MkzwDjSGTB5L7fxEDoj20w"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (48.3ms)
+Completed 200 OK in 159ms (Views: 133.5ms | ActiveRecord: 23.1ms)
+
+
+Started GET "/api/news" for ::1 at 2020-10-04 18:47:12 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 63ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/transactions/:id?transaction%5Buser_id%5D=20&transaction%5Bsymbol%5D=T" for ::1 at 2020-10-04 18:47:12 -0400
+Processing by Api::TransactionsController#show as JSON
+  Parameters: {"transaction"=>{"user_id"=>"20", "symbol"=>"T"}, "id"=>":id"}
+  [1m[36mTransaction Load (133.1ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/transactions_controller.rb:54
+  Rendering api/transactions/show.json.jbuilder
+  Rendered api/transactions/_transaction.json.jbuilder (0.4ms)
+  Rendered api/transactions/show.json.jbuilder (4.7ms)
+Completed 200 OK in 157ms (Views: 18.9ms | ActiveRecord: 133.1ms)
+
+
+Started PATCH "/api/users/20" for ::1 at 2020-10-04 18:47:20 -0400
+Started POST "/api/transactions" for ::1 at 2020-10-04 18:47:20 -0400
+Processing by Api::TransactionsController#create as JSON
+  Parameters: {"transaction"=>{"purchase_price"=>"28830", "shares"=>"1000", "user_id"=>"20", "symbols"=>"T", "balance"=>"-27397"}}
+No template found for Api::TransactionsController#create, rendering head :no_content
+Completed 204 No Content in 122ms (ActiveRecord: 0.0ms)
+
+
+Processing by Api::UsersController#update as JSON
+  Parameters: {"transaction"=>{"purchase_price"=>"28830", "shares"=>"1000", "user_id"=>"20", "symbols"=>"T", "balance"=>"-27397"}, "id"=>"20"}
+  [1m[36mUser Load (19.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:17
+  [1m[36mTransaction Load (18.5ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:19
+Completed 404 Not Found in 9578ms (Views: 0.9ms | ActiveRecord: 38.4ms)
+
+
+Started PATCH "/api/users/20" for ::1 at 2020-10-04 18:48:58 -0400
+Processing by Api::UsersController#update as JSON
+  Parameters: {"transaction"=>{"purchase_price"=>"28830", "shares"=>"1000", "user_id"=>"20", "symbols"=>"T", "balance"=>"-27397"}, "id"=>"20"}
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:17
+Started POST "/api/transactions" for ::1 at 2020-10-04 18:48:58 -0400
+Processing by Api::TransactionsController#create as JSON
+  Parameters: {"transaction"=>{"purchase_price"=>"28830", "shares"=>"1000", "user_id"=>"20", "symbols"=>"T", "balance"=>"-27397"}}
+  [1m[36mTransaction Load (25.9ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:19
+Completed 404 Not Found in 2927ms (Views: 0.2ms | ActiveRecord: 28.3ms)
+
+
+No template found for Api::TransactionsController#create, rendering head :no_content
+Completed 204 No Content in 2960ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-10-04 18:51:00 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MkzwDjSGTB5L7fxEDoj20w"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 904ms (Views: 900.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/news" for ::1 at 2020-10-04 18:51:01 -0400
+Processing by Api::NewsController#index as JSON
+Completed 200 OK in 74ms (Views: 2.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/transactions/:id?transaction%5Buser_id%5D=20&transaction%5Bsymbol%5D=T" for ::1 at 2020-10-04 18:51:03 -0400
+Processing by Api::TransactionsController#show as JSON
+  Parameters: {"transaction"=>{"user_id"=>"20", "symbol"=>"T"}, "id"=>":id"}
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/transactions_controller.rb:54
+  Rendering api/transactions/show.json.jbuilder
+  Rendered api/transactions/_transaction.json.jbuilder (0.5ms)
+  Rendered api/transactions/show.json.jbuilder (3.0ms)
+Completed 200 OK in 20ms (Views: 18.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/api/transactions" for ::1 at 2020-10-04 18:51:12 -0400
+Started PATCH "/api/users/20" for ::1 at 2020-10-04 18:51:12 -0400
+Processing by Api::TransactionsController#create as JSON
+  Parameters: {"transaction"=>{"purchase_price"=>"29240", "shares"=>"1000", "user_id"=>"20", "symbols"=>"T", "balance"=>"-27807"}}
+Processing by Api::UsersController#update as JSON
+  Parameters: {"transaction"=>{"purchase_price"=>"29240", "shares"=>"1000", "user_id"=>"20", "symbols"=>"T", "balance"=>"-27807"}, "id"=>"20"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:17
+  [1m[36mTransaction Load (1.6ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:19
+No template found for Api::TransactionsController#create, rendering head :no_content
+Completed 404 Not Found in 2938ms (Views: 0.2ms | ActiveRecord: 2.0ms)
+
+
+Completed 204 No Content in 2948ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-10-04 18:52:55 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MkzwDjSGTB5L7fxEDoj20w"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  Rendered static_pages/root.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 869ms (Views: 864.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/news" for ::1 at 2020-10-04 18:52:56 -0400
+Processing by Api::NewsController#index as JSON
+Started GET "/api/transactions/:id?transaction%5Buser_id%5D=20&transaction%5Bsymbol%5D=T" for ::1 at 2020-10-04 18:52:56 -0400
+Processing by Api::TransactionsController#show as JSON
+  Parameters: {"transaction"=>{"user_id"=>"20", "symbol"=>"T"}, "id"=>":id"}
+  [1m[36mTransaction Load (4.2ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/transactions_controller.rb:54
+  Rendering api/transactions/show.json.jbuilder
+  Rendered api/transactions/_transaction.json.jbuilder (0.4ms)
+  Rendered api/transactions/show.json.jbuilder (2.7ms)
+Completed 200 OK in 20ms (Views: 13.8ms | ActiveRecord: 4.2ms)
+
+
+Completed 200 OK in 114ms (Views: 1.6ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/api/users/20" for ::1 at 2020-10-04 18:53:06 -0400
+Started POST "/api/transactions" for ::1 at 2020-10-04 18:53:06 -0400
+Processing by Api::UsersController#update as JSON
+  Parameters: {"transaction"=>{"purchase_price"=>"591800", "shares"=>"-20000", "user_id"=>"20", "symbols"=>"T", "balance"=>"593233"}, "id"=>"20"}
+Processing by Api::TransactionsController#create as JSON
+  Parameters: {"transaction"=>{"purchase_price"=>"591800", "shares"=>"-20000", "user_id"=>"20", "symbols"=>"T", "balance"=>"593233"}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:17
+  [1m[36mTransaction Load (1.4ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/transactions_controller.rb:11
+Completed 422 Unprocessable Entity in 3ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+
+
+  [1m[36mTransaction Load (4.6ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1 AND "transactions"."symbols" = $2 LIMIT $3[0m  [["user_id", 20], ["symbols", "T"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:19
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  Rendered api/users/show.json.jbuilder (1.4ms)
+Completed 200 OK in 20ms (Views: 11.1ms | ActiveRecord: 5.8ms)
+
+

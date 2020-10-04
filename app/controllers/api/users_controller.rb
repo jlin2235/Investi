@@ -14,8 +14,6 @@ class Api::UsersController < ApplicationController
   end
 
   def update #USED TO UPDATE BALANCE AMT WHEN USER MAKES TRANSACTION
-
-    debugger
     @user = User.find_by(id: params[:transaction][:user_id])
     @user_transactions = Transaction.where(user_id: params[:transaction][:user_id])
     @transaction_needed_to_update = @user_transactions.find_by(symbols: params[:transaction][:symbols])
@@ -31,6 +29,7 @@ class Api::UsersController < ApplicationController
       @user.update(balance: params[:transaction][:balance].to_f)
       render :show
       else
+        debugger
         render json: ['not enough cash'], status: 404
       end
     end

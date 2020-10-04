@@ -40,10 +40,12 @@ const getUserHelperMethod = user => ({
 
 //if there is a problem with creating the transction
 
-const receiveTransactionErrorsHelperMethod = (errors) => ({
+const receiveTransactionErrorsHelperMethod = (errors) => {
+    return{   
     type: RECEIVE_TRANSACTION_ERRORS,
     errors
-})
+ }
+}
 
 const clearTransactionErrors = () => ({
     type: CLEAR_TRANSACTION_ERRORS
@@ -51,21 +53,13 @@ const clearTransactionErrors = () => ({
 
 
 export const updateUserBal = transaction => dispatch => updateUserBalance(transaction)
-    .then(transaction => {
-        debugger
-        dispatch(updateUserBalanceHelperMethod(transaction)),
-            errors => dispatch(receiveTransactionErrorsHelperMethod(errors.responseJSON))
-    })
+    .then(transaction => (dispatch(updateUserBalanceHelperMethod(transaction))),
+            errors => (dispatch(receiveTransactionErrorsHelperMethod(errors.responseJSON))))
+    
 
 export const createTransaction = transaction => dispatch => createNewTransaction(transaction)
-    .then(transaction => {
-        debugger
-        return dispatch(createTransactionHelperMethod(transaction)),
-        errors => {
-            debugger
-            return dispatch(receiveTransactionErrorsHelperMethod(errors.responseJSON))}
-
-        })
+    .then(transaction => (dispatch(createTransactionHelperMethod(transaction))),
+        errors => (dispatch(receiveTransactionErrorsHelperMethod(errors.responseJSON))))
 
 export const getAllTransaction = transaction => dispatch => getAllTransactions(transaction)
     .then(transactions =>  {

@@ -1,10 +1,11 @@
-export const updateUserBalance = transaction => (
-    $.ajax({
+export const updateUserBalance = transaction => {
+    debugger
+    return $.ajax({
         url: `/api/users/${transaction.user_id}`,
         method: 'PATCH',
         data: { transaction }
     })
-)
+}
 export const createNewTransaction = transaction => (
     $.ajax({
         url: "/api/transactions",

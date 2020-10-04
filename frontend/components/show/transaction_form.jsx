@@ -8,7 +8,7 @@ class TransactionForm extends React.Component{
             quantity: '',
             cost: 0,
             buyOrSell: 'BUY',
-            balance: this.props.currentUser.balance 
+            balance: this.props.currentUser.balance,
         }
         this.renderErrors = this.renderErrors.bind(this)
         this.buyingPowerMessage = this.buyingPowerMessage.bind(this);
@@ -25,10 +25,6 @@ class TransactionForm extends React.Component{
             symbol: this.props.symbol
         }
         this.props.getOneTran(transaction)
-        // this.props.receiveProfile(this.props.symbol);
-        // this.props.receivePrices(this.props.symbol);
-        // this.props.receivePrice(this.props.symbol)
-        // this.props.getAllTransaction(transaction)
     }
 
     update(field) {
@@ -98,8 +94,7 @@ class TransactionForm extends React.Component{
             debugger
             transaction['balance'] = this.props.currentUser.balance - this.state.cost;
             this.props.updateUserBal(transaction);
-            this.props.createTransaction(transaction)
-                
+            this.props.createTransaction(transaction) 
         }else { //SELL
             debugger
             transaction['balance'] = this.props.currentUser.balance + this.state.cost;
