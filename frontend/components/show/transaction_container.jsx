@@ -5,6 +5,7 @@ import {    getOneTran,
             updateUserBal,
             createTransaction,
             clearTransErrors,
+            receiveSuccessMessage
          } from '../../actions/transaction_actions';
 
 
@@ -27,8 +28,9 @@ const mdp = dispatch => ({
     getOneTran: transaction => dispatch(getOneTran(transaction)),
     updateUserBal: transaction => dispatch(updateUserBal(transaction)),
     createTransaction: transaction => dispatch(createTransaction(transaction)),
+    clearTransErrors: () => dispatch(clearTransErrors()),
+    receiveSuccessMessage: () => dispatch(receiveSuccessMessage()),
     clearTransErrors: () => dispatch(clearTransErrors())
-
 
 })
 

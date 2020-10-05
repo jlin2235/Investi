@@ -94,14 +94,30 @@ class TransactionForm extends React.Component{
             debugger
             transaction['balance'] = this.props.currentUser.balance - this.state.cost;
             this.props.updateUserBal(transaction);
-            this.props.createTransaction(transaction) 
+            this.props.createTransaction(transaction)
+                .then(response => {
+                    debugger
+                    if (response.transaction !== undefined){
+                        this.props.receiveSuccessMessage()
+                    }
+                })
         }else { //SELL
             debugger
             transaction['balance'] = this.props.currentUser.balance + this.state.cost;
             transaction.shares = transaction.shares * (-1); // negative because of sell
             this.props.updateUserBal(transaction);
-            this.props.createTransaction(transaction); 
+            this.props.createTransaction(transaction)
+              .then(response => {
+                  debugger
+                  if (response.transaction !== undefined) {
+                      this.props.receiveSuccessMessage()
+                  }
+              })
         }
+        setTimeout(() => {
+            this.props.clearTransErrors()
+        }, 3000)
+   
         
     }
 
@@ -128,8 +144,16 @@ class TransactionForm extends React.Component{
 
 
 
-    render(){
-
+    render() {
+        let color;
+        if (this.props.errors.length !== 0) {
+            if (this.props.errors[0] === 'not enough cash' ||
+                this.props.errors[0] === 'transaction unable to be completed') {
+                color = 'red'
+            } else {
+                color = 'green'
+            }
+        }
          
         return(
             <form className='transaction-form-main-container' onSubmit={this.handleSubmit}>
@@ -157,7 +181,9 @@ class TransactionForm extends React.Component{
                     </div>
                 </div>
                 <div className='transaction-submit-main-container'>
-                    {this.renderErrors()}
+                    <div id={color}>
+                        {this.renderErrors()}
+                    </div>
                     <input id='submit-button' type="submit" value={this.state.buyOrSell}/>
                     <p className='buying-power-message' >{this.buyingPowerMessage()}</p>
                 </div>

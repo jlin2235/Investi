@@ -1,7 +1,6 @@
 class Api::UsersController < ApplicationController
 
   def create
-    #  
     @user = User.new(user_params)
 
     if @user.save
@@ -29,7 +28,6 @@ class Api::UsersController < ApplicationController
       @user.update(balance: params[:transaction][:balance].to_f)
       render :show
       else
-        debugger
         render json: ['not enough cash'], status: 404
       end
     end

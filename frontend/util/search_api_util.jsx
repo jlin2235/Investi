@@ -15,7 +15,7 @@ export const fetchAllNYSEStocks = () => (
 
 export const fetchProfile = (company) => (
     $.ajax({
-        url: `https://sandbox.iexapis.com/stable/stock/${company}/company?token=${window.iexapikey}`,
+        url: `https://cloud.iexapis.com/stable/stock/${company}/company?token=${window.IexCloudapikey}`,
         method: "GET"
     })
 )

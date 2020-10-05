@@ -1,13 +1,13 @@
 import { GET_ALL_TRANSACTIONS,
          GET_ONE_TRANSACTION, 
-         CREATE_TRANSACTION } from '../../actions/transaction_actions'
+         CREATE_TRANSACTION,
+        } from '../../actions/transaction_actions'
 
 const transactionReducer = (state=[], action) => {
     Object.freeze(state);
     let nextState = Object.assign({}, state);
     switch (action.type){
         case GET_ALL_TRANSACTIONS:
-             
             return action.transactions;
         case GET_ONE_TRANSACTION:
              

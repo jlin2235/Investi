@@ -1,5 +1,7 @@
 import { RECEIVE_TRANSACTION_ERRORS,
-            CLEAR_TRANSACTION_ERRORS } from'../../actions/transaction_actions'
+            CLEAR_TRANSACTION_ERRORS,
+        RECEIVE_TRANSACTION_SUCCESS
+        } from'../../actions/transaction_actions'
 
 export default (oldState = [], action) => {
     Object.freeze(oldState);
@@ -11,6 +13,9 @@ export default (oldState = [], action) => {
         case CLEAR_TRANSACTION_ERRORS:
             debugger
             return [];
+        case RECEIVE_TRANSACTION_SUCCESS:
+            debugger
+            return ['Transaction Success']
         default:
             return oldState
     }

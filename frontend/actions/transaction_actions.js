@@ -11,6 +11,7 @@ export const GET_ONE_TRANSACTION = 'GET_ONE_TRANSACTION';
 export const GET_USER = 'GET_USER';
 export const RECEIVE_TRANSACTION_ERRORS = 'RECEIVE_TRANSACTION_ERRORS';
 export const CLEAR_TRANSACTION_ERRORS = 'CLEAR_TRANSACTION_ERRORS';
+export const RECEIVE_TRANSACTION_SUCCESS = 'RECEIVE_TRANSACTION_SUCCESS'
 
 
 const updateUserBalanceHelperMethod = transaction => ({
@@ -37,6 +38,11 @@ const getUserHelperMethod = user => ({
     type: GET_USER,
     user
 })
+
+const receiveSuccessMessageHelperMethod = () => {
+    debugger 
+    return {type: RECEIVE_TRANSACTION_SUCCESS}
+}
 
 //if there is a problem with creating the transction
 
@@ -76,6 +82,8 @@ export const getOneTran = transaction => dispatch => getOneTransaction(transacti
 // export const getUser = transaction => dispatch => showUser(transaction)
 //     .then(user => dispatch(getUserHelperMethod(user)))
 
-export const clearTransErrors = () => dispatch(clearTransactionErrors);
+export const receiveSuccessMessage = () => dispatch => dispatch(receiveSuccessMessageHelperMethod())
+
+export const clearTransErrors = () => dispatch =>  dispatch(clearTransactionErrors());
 
 
