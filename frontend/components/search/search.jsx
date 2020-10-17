@@ -16,7 +16,6 @@ class SearchBar extends React.Component{
 
     // Whenever the searchbar gets mounted it will fetch the stocks from the API
     // componentDidMount() {
-    //      
     //     this.props.receiveStocks();
     // }
 
@@ -33,9 +32,9 @@ class SearchBar extends React.Component{
                     (company.name !== null && company.name.toUpperCase().includes(userInoutUpperCase))){
                         suggestions.push(
                             <div key={idx}>
-                                <Link to={`/home/${company.symbol}`} replace>
-                                    <div>
-                                        <p>{company.symbol}</p>
+                                <Link to={`/home/${company.symbol}`} replace className="suggestion-item-link">
+                                    <div className="suggestion-item">
+                                        <p id='suggestion-box-symbol-results'>{company.symbol}</p>
                                         <p>{company.name}</p>
                                     </div>
                                 </Link>
@@ -51,9 +50,9 @@ class SearchBar extends React.Component{
             suggestions[0] = 
             (
             <div key={10000000}>
-                    <Link to={`/home/${this.props.stocks[userInoutUpperCase].symbol}`} replace>
-                        <li>
-                            <p>{this.props.stocks[userInoutUpperCase].symbol}</p>
+                    <Link to={`/home/${this.props.stocks[userInoutUpperCase].symbol}`} replace className="suggestion-item-link">
+                        <li className="suggestion-item"> 
+                            <p id='suggestion-box-symbol-results'>{this.props.stocks[userInoutUpperCase].symbol}</p>
                             <p>{this.props.stocks[userInoutUpperCase].name}</p>
                         </li>
                     </Link>
@@ -73,13 +72,16 @@ class SearchBar extends React.Component{
     pressEnterKey(e){
         // e.preventDefault();
         //  
+        debugger
         switch(e.keyCode){
             case 13: //ENTER KEY
-                 
+                debugger
                 const symbol = e.currentTarget.value
                 const dupSymbol = symbol.slice();
                 this.props.receiveProfile(dupSymbol)
-                    .then(() => { this.props.history.push(`/home/${dupSymbol}`)})
+                this.props.history.push(`/home/${dupSymbol}`) 
+                // this.props.receiveProfile(dupSymbol)
+                //     .then(() => { this.props.history.push(`/home/${dupSymbol}`)})
             default:
                 return null;
         }
@@ -91,7 +93,7 @@ class SearchBar extends React.Component{
         let suggestions = this.filterSuggestions();
         return(
             <div>
-                <form>
+                <form className='search-form-container'>
                     <input
                         type="search"
                         placeholder='Search'
@@ -100,7 +102,7 @@ class SearchBar extends React.Component{
                         onChange={this.update("searchvalue")}
                         onKeyDown={this.pressEnterKey}
                     />
-                    <ul>
+                    <ul className="suggestion-box">
                         {suggestions}
                     </ul>
                 </form>

@@ -25,7 +25,7 @@ const NavBar = ({ currentUser, logout }) => {
             <div className='NavBar-After-SignUp-Container'>
                 <div className='NavBar-After-SignUp-Left-Side'>
                 {/* <Link to="/"><img id='investi-logo' src={window.logo} /></Link> */}
-                    <h2>Welcome back, {currentUser.first_name}!</h2>
+                    <h2>Welcome back</h2>
                     <SearchBarContainer />
                 </div>
                 <div className='NavBar-After-SignUp-Right-Side'>

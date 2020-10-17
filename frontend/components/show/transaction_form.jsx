@@ -27,6 +27,8 @@ class TransactionForm extends React.Component{
         this.props.getOneTran(transaction)
     }
 
+
+
     update(field) {
         return e => {
             let cost = 0;

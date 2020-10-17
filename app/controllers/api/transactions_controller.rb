@@ -18,7 +18,7 @@ class Api::TransactionsController < ApplicationController
                     render :show
                 elsif updated_transaction == 0
                     @transaction_needed_to_update.update(shares: updated_transaction)
-                    @transaction = transaction_needed_to_update
+                    @transaction = @transaction_needed_to_update
                     @transaction_needed_to_update.destroy
                     render :show
                 else

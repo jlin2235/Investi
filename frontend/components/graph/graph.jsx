@@ -49,6 +49,7 @@ class Graph extends React.Component {
 
 
     graphDataCalculation() {
+        debugger
         
         let data;
         let todayDate = new Date(); //Tue Sep 22 2020 17:37:01 GMT-0400 (Eastern Daylight Time)
@@ -418,7 +419,8 @@ class Graph extends React.Component {
                     <h2 onClick={() => this.changeDateView("1m")} className="Stock-Data-View-Button 1m">1M</h2>
                     <h2 onClick={() => this.changeDateView("3m")} className="Stock-Data-View-Button 3m">3M</h2>
                     <h2 onClick={() => this.changeDateView("1y")} className="Stock-Data-View-Button 1y">1Y</h2>
-                    <h2 onClick={() => this.changeDateView("5y")} className="Stock-Data-View-Button 5y">5Y</h2>
+                    {/* <h2 onClick={() => this.changeDateView("5y")} className="Stock-Data-View-Button 5y">5Y</h2> */} 
+                    {/* comment out for now */}
                 </ul>
             </div>
         );

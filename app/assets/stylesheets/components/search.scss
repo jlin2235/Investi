@@ -2,7 +2,7 @@
     width: 500px;
     height: 20px;
     border: 1px solid lightgray;
-    margin: 10px 0px;;
+    // margin: 10px 0px 0px 0px;
     padding: 5px 20px;
     border-radius: 4px;
     transition: border-color 200ms;
@@ -21,4 +21,43 @@
 .Search-Bar-Input-Field:focus{
     border-color:rgb(0,200,5);
     background-color: white;
+}
+
+.search-form-container:hover ul{
+      display: block;
+      background-color: white;
+      box-shadow: 0 0 3px black;
+}
+        
+
+.search-form-container:focus ul{
+     display: block;
+     background-color: white;
+     box-shadow: 0 0 3px black;
+}
+
+
+
+.suggestion-box {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    width: 500px;
+    border-radius: 4px;
+
+    .suggestion-item {
+    display: flex;
+    padding: 15px 20px 15px 20px;
+
+        #suggestion-box-symbol-results{
+            margin-right: 20px;;
+
+        }
+
+    }
+
+    .suggestion-item:hover{
+        color:rgb(0,200,5);
+    }
+
 }
