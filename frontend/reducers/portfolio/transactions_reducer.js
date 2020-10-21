@@ -10,7 +10,6 @@ const transactionReducer = (state=[], action) => {
         case GET_ALL_TRANSACTIONS:
             return action.transactions;
         case GET_ONE_TRANSACTION:
-             
             return action.transaction;
         case CREATE_TRANSACTION:
             if (action.transaction == undefined) {

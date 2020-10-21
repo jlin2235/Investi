@@ -1,3 +1,3 @@
 @watchlists.each do |watchlist|
-    json.partial! "/api/watchlist/watchlist", watchlist: watchlist
+    json.partial! "/api/watchlists/watchlist", watchlist: watchlist
 end

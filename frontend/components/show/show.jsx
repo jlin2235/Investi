@@ -23,8 +23,22 @@ class Show extends React.Component{
     }
 
     componentDidUpdate(previousProps){
+        let transaction = {
+            user_id: this.props.currentUser.id,
+            symbol: this.props.symbol
+        }
+        let watchlist = {
+            user_id: this.props.currentUser.id,
+            symbol: this.props.symbol
+        }
+       
+        debugger
         if (previousProps.match.params.symbol !== this.props.match.params.symbol){
-            this.props.receiveProfile(this.props.symbol)
+            this.props.receiveProfile(this.props.symbol);
+            this.props.getOneTran(transaction);
+            this.props.receivePrice(this.props.match.params.symbol);
+
+
         }
     }
 

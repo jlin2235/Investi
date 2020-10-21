@@ -16,6 +16,7 @@ class TransactionForm extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.changeBuyOrSell = this.changeBuyOrSell.bind(this);
         this.changeBuyOrSellUnderlines = this.changeBuyOrSellUnderlines.bind(this);
+        this.handleSubmitWatch = this.handleSubmitWatch.bind(this);
 
     }
 
@@ -25,7 +26,40 @@ class TransactionForm extends React.Component{
             user_id: this.props.currentUser.id,
             symbol: this.props.symbol
         }
-        this.props.getOneTran(transaction)
+        let watchlist = {
+            user_id: this.props.currentUser.id,
+            symbol: this.props.symbol
+        }
+        this.props.getOneTran(transaction);
+        this.props.getWatchList(watchlist)
+            .then(response => {
+                debugger
+                if(response.watchlist.length === undefined){
+                    this.setState({ watchOrUnwatch: 'UNWATCH'})
+                }
+            }) 
+    }
+
+    componentDidUpdate(previousProps) {
+        let watchlist = {
+            user_id: this.props.currentUser.id,
+            symbol: this.props.symbol
+        }
+        debugger
+
+        if (previousProps.symbol !== this.props.symbol) {
+            this.props.getWatchList(watchlist)
+                .then(response => {
+                    debugger
+                    if (response.watchlist.length === undefined) {
+                        this.setState({ watchOrUnwatch: 'UNWATCH' })
+                    }else{
+                        this.setState({ watchOrUnwatch: 'WATCH' })
+
+                    }
+                }) 
+
+        }
     }
 
 
@@ -136,17 +170,19 @@ class TransactionForm extends React.Component{
             this.props.createWatch(watchList)
                 .then(response => {
                     debugger
-                    if (response.watchList !== undefined){
-                        this.props.receiveSuccessMessage()
+                    if (response.watchlist !== undefined){
+                        debugger
+                        this.setState({ watchOrUnwatch: 'UNWATCH' })
                     }
                 })
         }else { //UNWATCH
             debugger
-            this.props.createWatch(watchList)
+            this.props.deleteWatch(watchList)
               .then(response => {
                   debugger
-                  if (response.watchList !== undefined) {
-                      this.props.receiveSuccessMessage()
+                  if (response.watchlist !== undefined) {
+                      this.setState({ watchOrUnwatch: 'MATCH' })
+
                   }
               })
         }
@@ -222,11 +258,11 @@ class TransactionForm extends React.Component{
                     </div>
                     <input id='submit-button' type="submit" value={this.state.buyOrSell}/>
                     <p className='buying-power-message' >{this.buyingPowerMessage()}</p>
-                    <form onSubmit={this.handleSubmitWatch}>
-                        <input id='submit-button-watch' type="submit" value={this.state.watchOrUnwatch} />
-                    </form>
+                    <button id='submit-button-watch'  onClick={this.handleSubmitWatch}>{this.state.watchOrUnwatch}</button>
                 </div>
-
+                    {/* <form onSubmit={this.handleSubmitWatch}>
+                        <input id='submit-button-watch' type="submit" value={this.state.watchOrUnwatch} />
+                    </form> */}
             </form>
         )
     }

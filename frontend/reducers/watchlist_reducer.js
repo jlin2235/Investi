@@ -1,6 +1,7 @@
 import {
     CREATE_WATCHLIST,
     GET_ALL_WATCHLIST,
+    GET_ONE_WATCHLIST
 } from '../actions/watchlist.actions'
 
 const watchListReducer = (state = [], action) => {
@@ -9,7 +10,11 @@ const watchListReducer = (state = [], action) => {
     switch (action.type) {
         case GET_ALL_WATCHLIST:
             return action.watchlists;
+        case GET_ONE_WATCHLIST:
+            debugger
+            return action.watchlist;
         case CREATE_WATCHLIST:
+            debugger
             if (action.watchlist == undefined) {
                 return nextState;
             } else {

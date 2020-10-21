@@ -2,6 +2,9 @@ import { connect } from 'react-redux';
 import Show from './show';
 import { receiveFiveMin, receiveThirtyMin, receiveFiveYr, receiveNews } from '../../actions/graph_actions'
 import { receivePrice, receiveProfile } from '../../actions/search_actions'
+import { getOneTran } from '../../actions/transaction_actions';
+import { getWatchList } from '../../actions/watchlist.actions'
+
 
 const msp = (state, ownProps) => {
     //  
@@ -22,7 +25,10 @@ const mdp = dispatch => {
         receiveFiveMin: company => dispatch(receiveFiveMin(company)),
         receiveThirtyMin: company => (dispatch(receiveThirtyMin(company))),
         receiveFiveYr: company => (dispatch(receiveFiveYr(company))),
-        receivePrice: company => (dispatch(receivePrice(company)))
+        receivePrice: company => (dispatch(receivePrice(company))),
+        getWatchList: watchlist => dispatch(getWatchList(watchlist)),
+        getOneTran: transaction => dispatch(getOneTran(transaction)),
+
     }
 
 };

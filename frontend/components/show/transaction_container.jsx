@@ -8,6 +8,7 @@ import {    getOneTran,
             receiveSuccessMessage
          } from '../../actions/transaction_actions';
 
+import { createWatchList, getWatchList, deleteWatch } from '../../actions/watchlist.actions'
 
 
 
@@ -30,7 +31,10 @@ const mdp = dispatch => ({
     createTransaction: transaction => dispatch(createTransaction(transaction)),
     clearTransErrors: () => dispatch(clearTransErrors()),
     receiveSuccessMessage: () => dispatch(receiveSuccessMessage()),
-    clearTransErrors: () => dispatch(clearTransErrors())
+    clearTransErrors: () => dispatch(clearTransErrors()),
+    createWatch: watchlist => dispatch(createWatchList(watchlist)),
+    getWatchList: watchlist => dispatch(getWatchList(watchlist)),
+    deleteWatch: watchlist => dispatch(deleteWatch(watchlist))
 
 })
 

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :stocks, param: :symbol, only: [:show, :index, :create]
     resources :news, only:[:index]
     resources :transactions, only:[:index, :show, :create, :update, :destroy]
+    resources :watchlists, only:[:index, :show, :create, :destroy]
 
   end
   root "static_pages#root"
