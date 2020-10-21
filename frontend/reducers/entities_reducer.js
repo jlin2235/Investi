@@ -6,6 +6,7 @@ import {newsReducer} from './news_reducer';
 import { stocksReducer } from './search_reducer';
 import { pricesReducer } from './portfolio/prices_reducer';
 import { graphPricesReducer } from './portfolio/graph_prices_reducer'
+import { watchListReducer } from './watchlist_reducer'
 
 export default combineReducers({
     users: usersReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
     transactions: transactionReducer,
     news: newsReducer,
     prices: pricesReducer,
-    graphPrices: graphPricesReducer
+    graphPrices: graphPricesReducer,
+    watchlist: watchListReducer,
 });

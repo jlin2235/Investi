@@ -9,6 +9,7 @@ class TransactionForm extends React.Component{
             cost: 0,
             buyOrSell: 'BUY',
             balance: this.props.currentUser.balance,
+            watchOrUnwatch: 'WATCH'
         }
         this.renderErrors = this.renderErrors.bind(this)
         this.buyingPowerMessage = this.buyingPowerMessage.bind(this);
@@ -122,6 +123,39 @@ class TransactionForm extends React.Component{
    
         
     }
+    handleSubmitWatch(e) {
+        e.preventDefault();
+        debugger
+        const watchList = {
+            user_id: this.props.currentUser.id,
+            symbols: this.props.symbol
+        }        
+        //WATCH
+        if(this.state.watchOrUnwatch === 'WATCH') {
+            debugger
+            this.props.createWatch(watchList)
+                .then(response => {
+                    debugger
+                    if (response.watchList !== undefined){
+                        this.props.receiveSuccessMessage()
+                    }
+                })
+        }else { //UNWATCH
+            debugger
+            this.props.createWatch(watchList)
+              .then(response => {
+                  debugger
+                  if (response.watchList !== undefined) {
+                      this.props.receiveSuccessMessage()
+                  }
+              })
+        }
+        setTimeout(() => {
+            this.props.clearTransErrors()
+        }, 3000)
+   
+        
+    }
 
     changeBuyOrSell(value) {
         this.setState({ buyOrSell: value});
@@ -188,6 +222,9 @@ class TransactionForm extends React.Component{
                     </div>
                     <input id='submit-button' type="submit" value={this.state.buyOrSell}/>
                     <p className='buying-power-message' >{this.buyingPowerMessage()}</p>
+                    <form onSubmit={this.handleSubmitWatch}>
+                        <input id='submit-button-watch' type="submit" value={this.state.watchOrUnwatch} />
+                    </form>
                 </div>
 
             </form>
