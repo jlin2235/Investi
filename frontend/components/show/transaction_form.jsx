@@ -258,7 +258,7 @@ class TransactionForm extends React.Component{
                     </div>
                     <input id='submit-button' type="submit" value={this.state.buyOrSell}/>
                     <p className='buying-power-message' >{this.buyingPowerMessage()}</p>
-                    <button id='submit-button-watch'  onClick={this.handleSubmitWatch}>{this.state.watchOrUnwatch}</button>
+                    {/* <button id='submit-button-watch'  onClick={this.handleSubmitWatch}>{this.state.watchOrUnwatch}</button> */}
                 </div>
                     {/* <form onSubmit={this.handleSubmitWatch}>
                         <input id='submit-button-watch' type="submit" value={this.state.watchOrUnwatch} />

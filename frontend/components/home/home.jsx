@@ -23,8 +23,8 @@ class HomeForm extends React.Component{
             .then(transactions => {
                 let symbolsArray = Object.keys(transactions.transactions);
                 this.props.receivePrices(symbolsArray);
-                // this.props.FiveDaysTenMinBatchPricesIEX(symbolsArray);
-                // this.props.FiveYearBatchPricesIEX(symbolsArray);
+                this.props.FiveDaysTenMinBatchPricesIEX(symbolsArray);
+                this.props.FiveYearBatchPricesIEX(symbolsArray);
          
             })
     }
