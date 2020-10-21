@@ -15,9 +15,9 @@ class SearchBar extends React.Component{
     }
 
     // Whenever the searchbar gets mounted it will fetch the stocks from the API
-    componentDidMount() {
-        this.props.receiveStocks();
-    }
+    // componentDidMount() {
+    //     this.props.receiveStocks();
+    // }
 
    
 

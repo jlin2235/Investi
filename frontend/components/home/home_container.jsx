@@ -28,7 +28,8 @@ const mdp = dispatch => {
         receiveFiveMinBatch: symbol => dispatch(receiveFiveMinBatch(symbol)),
         FiveDaysTenMinBatchPricesIEX: symbols => dispatch(FiveDaysTenMinBatchPricesIEX(symbols)),
         FiveYearBatchPricesIEX: symbols => dispatch(FiveYearBatchPricesIEX(symbols)),
-        DynamicBatchPricesIEX: symbols => dispatch(DynamicBatchPricesIEX(symbols))
+        // DynamicBatchPricesIEX: symbols => dispatch(DynamicBatchPricesIEX(symbols))
+        
     }
 }
 

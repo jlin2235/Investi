@@ -34,10 +34,12 @@ const fetchHistoricalPriceFiveYrHelperMethod = prices => ({
     type: RECEIVE_PRICEFIVEYR,
     prices
 })
-const fetchHistoricalChartFiveDaysTenMinBatchIEXHelperMethod = prices => ({
+const fetchHistoricalChartFiveDaysTenMinBatchIEXHelperMethod = prices => {
+    debugger
+    return {
     type: RECEIVE_FIVEDAYS_TENMIN_BATCH_IEX,
     prices
-})
+}}
 const fetchHistoricalChartFiveYearBatchIEXHelperMethod = prices => {
     return {
         type: RECEIVE_FIVE_YEAR_BATCH_IEX,
@@ -78,7 +80,8 @@ export const receiveFiveYr = ticker => dispatch => fetchHistoricalPriceFiveYr(ti
 
 export const FiveDaysTenMinBatchPricesIEX = tickers => dispatch => fetchHistoricalChartFiveDaysTenMinBatchIEX(tickers)
     .then(prices => {
-        dispatch(fetchHistoricalChartFiveDaysTenMinBatchIEXHelperMethod(prices))});
+        debugger
+        return dispatch(fetchHistoricalChartFiveDaysTenMinBatchIEXHelperMethod(prices))});
 
 export const FiveYearBatchPricesIEX = tickers => dispatch => fetchHistoricalChartFiveYearBatchIEX(tickers)
     .then(prices => {

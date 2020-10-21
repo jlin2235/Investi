@@ -24,7 +24,7 @@ class HomeForm extends React.Component{
                 let symbolsArray = Object.keys(transactions.transactions);
                 this.props.receivePrices(symbolsArray);
                 this.props.FiveDaysTenMinBatchPricesIEX(symbolsArray);
-                this.props.FiveYearBatchPricesIEX(symbolsArray)
+                // this.props.FiveYearBatchPricesIEX(symbolsArray)
                 // this.props.DynamicBatchPricesIEX(symbolsArray)
                 // symbolsArray.forEach(symbol => this.props.receiveFiveMinBatch(symbol))
             })
