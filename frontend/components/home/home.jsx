@@ -23,10 +23,9 @@ class HomeForm extends React.Component{
             .then(transactions => {
                 let symbolsArray = Object.keys(transactions.transactions);
                 this.props.receivePrices(symbolsArray);
-                this.props.FiveDaysTenMinBatchPricesIEX(symbolsArray);
-                // this.props.FiveYearBatchPricesIEX(symbolsArray)
-                // this.props.DynamicBatchPricesIEX(symbolsArray)
-                // symbolsArray.forEach(symbol => this.props.receiveFiveMinBatch(symbol))
+                // this.props.FiveDaysTenMinBatchPricesIEX(symbolsArray);
+                // this.props.FiveYearBatchPricesIEX(symbolsArray);
+         
             })
     }
 
@@ -63,10 +62,7 @@ class HomeForm extends React.Component{
     
 
     render(){
-        // debugger
-        // if(Object.keys(this.props.prices).length !== Object.keys(this.props.graphPrices["fiveYears"])){
-        //     return null;
-        // }
+  
         
         return(
             <div className='homePage-main-container'>

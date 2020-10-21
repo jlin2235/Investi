@@ -97,9 +97,9 @@ class Graph extends React.Component {
                 filterIndividualCompanyArray.forEach((ele, idx) => {
                     //  
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.marketAverage  * sharesAmt) + userBalance), ele.minute];
+                        dataArray[idx] = [((ele.close  * sharesAmt) + userBalance), ele.minute];
                     } else {
-                        dataArray[idx][0] += (ele.marketAverage * sharesAmt)
+                        dataArray[idx][0] += (ele.close * sharesAmt)
                     }
                 })
 
@@ -124,9 +124,9 @@ class Graph extends React.Component {
                     //  
                     
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.marketAverage * sharesAmt) + userBalance), ele.minute];
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.minute];
                     } else {
-                        dataArray[idx][0] += (ele.marketAverage * sharesAmt)
+                        dataArray[idx][0] += (ele.close * sharesAmt)
                     }
                 })
 
@@ -146,9 +146,9 @@ class Graph extends React.Component {
                     //  
 
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.marketAverage * sharesAmt) + userBalance), ele.minute];
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.minute];
                     } else {
-                        dataArray[idx][0] += (ele.marketAverage * sharesAmt)
+                        dataArray[idx][0] += (ele.close * sharesAmt)
                     }
                 })
 
@@ -169,9 +169,9 @@ class Graph extends React.Component {
                     //  
 
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.uClose * sharesAmt) + userBalance), ele.date];
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.date];
                     } else {
-                        dataArray[idx][0] += (ele.uClose * sharesAmt)
+                        dataArray[idx][0] += (ele.close * sharesAmt)
                     }
                 })
 
@@ -192,9 +192,9 @@ class Graph extends React.Component {
                     //  
 
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.uClose * sharesAmt) + userBalance), ele.date];
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.date];
                     } else {
-                        dataArray[idx][0] += (ele.uClose * sharesAmt)
+                        dataArray[idx][0] += (ele.close * sharesAmt)
                     }
                 })
 
@@ -215,9 +215,9 @@ class Graph extends React.Component {
                     //  
 
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.uClose * sharesAmt) + userBalance), ele.date];
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.date];
                     } else {
-                        dataArray[idx][0] += (ele.uClose * sharesAmt)
+                        dataArray[idx][0] += (ele.close * sharesAmt)
                     }
                 })
 
@@ -234,9 +234,9 @@ class Graph extends React.Component {
                     //  
 
                     if (dataArray[idx] === undefined) {
-                        dataArray[idx] = [((ele.uClose * sharesAmt) + userBalance), ele.date];
+                        dataArray[idx] = [((ele.close * sharesAmt) + userBalance), ele.date];
                     } else {
-                        dataArray[idx][0] += (ele.uClose * sharesAmt)
+                        dataArray[idx][0] += (ele.close * sharesAmt)
                     }
                 })
 
@@ -419,8 +419,7 @@ class Graph extends React.Component {
                     <h2 onClick={() => this.changeDateView("1m")} className="Stock-Data-View-Button 1m">1M</h2>
                     <h2 onClick={() => this.changeDateView("3m")} className="Stock-Data-View-Button 3m">3M</h2>
                     <h2 onClick={() => this.changeDateView("1y")} className="Stock-Data-View-Button 1y">1Y</h2>
-                    {/* <h2 onClick={() => this.changeDateView("5y")} className="Stock-Data-View-Button 5y">5Y</h2> */} 
-                    {/* comment out for now */}
+                    <h2 onClick={() => this.changeDateView("5y")} className="Stock-Data-View-Button 5y">5Y</h2> 
                 </ul>
             </div>
         );
