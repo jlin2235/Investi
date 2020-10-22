@@ -32,6 +32,12 @@ class Graph extends React.Component {
         this.changeDateViewUnderlines(newDate)
     }
 
+    componentDidUpdate(previousProp, previousState){
+
+
+        debugger
+    }
+
     changeDateViewUnderlines(newDate){
         debugger
         let timeFrames = Array.prototype.slice.call(document.getElementsByClassName('Stock-Data-View-Button'));
@@ -51,6 +57,8 @@ class Graph extends React.Component {
     graphDataCalculation() {
         debugger
         
+        
+        
         let data;
         let todayDate = new Date(); //Tue Sep 22 2020 17:37:01 GMT-0400 (Eastern Daylight Time)
         let dayOfWeek = todayDate.getDay(); //2
@@ -59,15 +67,16 @@ class Graph extends React.Component {
         let symbols = Object.keys(this.props.transactions) //ARRAY
         let userBalance = this.props.currentUser.balance
         let dataArray = [];
-    
-
-       
+        
+        
+        
         if ((this.props.graphPrices['oneWeek'] === undefined) ||
-            (this.props.graphPrices['fiveYear'] === undefined)) 
-            {
-                return null;
-            }
-     
+        (this.props.graphPrices['fiveYear'] === undefined)) 
+        {
+            return null;
+        }
+      
+        
         if (this.state.dateViewed === '1d') {
             data = this.props.graphPrices['oneWeek']
         } else if (this.state.dateViewed === '1w') {

@@ -51,11 +51,11 @@ class Api::WatchlistsController < ApplicationController
             @user_watchlist = Watchlist.where(user_id: params[:watchList][:user_id])
             #find all the users watchlist
             
-            @watchlist_needed_to_update = @user_watchlist.find_by(symbols: params[:watchList][:symbols])
+            @watchlist = @user_watchlist.find_by(symbols: params[:watchList][:symbols])
             #within the user data find only the watchlist with the matched symbol
-            if @watchlist_needed_to_update #IF able to find the watchlist thats needed to be updated
+            if @watchlist #IF able to find the watchlist thats needed to be updated
                 debugger
-                watchlist_needed_to_update.destroy
+                @watchlist.destroy
                 render :show
             else
                 debugger

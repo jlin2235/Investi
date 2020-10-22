@@ -6,6 +6,8 @@ import {
     RECEIVE_FIVEDAYS_TENMIN_BATCH_IEX,
     RECEIVE_FIVE_YEAR_BATCH_IEX,
     RECEIVE_DYNAMIC_BATCH_IEX,
+    TESTRECEIVE_FIVE_YEAR_BATCH_IEX,
+    TESTRECEIVE_FIVEDAYS_TENMIN_BATCH_IEX
 } from '../../actions/graph_actions'
 
 
@@ -44,6 +46,16 @@ export const graphPricesReducer = (oldState = [], action) => {
         //      
         //     nextState['dynamic'] = action.prices;
         //     return nextState
+        case TESTRECEIVE_FIVE_YEAR_BATCH_IEX:
+            let oldobject = nextState['fiveYear'] 
+            debugger
+            nextState['fiveYear'] = Object.assign(oldobject, action.prices)
+            return nextState;
+        case TESTRECEIVE_FIVEDAYS_TENMIN_BATCH_IEX:
+            let oldobject2 = nextState['oneWeek'] 
+            debugger
+            nextState['oneWeek'] = Object.assign(oldobject2, action.prices)
+            return nextState;
         default:
             return oldState;
     }

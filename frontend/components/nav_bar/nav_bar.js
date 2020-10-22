@@ -6,6 +6,8 @@ import SearchBarContainer from './../search/search_container'
 
 //MSP AND MDP PASSED IN AS PROPS: currentUser and logout(function)
 const NavBar = ({ currentUser, logout }) => {
+
+    
     
     const sessionLinks = () => (
     <div className='nav-bar-container'>

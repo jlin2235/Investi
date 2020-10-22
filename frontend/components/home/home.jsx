@@ -29,6 +29,10 @@ class HomeForm extends React.Component{
             })
     }
 
+    componentWillUnmount(){
+        debugger
+    }
+
 
     displayNews() {
         

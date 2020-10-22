@@ -5,8 +5,9 @@ import {    getOneTran,
             updateUserBal,
             createTransaction,
             clearTransErrors,
-            receiveSuccessMessage
+            receiveSuccessMessage,
          } from '../../actions/transaction_actions';
+import { TESTFiveDaysTenMinBatchPricesIEX, TESTFiveYearBatchPricesIEX } from './../../actions/graph_actions'
 
 import { createWatchList, getWatchList, deleteWatch } from '../../actions/watchlist.actions'
 
@@ -34,7 +35,9 @@ const mdp = dispatch => ({
     clearTransErrors: () => dispatch(clearTransErrors()),
     createWatch: watchlist => dispatch(createWatchList(watchlist)),
     getWatchList: watchlist => dispatch(getWatchList(watchlist)),
-    deleteWatch: watchlist => dispatch(deleteWatch(watchlist))
+    deleteWatch: watchlist => dispatch(deleteWatch(watchlist)),
+    TESTFiveDaysTenMinBatchPricesIEX: symbols => dispatch(TESTFiveDaysTenMinBatchPricesIEX(symbols)),
+    TESTFiveYearBatchPricesIEX: symbols => dispatch(TESTFiveYearBatchPricesIEX(symbols)),
 
 })
 

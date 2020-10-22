@@ -4,6 +4,8 @@ import { fetchHistoricalChartFiveMin,
         fetchHistoricalChartFiveDaysTenMinBatchIEX,
         fetchHistoricalChartFiveYearBatchIEX,
         fetchHistoricalChartDynamicBatchIEX,
+        TESTfetchHistoricalChartFiveDaysTenMinBatchIEX,
+        TESTfetchHistoricalChartFiveYearBatchIEX,
         fetchNews } from './../util/graph_api_util'
 
 export const RECEIVE_FIVEMIN = 'RECEIVE_FIVEMIN';
@@ -14,6 +16,10 @@ export const RECEIVE_FIVEDAYS_TENMIN_BATCH_IEX = 'RECEIVE_FIVEDAYS_TENMIN_BATCH_
 export const RECEIVE_FIVE_YEAR_BATCH_IEX = 'RECEIVE_FIVE_YEAR_BATCH_IEX';
 export const RECEIVE_DYNAMIC_BATCH_IEX = 'RECEIVE_DYNAMIC_BATCH_IEX';
 export const RECEIVE_NEWS = 'RECEIVE_NEWS'; //SINCE ONLY ONE ACTION PUT IT IN HERE
+
+
+export const TESTRECEIVE_FIVEDAYS_TENMIN_BATCH_IEX = 'TESTRECEIVE_FIVEDAYS_TENMIN_BATCH_IEX';
+export const TESTRECEIVE_FIVE_YEAR_BATCH_IEX = 'TESTRECEIVE_FIVE_YEAR_BATCH_IEX';
 
 const fetchHistoricalChartFiveMinHelperMethod = prices => ({
     type: RECEIVE_FIVEMIN,
@@ -94,3 +100,38 @@ export const DynamicBatchPricesIEX = tickers => dispatch => fetchHistoricalChart
 
 export const receiveNews = () => dispatch => fetchNews()
     .then(news => dispatch(fetchNewsHelperMethod(news)))
+
+
+
+
+//TESTTTTTT
+
+const TESTfetchHistoricalChartFiveDaysTenMinBatchIEXHelperMethod = prices => {
+    debugger
+    return {
+        type: TESTRECEIVE_FIVEDAYS_TENMIN_BATCH_IEX,
+        prices
+    }
+}
+const TESTfetchHistoricalChartFiveYearBatchIEXHelperMethod = prices => {
+    return {
+        type: TESTRECEIVE_FIVE_YEAR_BATCH_IEX,
+        prices
+    }
+}
+
+export const TESTFiveYearBatchPricesIEX = tickers => dispatch => TESTfetchHistoricalChartFiveYearBatchIEX(tickers)
+    .then(prices => {
+        dispatch(TESTfetchHistoricalChartFiveYearBatchIEXHelperMethod(prices))
+    });
+
+
+
+
+export const TESTFiveDaysTenMinBatchPricesIEX = tickers => dispatch => TESTfetchHistoricalChartFiveDaysTenMinBatchIEX(tickers)
+    .then(prices => {
+        debugger
+        return dispatch(TESTfetchHistoricalChartFiveDaysTenMinBatchIEXHelperMethod(prices))
+    });
+
+

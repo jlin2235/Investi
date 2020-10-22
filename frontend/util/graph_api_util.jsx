@@ -42,7 +42,8 @@ export const fetchHistoricalChartFiveDaysTenMinBatchIEX = companies => {
     })
      
     return $.ajax({
-        url: `https://cloud.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${symbols}&token=${window.IexCloudapikey}&range=5dm`
+        url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${symbols}&token=${window.iexapikey}&range=5dm`
+        // url: `https://cloud.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${symbols}&token=${window.IexCloudapikey}&range=5dm`
     })
 }
 
@@ -54,7 +55,8 @@ export const fetchHistoricalChartFiveYearBatchIEX = companies => {
     })
      
     return $.ajax({
-        url: `https://cloud.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${symbols}&token=${window.IexCloudapikey}&range=5y`
+        url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${symbols}&token=${window.iexapikey}&range=5y`
+        // url: `https://cloud.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${symbols}&token=${window.IexCloudapikey}&range=5y`
     })
 }
 
@@ -72,3 +74,25 @@ export const fetchHistoricalChartDynamicBatchIEX = companies => {
 
 
 
+
+
+
+
+
+export const TESTfetchHistoricalChartFiveDaysTenMinBatchIEX = company => {
+ 
+
+    return $.ajax({
+        url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${company}&token=${window.iexapikey}&range=5dm`
+        // url: `https://cloud.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${symbols}&token=${window.IexCloudapikey}&range=5dm`
+    })
+}
+
+export const TESTfetchHistoricalChartFiveYearBatchIEX = company => {
+
+
+    return $.ajax({
+        url: `https://sandbox.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${company}&token=${window.iexapikey}&range=5y`
+        // url: `https://cloud.iexapis.com/stable/stock/market/batch?&types=chart&symbols=${symbols}&token=${window.IexCloudapikey}&range=5y`
+    })
+}

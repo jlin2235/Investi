@@ -39,9 +39,16 @@ class TransactionForm extends React.Component{
                 }
             }) 
     }
+    componentWillUnmount() {
+        debugger
+    }
 
     componentDidUpdate(previousProps) {
         let watchlist = {
+            user_id: this.props.currentUser.id,
+            symbol: this.props.symbol
+        }
+        let transaction = {
             user_id: this.props.currentUser.id,
             symbol: this.props.symbol
         }
@@ -58,6 +65,8 @@ class TransactionForm extends React.Component{
 
                     }
                 }) 
+            this.props.getOneTran(transaction);
+
 
         }
     }
@@ -136,8 +145,12 @@ class TransactionForm extends React.Component{
                     debugger
                     if (response.transaction !== undefined){
                         this.props.receiveSuccessMessage()
+                        this.props.TESTFiveDaysTenMinBatchPricesIEX(Object.keys(response.transaction)[0]);
+                        this.props.TESTFiveYearBatchPricesIEX(Object.keys(response.transaction)[0]
+)
                     }
                 })
+            
         }else { //SELL
             debugger
             transaction['balance'] = this.props.currentUser.balance + this.state.cost;
@@ -258,7 +271,7 @@ class TransactionForm extends React.Component{
                     </div>
                     <input id='submit-button' type="submit" value={this.state.buyOrSell}/>
                     <p className='buying-power-message' >{this.buyingPowerMessage()}</p>
-                    {/* <button id='submit-button-watch'  onClick={this.handleSubmitWatch}>{this.state.watchOrUnwatch}</button> */}
+                    <button id='submit-button-watch'  onClick={this.handleSubmitWatch}>{this.state.watchOrUnwatch}</button>
                 </div>
                     {/* <form onSubmit={this.handleSubmitWatch}>
                         <input id='submit-button-watch' type="submit" value={this.state.watchOrUnwatch} />

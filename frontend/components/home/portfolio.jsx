@@ -11,7 +11,8 @@ class Portfolio extends React.Component{
     constructor(props) {
         super(props);
 
-        this.renderPortfolioStocks = this.renderPortfolioStocks.bind(this)
+        this.renderPortfolioStocks = this.renderPortfolioStocks.bind(this);
+        this.renderWatchlist = this.renderWatchlist.bind(this);
     }
     
     renderPortfolioStocks(){
@@ -31,7 +32,7 @@ class Portfolio extends React.Component{
         let symbols = Object.keys(this.props.transactions);
         
         symbols.forEach((symbol, idx) => {
-             
+            
             let filterData = data[symbol].chart.filter(ele => {
                 return ele
             })
@@ -77,11 +78,17 @@ class Portfolio extends React.Component{
         return portfolioArray;
     }
 
+    renderWatchlist(){
+        
+    }
+
     render() {
         return ( 
             <div className='main-portfolio-container'>
                 <h1 className='portfolio-title'>Portfolio</h1>
                 {this.renderPortfolioStocks()}
+                <h1 className='portfolio-title'>Watchlist</h1>
+                {this.renderWatchlist()}
             </div>
         )
     }
