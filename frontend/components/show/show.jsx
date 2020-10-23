@@ -107,7 +107,7 @@ class Show extends React.Component{
                     </div>
                     <div>
                         <h2>Website</h2>
-                        <div>{profile.website}</div>
+                        <a target="_blank" href={profile.website}>{profile.website}</a>
                     </div>
                     <div>
                         <h2>Sector</h2>

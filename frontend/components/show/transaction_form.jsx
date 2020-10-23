@@ -194,7 +194,7 @@ class TransactionForm extends React.Component{
               .then(response => {
                   debugger
                   if (response.watchlist !== undefined) {
-                      this.setState({ watchOrUnwatch: 'MATCH' })
+                      this.setState({ watchOrUnwatch: 'WATCH' })
 
                   }
               })
