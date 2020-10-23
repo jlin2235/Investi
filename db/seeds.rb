@@ -14,14 +14,14 @@ demoUser = User.create!(
     email:"demoUser@gmail.com", 
     first_name:"Lauren", 
     last_name:"Lee", 
-    balance: 10000,
+    balance: 100000,
     password:"demopassword"
 )
 
 
 transaction_1 = Transaction.create!(user_id:demoUser.id, symbols:'T', purchase_price:32, shares:2)
 transaction_1 = Transaction.create!(user_id:demoUser.id, symbols:'UBER', purchase_price:30, shares:2)
-transaction_1 = Transaction.create!(user_id:demoUser.id, symbols:'GOOG', purchase_price:1567, shares:2)
+transaction_1 = Transaction.create!(user_id:demoUser.id, symbols:'GOOG', purchase_price:1567, shares:1)
 transaction_1 = Transaction.create!(user_id:demoUser.id, symbols:'TSLA', purchase_price:320, shares:2)
 # transaction_2 = Transaction.create!(user_id:demoUser.id, symbols:'T', purchase_price:30, shares:2)
 # transaction_3 = Transaction.create!(user_id:demoUser.id, symbols:'T', purchase_price:-29, shares:10)
