@@ -79,7 +79,25 @@ class Portfolio extends React.Component{
     }
 
     renderWatchlist(){
+        debugger
+        // if(this.props.watchlist.length === 0){
+        //     return null
+        // }
+        let watchlistSymbols = Object.values(this.props.watchlist);
+        let symbolsArray = []
+        watchlistSymbols.map( symbol => {
+            debugger
+            symbolsArray.push(
+                <Link to={`/home/${symbol.symbols}`}>
+                    <li className='watchlist-symbols-list-items'>
+                        <p>{symbol.symbols}</p>
+                    </li>
+                </Link>
+                )
+        })
         
+        debugger
+        return symbolsArray
     }
 
     render() {
@@ -88,7 +106,9 @@ class Portfolio extends React.Component{
                 <h1 className='portfolio-title'>Portfolio</h1>
                 {this.renderPortfolioStocks()}
                 <h1 className='portfolio-title'>Watchlist</h1>
-                {this.renderWatchlist()}
+                <ul className='watchlist-main-container'>
+                    {this.renderWatchlist()}
+                </ul>
             </div>
         )
     }

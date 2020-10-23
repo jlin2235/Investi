@@ -9,7 +9,7 @@ import {    getOneTran,
          } from '../../actions/transaction_actions';
 import { TESTFiveDaysTenMinBatchPricesIEX, TESTFiveYearBatchPricesIEX } from './../../actions/graph_actions'
 
-import { createWatchList, getWatchList, deleteWatch } from '../../actions/watchlist.actions'
+import { createWatchList, getWatchList, deleteWatch } from '../../actions/watchlist_actions'
 
 
 

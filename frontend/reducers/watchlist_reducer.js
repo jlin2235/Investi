@@ -2,7 +2,7 @@ import {
     CREATE_WATCHLIST,
     GET_ALL_WATCHLIST,
     GET_ONE_WATCHLIST
-} from '../actions/watchlist.actions'
+} from '../actions/watchlist_actions'
 
 const watchListReducer = (state = [], action) => {
     Object.freeze(state);

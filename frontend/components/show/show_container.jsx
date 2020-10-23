@@ -3,7 +3,7 @@ import Show from './show';
 import { receiveFiveMin, receiveThirtyMin, receiveFiveYr, receiveNews } from '../../actions/graph_actions'
 import { receivePrice, receiveProfile } from '../../actions/search_actions'
 import { getOneTran } from '../../actions/transaction_actions';
-import { getWatchList } from '../../actions/watchlist.actions'
+import { getWatchList } from '../../actions/watchlist_actions'
 
 
 const msp = (state, ownProps) => {

@@ -50,3 +50,16 @@
     }
 
 }
+
+
+.watchlist-main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    margin: 5px;
+
+    .watchlist-symbols-list-items:hover{
+        color: #21ce99
+    }
+}   

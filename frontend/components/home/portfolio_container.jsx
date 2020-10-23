@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-// import { receivePrice } from '../../actions/search_actions';
-import { receiveFiveMin } from '../../actions/graph_actions'
+import { deleteWatch } from '../../actions/watchlist_actions'
 import Portfolio from './portfolio'
 
 const msp = state => {
@@ -11,11 +10,13 @@ const msp = state => {
         graphPrices: state.entities.graphPrices,
         profile: state.entities.profile,
         transactions: state.entities.transactions,
+        watchlist: state.entities.watchlist
     }
 }
 const mdp = dispatch => {
     return {
-        // receivePrice: symbol => dispatch(receivePrice(symbol)),
+        deleteWatch: watchlist => dispatch(deleteWatch(watchlist)),
+
         // receiveFiveMin: symbol => (dispatch(receiveFiveMin(symbol)))
     }
 }

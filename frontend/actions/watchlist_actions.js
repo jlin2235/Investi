@@ -48,7 +48,9 @@ export const deleteWatch = watchlist => dispatch => deleteWatchList(watchlist)
         return dispatch(deleteWatchListHelperMethod(watchlist))});
 
 export const getWatchLists = watchlist => dispatch => getAllWatchLists(watchlist)
-    .then(watchlists => dispatch(getAllWatchListsHelperMethod(watchlists)))
+    .then(watchlists => {
+        debugger
+        return dispatch(getAllWatchListsHelperMethod(watchlists))})
 
 
 export const getWatchList = watchlist => dispatch => getOneWatchList(watchlist)

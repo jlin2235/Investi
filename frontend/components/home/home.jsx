@@ -14,11 +14,17 @@ class HomeForm extends React.Component{
     }
 
     componentDidMount() {
+        
         this.props.receiveNews();
 
         let transaction = {
             user_id: this.props.currentUser.id
         }
+
+        let watchlist = {
+            user_id: this.props.currentUser.id,
+        }
+
         this.props.getAllTransaction(transaction)
             .then(transactions => {
                 let symbolsArray = Object.keys(transactions.transactions);
@@ -27,6 +33,8 @@ class HomeForm extends React.Component{
                 this.props.FiveYearBatchPricesIEX(symbolsArray);
          
             })
+        debugger
+        this.props.getWatchLists(watchlist)
     }
 
     componentWillUnmount(){

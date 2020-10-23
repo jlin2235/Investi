@@ -39,15 +39,11 @@ class Graph extends React.Component {
     }
 
     changeDateViewUnderlines(newDate){
-        debugger
         let timeFrames = Array.prototype.slice.call(document.getElementsByClassName('Stock-Data-View-Button'));
-        debugger
         timeFrames.forEach(ele => {
-            debugger
             let classListOfElement = Array.prototype.slice.call(ele.classList);
             ele.classList.remove('underlined');
             if (classListOfElement.includes(newDate)){
-                debugger
                 ele.classList.add('underlined');
             }
         }) 
@@ -56,9 +52,9 @@ class Graph extends React.Component {
 
     graphDataCalculation() {
         debugger
-        
-        
-        
+        if(this.props.transactions.length === 0) {
+            return null
+        }
         let data;
         let todayDate = new Date(); //Tue Sep 22 2020 17:37:01 GMT-0400 (Eastern Daylight Time)
         let dayOfWeek = todayDate.getDay(); //2

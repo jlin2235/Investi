@@ -15,13 +15,14 @@ export const deleteWatchList = watchList => {
     })
 }
 
-export const getAllWatchLists = watchList => (
-    $.ajax({
+export const getAllWatchLists = watchList => {
+    debugger
+    return $.ajax({
         url: "/api/watchlists",
         method: "GET",
         data: { watchList }
     })
-)
+}
 
 export const getOneWatchList = watchList => (
     $.ajax({

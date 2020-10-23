@@ -3,9 +3,9 @@ import { getAllTransaction } from '../../actions/transaction_actions'
 import { receiveFiveMinBatch, 
         FiveDaysTenMinBatchPricesIEX, 
         receiveNews,
-        FiveYearBatchPricesIEX,
-        DynamicBatchPricesIEX } from '../../actions/graph_actions'
+        FiveYearBatchPricesIEX } from '../../actions/graph_actions'
 import { receivePrices } from '../../actions/search_actions'
+import { getWatchLists, getWatchList } from '../../actions/watchlist_actions'
 
 import HomeForm from './home'
 
@@ -28,8 +28,7 @@ const mdp = dispatch => {
         receiveFiveMinBatch: symbol => dispatch(receiveFiveMinBatch(symbol)),
         FiveDaysTenMinBatchPricesIEX: symbols => dispatch(FiveDaysTenMinBatchPricesIEX(symbols)),
         FiveYearBatchPricesIEX: symbols => dispatch(FiveYearBatchPricesIEX(symbols)),
-        // DynamicBatchPricesIEX: symbols => dispatch(DynamicBatchPricesIEX(symbols))
-        
+        getWatchLists: watchlist => dispatch(getWatchLists(watchlist))
     }
 }
 
