@@ -14,7 +14,7 @@ demoUser = User.create!(
     email:"demoUser@gmail.com", 
     first_name:"Lauren", 
     last_name:"Lee", 
-    balance: 100000,
+    balance: 1000000,
     password:"demopassword"
 )
 
