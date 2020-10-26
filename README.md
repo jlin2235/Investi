@@ -15,7 +15,9 @@ Investi is a clone of popular trading application Robinhood. The reason why I ch
 <h2>Features</h2>
 
 <h3>User Authentication </h3>
+
 ![User Auth](https://i.imgur.com/hGLYw4K.png)
+
 Ruby's BCrypt gem, a hash algorithm, was used to encrypt the password information. 
 
 
