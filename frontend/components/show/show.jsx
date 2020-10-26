@@ -17,9 +17,9 @@ class Show extends React.Component{
         this.props.receiveProfile(this.props.symbol);
         this.props.receiveNews();
         this.props.receivePrice(this.props.symbol);
-        // this.props.receiveFiveMin(this.props.symbol); 
-        // this.props.receiveThirtyMin(this.props.symbol);
-        // this.props.receiveFiveYr(this.props.symbol);
+        this.props.receiveFiveMin(this.props.symbol); 
+        this.props.receiveThirtyMin(this.props.symbol);
+        this.props.receiveFiveYr(this.props.symbol);
     }
 
     componentWillUnmount() {

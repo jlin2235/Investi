@@ -261,9 +261,9 @@ class Graph extends React.Component {
             return rObj
         })
         // console.log(test)
-        if (this.state.dateViewed === '5y') {
-        test = test.slice().reverse()
-        } 
+        // if (this.state.dateViewed === '5y') {
+        // test = test.slice().reverse()
+        // } 
    
         let needUpdate = this.state.data[0] ? this.state.data[0].PortfolioValue !== test[0].PortfolioValue : true
         if (needUpdate) {
