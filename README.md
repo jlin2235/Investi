@@ -1,15 +1,16 @@
 <h1>About</h1>
-Investi is a clone of popular trading application Robinhood. The reason why I chose to work on a Robinhood clone is because I've always enjoy trading and learning about how to trade. This application combines a user friendly interface in order to convey critical investment information to the average investor. 
+Investi is a clone of popular trading application Robinhood. The reason why I chose to work on a Robinhood clone is because I've always enjoy trading and learning how to trade. This application combines a user friendly interface with aesthetic visualization in order to convey critical investment information to the average investor. 
 
-<h2>Built with</h2?>
-<li>Javascript</li>
-<li>React</li>
-<li>Redux</li>
-<li>Ruby on Rails</li>
-<li>HMTL</li>
-<li>CSS</li>
-<li>PostgreSQL</li>
-<li>IEX/FMP/News API</li>
+
+<h2>Built with</h2>
+  <li>Javascript</li>
+  <li>React</li>
+  <li>Redux</li>
+  <li>Ruby on Rails</li>
+  <li>HMTL</li>
+  <li>CSS</li>
+  <li>PostgreSQL</li>
+  <li>IEX/FMP/News API</li>
 
 <h2>Features</h2>
 
