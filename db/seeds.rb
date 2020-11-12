@@ -20,7 +20,7 @@ demoUser = User.create!(
 
 
 transaction_1 = Transaction.create!(user_id:demoUser.id, symbols:'T', purchase_price:32, shares:2)
-transaction_2 = Transaction.create!(user_id:demoUser.id, symbols:'UBER', purchase_price:30, shares:2)
+# transaction_2 = Transaction.create!(user_id:demoUser.id, symbols:'UBER', purchase_price:30, shares:2)
 transaction_3 = Transaction.create!(user_id:demoUser.id, symbols:'GOOG', purchase_price:1567, shares:1)
 transaction_4 = Transaction.create!(user_id:demoUser.id, symbols:'TSLA', purchase_price:320, shares:2)
 
